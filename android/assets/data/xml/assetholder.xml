@@ -1,0 +1,60 @@
+<assets>
+
+	    <group name="base" >
+	        <asset
+	            path="data/caveman.xml"
+	            type="com.siondream.core.animation.AnimationData" />
+	        <asset
+	            path="data/caveman_physics.xml"
+	            type="com.siondream.core.physics.PhysicsData" />
+	        <asset
+	            path="data/ui/uiskin.json"
+	            type="com.badlogic.gdx.scenes.scene2d.ui.Skin" />
+	   </group>
+	   
+	    <group name="ui_menu" >
+	        <asset
+	            path="data/caveman.xml"
+	            type="com.siondream.core.animation.AnimationData" />
+	        <asset
+	            path="data/caveman_physics.xml"
+	            type="com.siondream.core.physics.PhysicsData" />
+	    </group>
+	    
+	    <group name="ui_level" >
+	        <asset
+	            path="data/caveman.xml"
+	            type="com.siondream.core.animation.AnimationData" />
+	        <asset
+	            path="data/caveman_physics.xml"
+	            type="com.siondream.core.physics.PhysicsData" />
+	    </group>
+	    
+	    <group name="ui_highscore" >
+	        <asset
+	            path="data/caveman.xml"
+	            type="com.siondream.core.animation.AnimationData" />
+	        <asset
+	            path="data/caveman_physics.xml"
+	            type="com.siondream.core.physics.PhysicsData" />
+	    </group>
+	    
+	    <group name="ui_credit" >
+	        <asset
+	            path="data/caveman.xml"
+	            type="com.siondream.core.animation.AnimationData" />
+	        <asset
+	            path="data/caveman_physics.xml"
+	            type="com.siondream.core.physics.PhysicsData" />
+	    </group>
+	    
+	    <group name="ui_tutorial" >
+	        <asset
+	            path="data/caveman.xml"
+	            type="com.siondream.core.animation.AnimationData" />
+	        <asset
+	            path="data/caveman_physics.xml"
+	            type="com.siondream.core.physics.PhysicsData" />
+	    </group>
+
+</assets>

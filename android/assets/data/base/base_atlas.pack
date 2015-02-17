@@ -1,0 +1,19 @@
+
+base_atlas.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+background_menu_berge
+  rotate: false
+  xy: 0, 142
+  size: 512, 288
+  orig: 512, 288
+  offset: 0, 0
+  index: -1
+holder
+  rotate: false
+  xy: 0, 0
+  size: 138, 142
+  orig: 138, 142
+  offset: 0, 0
+  index: -1

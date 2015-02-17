@@ -1,0 +1,108 @@
+
+menu_atlas.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+img_bg_1_
+  rotate: false
+  xy: 0, 422
+  size: 1024, 576
+  orig: 1024, 576
+  offset: 0, 0
+  index: -1
+img_obj_btn_credit
+  rotate: false
+  xy: 601, 362
+  size: 191, 60
+  orig: 191, 60
+  offset: 0, 0
+  index: -1
+img_obj_btn_play
+  rotate: false
+  xy: 792, 362
+  size: 191, 60
+  orig: 191, 60
+  offset: 0, 0
+  index: -1
+img_obj_btn_scores
+  rotate: false
+  xy: 420, 256
+  size: 191, 60
+  orig: 191, 60
+  offset: 0, 0
+  index: -1
+img_obj_flower_1_
+  rotate: false
+  xy: 147, 142
+  size: 125, 174
+  orig: 125, 174
+  offset: 0, 0
+  index: -1
+img_obj_flower_2_
+  rotate: false
+  xy: 0, 142
+  size: 147, 174
+  orig: 147, 174
+  offset: 0, 0
+  index: -1
+img_obj_loading
+  rotate: false
+  xy: 272, 115
+  size: 87, 84
+  orig: 87, 84
+  offset: 0, 0
+  index: -1
+img_obj_social_facebook
+  rotate: false
+  xy: 173, 27
+  size: 74, 115
+  orig: 74, 115
+  offset: 0, 0
+  index: -1
+img_obj_social_google
+  rotate: false
+  xy: 359, 84
+  size: 74, 115
+  orig: 74, 115
+  offset: 0, 0
+  index: -1
+img_obj_social_twitter
+  rotate: false
+  xy: 247, 0
+  size: 74, 115
+  orig: 74, 115
+  offset: 0, 0
+  index: -1
+img_obj_swipe_down_menu
+  rotate: false
+  xy: 272, 199
+  size: 148, 117
+  orig: 148, 117
+  offset: 0, 0
+  index: -1
+img_obj_swipe_up_instructions
+  rotate: false
+  xy: 0, 25
+  size: 173, 117
+  orig: 173, 117
+  offset: 0, 0
+  index: -1
+img_obj_text_junglegamemenu
+  rotate: false
+  xy: 0, 316
+  size: 601, 106
+  orig: 601, 106
+  offset: 0, 0
+  index: -1
+
+menu_atlas2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+img_obj_rectangle
+  rotate: false
+  xy: 0, 0
+  size: 910, 576
+  orig: 910, 576
+  offset: 0, 0
+  index: -1

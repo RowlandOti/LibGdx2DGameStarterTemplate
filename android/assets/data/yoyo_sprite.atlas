@@ -1,0 +1,340 @@
+
+yoyo_sprite.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+11
+  rotate: false
+  xy: 475, 115
+  size: 476, 333
+  orig: 498, 336
+  offset: 16, 0
+  index: -1
+13
+  rotate: false
+  xy: 0, 112
+  size: 475, 336
+  orig: 498, 336
+  offset: 13, 0
+  index: -1
+background_home
+  rotate: false
+  xy: 0, 448
+  size: 1024, 576
+  orig: 1024, 576
+  offset: 0, 0
+  index: -1
+button_credit_down
+  rotate: false
+  xy: 0, 0
+  size: 362, 112
+  orig: 381, 138
+  offset: 14, 10
+  index: -1
+button_credit_up
+  rotate: false
+  xy: 362, 0
+  size: 362, 112
+  orig: 381, 138
+  offset: 14, 10
+  index: -1
+button_help_down
+  rotate: false
+  xy: 724, 51
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+button_help_up
+  rotate: false
+  xy: 788, 51
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+button_info_down
+  rotate: false
+  xy: 852, 51
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+button_info_up
+  rotate: false
+  xy: 951, 303
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+button_overlay_left
+  rotate: false
+  xy: 724, 8
+  size: 40, 43
+  orig: 45, 45
+  offset: 2, 2
+  index: -1
+button_overlay_pause
+  rotate: false
+  xy: 951, 115
+  size: 60, 60
+  orig: 64, 64
+  offset: 2, 2
+  index: -1
+button_overlay_right
+  rotate: false
+  xy: 916, 72
+  size: 40, 43
+  orig: 45, 45
+  offset: 2, 1
+  index: -1
+button_sound_off
+  rotate: false
+  xy: 951, 239
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+button_sound_on
+  rotate: false
+  xy: 951, 175
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+lock_closed
+  rotate: false
+  xy: 951, 367
+  size: 60, 81
+  orig: 128, 128
+  offset: 34, 25
+  index: -1
+
+yoyo_sprite2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+10
+  rotate: false
+  xy: 475, 116
+  size: 478, 330
+  orig: 498, 336
+  offset: 17, 0
+  index: -1
+12
+  rotate: false
+  xy: 0, 113
+  size: 475, 333
+  orig: 498, 336
+  offset: 14, 1
+  index: -1
+background_nairobi_night
+  rotate: false
+  xy: 0, 446
+  size: 1024, 576
+  orig: 1024, 576
+  offset: 0, 0
+  index: -1
+button_highscore_down
+  rotate: false
+  xy: 0, 1
+  size: 362, 112
+  orig: 381, 138
+  offset: 14, 10
+  index: -1
+button_highscore_up
+  rotate: false
+  xy: 362, 1
+  size: 362, 112
+  orig: 381, 138
+  offset: 14, 10
+  index: -1
+button_level_green
+  rotate: false
+  xy: 724, 0
+  size: 116, 116
+  orig: 128, 128
+  offset: 6, 7
+  index: -1
+button_level_grey
+  rotate: false
+  xy: 840, 0
+  size: 116, 116
+  orig: 128, 128
+  offset: 6, 7
+  index: -1
+
+yoyo_sprite3.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+14
+  rotate: false
+  xy: 0, 318
+  size: 473, 328
+  orig: 498, 336
+  offset: 13, 8
+  index: -1
+15
+  rotate: false
+  xy: 0, 646
+  size: 471, 332
+  orig: 498, 336
+  offset: 15, 3
+  index: -1
+2
+  rotate: false
+  xy: 473, 337
+  size: 483, 317
+  orig: 498, 336
+  offset: 4, 0
+  index: -1
+3
+  rotate: false
+  xy: 482, 20
+  size: 482, 317
+  orig: 498, 336
+  offset: 7, 0
+  index: -1
+4
+  rotate: false
+  xy: 0, 0
+  size: 482, 318
+  orig: 498, 336
+  offset: 10, 0
+  index: -1
+9
+  rotate: false
+  xy: 471, 654
+  size: 479, 324
+  orig: 498, 336
+  offset: 19, 1
+  index: -1
+
+yoyo_sprite4.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+1
+  rotate: false
+  xy: 0, 631
+  size: 486, 316
+  orig: 498, 336
+  offset: 0, 1
+  index: -1
+5
+  rotate: false
+  xy: 0, 314
+  size: 483, 317
+  orig: 498, 336
+  offset: 12, 0
+  index: -1
+6
+  rotate: false
+  xy: 486, 347
+  size: 483, 312
+  orig: 498, 336
+  offset: 14, 5
+  index: -1
+7
+  rotate: false
+  xy: 0, 0
+  size: 482, 314
+  orig: 498, 336
+  offset: 16, 4
+  index: -1
+8
+  rotate: false
+  xy: 483, 31
+  size: 478, 316
+  orig: 498, 336
+  offset: 20, 2
+  index: -1
+background_menu_berge
+  rotate: false
+  xy: 486, 659
+  size: 512, 288
+  orig: 512, 288
+  offset: 0, 0
+  index: -1
+
+yoyo_sprite5.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+button_menu_down
+  rotate: false
+  xy: 0, 590
+  size: 362, 112
+  orig: 381, 138
+  offset: 14, 10
+  index: -1
+button_menu_up
+  rotate: false
+  xy: 0, 478
+  size: 362, 112
+  orig: 381, 138
+  offset: 14, 10
+  index: -1
+button_quit_down
+  rotate: false
+  xy: 362, 590
+  size: 362, 112
+  orig: 381, 138
+  offset: 14, 10
+  index: -1
+button_quit_up
+  rotate: false
+  xy: 0, 366
+  size: 362, 112
+  orig: 381, 138
+  offset: 14, 10
+  index: -1
+button_resume_down
+  rotate: false
+  xy: 362, 478
+  size: 362, 112
+  orig: 381, 138
+  offset: 14, 10
+  index: -1
+button_resume_up
+  rotate: false
+  xy: 0, 254
+  size: 362, 112
+  orig: 381, 138
+  offset: 14, 10
+  index: -1
+button_start_down
+  rotate: false
+  xy: 362, 366
+  size: 362, 112
+  orig: 381, 138
+  offset: 14, 10
+  index: -1
+button_start_up
+  rotate: false
+  xy: 0, 142
+  size: 362, 112
+  orig: 381, 138
+  offset: 14, 10
+  index: -1
+holder
+  rotate: false
+  xy: 0, 0
+  size: 138, 142
+  orig: 138, 142
+  offset: 0, 0
+  index: -1
+star_empty
+  rotate: false
+  xy: 362, 173
+  size: 194, 193
+  orig: 194, 193
+  offset: 0, 0
+  index: -1
+star_normal
+  rotate: false
+  xy: 724, 507
+  size: 194, 195
+  orig: 194, 195
+  offset: 0, 0
+  index: -1
