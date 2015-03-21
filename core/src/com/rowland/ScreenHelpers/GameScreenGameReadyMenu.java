@@ -1,6 +1,5 @@
 package com.rowland.ScreenHelpers;
 
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
@@ -9,107 +8,78 @@ import com.moribitotech.mtx.scene2d.ui.ButtonGame;
 import com.moribitotech.mtx.scene2d.ui.MenuCreator;
 import com.moribitotech.mtx.scene2d.ui.TableModel;
 import com.moribitotech.mtx.settings.AppSettings;
-import com.rowland.Helpers.AssetLoader;
-import com.rowland.Screens.GameScreen;
 import com.rowland.Screens.LevelSelectScreen;
+import com.rowland.Screens.GameScreen;
 
 
-public class GameScreenGameReadyMenu extends GameScreenAbstractMenu{
+public class GameScreenGameReadyMenu extends GameScreenAbstractMenu {
 
 	private TableModel gameReadyMenuTable;
-	private ButtonGame infoButton, numGemsButton,numEggsButton;
-	private ButtonGame missionText;
 	private ButtonGame  okButton,cancelButton;
-	private TextureRegion holder, button_overlay_left, button_overlay_right, background_menu_berge;
+	private GameScreen gameScreen;
 
-	public GameScreenGameReadyMenu(TextureRegion[] readyMenu)
+	public GameScreenGameReadyMenu(final GameScreen gameScreen)
 	{
-		this.holder = readyMenu[0];
-		this.button_overlay_left = readyMenu[1];
-		this.button_overlay_right = readyMenu[2];
-		this.background_menu_berge = readyMenu[3];
+		this.gameScreen = gameScreen;
 	}
 
 	@Override
-	public void setUpMenu(final GameScreen gameScreen)
+	public void setUpMenu()
 	{
 
-			gameReadyMenuTable = new TableModel(background_menu_berge, AppSettings.SCREEN_W/1.3f , AppSettings.WORLD_HEIGHT/1.3f);
-			gameReadyMenuTable.setPosition(100*AppSettings.getWorldPositionXRatio(), -AppSettings.SCREEN_H);
+		gameReadyMenuTable = new TableModel(GameScreen.background_menu_berge, AppSettings.SCREEN_W/1.3f , AppSettings.WORLD_HEIGHT/1.3f);
+		gameReadyMenuTable.setPosition(100*AppSettings.getWorldPositionXRatio(), -AppSettings.SCREEN_H);
 
-				infoButton = MenuCreator.createCustomGameButton(AssetLoader.bigFont, holder, holder);
-				infoButton.setTextPosXY(20*AppSettings.getWorldPositionXRatio(), 38*AppSettings.getWorldPositionYRatio());
+		cancelButton = MenuCreator.createCustomGameButton(null,GameScreen.button_overlay_left, GameScreen.button_overlay_left);
+		cancelButton.addListener(new ActorGestureListener() {
+			@Override
+			public void touchUp(InputEvent event, float x, float y,
+					int pointer, int button) {
+				super.touchUp(event, x, y, pointer, button);
+				//gameScreen.setBackgroundTexture(textureBackground);
+				gameScreen.getGame().setScreen(new LevelSelectScreen(gameScreen.getGame(), "LevelSelect Screen"));
+			}
+		});
 
-				missionText = MenuCreator.createCustomGameButton(AssetLoader.smallFont, holder, holder);
-				missionText.setTextPosXY(20*AppSettings.getWorldPositionXRatio(), 40*AppSettings.getWorldPositionYRatio());
+		okButton = MenuCreator.createCustomGameButton(null, GameScreen.button_overlay_right, GameScreen.button_overlay_right);
+		okButton.addListener(new ActorGestureListener() {
+			@Override
+			public void touchUp(InputEvent event, float x, float y,
+					int pointer, int button) {
+				super.touchUp(event, x, y, pointer, button);
+				sendAwayMenu();
 
+				gameScreen.state = GameScreen.State.GAME_RUNNING;
+				gameScreen.removeBackgroundTexture();
+				gameScreen.resetGame();
+				gameScreen.setUpTheWorld();
+				gameScreen.toggleGestureProcessor(true);
 
-				cancelButton = MenuCreator.createCustomGameButton(null, button_overlay_left, button_overlay_left);
-				cancelButton.addListener(new ActorGestureListener() {
-					@Override
-					public void touchUp(InputEvent event, float x, float y,
-							int pointer, int button) {
-						super.touchUp(event, x, y, pointer, button);
-						//gameScreen.setBackgroundTexture(textureBackground);
-						gameScreen.getGame().setScreen(new LevelSelectScreen(gameScreen.getGame(), "LevelSelect Screen"));
-					}
-				});
-
-				okButton = MenuCreator.createCustomGameButton(null, button_overlay_right, button_overlay_right);
-				okButton.addListener(new ActorGestureListener() {
-					@Override
-					public void touchUp(InputEvent event, float x, float y,
-							int pointer, int button) {
-						super.touchUp(event, x, y, pointer, button);
-						sendAwayMenu(gameScreen);
-
-						GameScreen.state = GameScreen.State.GAME_RUNNING;
-						gameScreen.removeBackgroundTexture();
-						gameScreen.resetGame();
-						gameScreen.setUpTheWorld();
-						gameScreen.toggleGestureProcessor(true);
-
-					}
-				});
+			}
+		});
 
 
-				float dipRatioWidth = 80 * AppSettings.getWorldSizeRatio();
-				float dipRatioHeight = 80 * AppSettings.getWorldSizeRatio();
-				float padding = 10.0f * AppSettings.getWorldSizeRatio();
+		float dipRatioWidth = 80 * AppSettings.getWorldSizeRatio();
+		float dipRatioHeight = 80 * AppSettings.getWorldSizeRatio();
 
-				gameReadyMenuTable.defaults().align(Align.bottom);
-				gameReadyMenuTable.add(infoButton).size(3.0f*dipRatioWidth, dipRatioHeight/1.5f).pad(padding).center();
-				gameReadyMenuTable.row();
 
-				gameReadyMenuTable.add(missionText).size(5.5f*dipRatioWidth, dipRatioHeight/1.5f);
-				gameReadyMenuTable.row();
-
-				gameReadyMenuTable.add(numGemsButton).size(80/2*AppSettings.getWorldSizeRatio(), 74/2*AppSettings.getWorldSizeRatio()).pad(padding);
-				gameReadyMenuTable.row();
-				gameReadyMenuTable.add(numEggsButton).size(80/2*AppSettings.getWorldSizeRatio(), 67/2*AppSettings.getWorldSizeRatio());
-				gameReadyMenuTable.row();
-
-				gameReadyMenuTable.add(cancelButton).align(Align.left).size(dipRatioWidth, dipRatioHeight);
-				gameReadyMenuTable.add(okButton).align(Align.right).size(dipRatioWidth, dipRatioHeight);
+		gameReadyMenuTable.add(cancelButton).align(Align.left).size(dipRatioWidth, dipRatioHeight).pad(150f);
+		gameReadyMenuTable.add(okButton).align(Align.right).size(dipRatioWidth, dipRatioHeight).pad(150f);
 
 	}
 
+	//Send in menu
 	@Override
-	public void sendInMenu(final GameScreen gameScreen)
+	public void sendInMenu()
 	{
-		// TODO Auto-generated method stub
-		missionText.setText("Collect at least ..", true);
-
 		gameScreen.getStage().addActor(gameReadyMenuTable);
-
-		infoButton.setText("LEVEL : "+GameScreen.currentlevel, true);
 		gameReadyMenuTable.addAction(Actions.moveTo(100*AppSettings.getWorldPositionXRatio(), 60*AppSettings.getWorldPositionYRatio(), 0.5f));
 	}
 
+	//Send away menu
 	@Override
-	public void sendAwayMenu(final GameScreen gameScreen)
+	public void sendAwayMenu()
 	{
-		// TODO Auto-generated method stub
 		gameReadyMenuTable.addAction(Actions.moveTo(100*AppSettings.getWorldPositionXRatio(),- gameReadyMenuTable.getHeight(), 0.5f));
 	}
 

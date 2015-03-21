@@ -2,7 +2,6 @@ package com.moribitotech.mtx.scene2d.ui;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 
@@ -180,7 +179,8 @@ public class ButtonLevel extends AbstractButton {
 	 * Set level stars size ratio. This makes stars smaller or bigger (Default is 5). Bigger number makes stars/holders
 	 * bigger and vice-versa.
 	 * */
-	public void setLevelStarSizeRatio(float starSizeRatio) {
+	public void setLevelStarSizeRatio(float starSizeRatio)
+	{
 		this.starSizeRatio = starSizeRatio;
 		float btnSizeW = getWidth() - (getWidth() / starSizeRatio);
 		float btnSizeH = getHeight() - (getHeight() / starSizeRatio);

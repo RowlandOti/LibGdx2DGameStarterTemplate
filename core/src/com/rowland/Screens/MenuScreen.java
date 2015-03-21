@@ -8,7 +8,6 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 import com.magnetideas.helpers.MyAbstractScreen;
 import com.moribitotech.madboy.buttons.JungleGameButton;
-import com.moribitotech.mtx.game.AbstractGame;
 import com.moribitotech.mtx.input.InputIntent;
 import com.moribitotech.mtx.interfaces.IScreen;
 import com.moribitotech.mtx.scene2d.effects.EffectCreator;
@@ -48,7 +47,7 @@ public class MenuScreen extends MyAbstractScreen implements IScreen {
 	MainMenuScreenInstructions jungleMainMenuScreenInstructions;
 
 	// Main Menu Screen helpers
-	private final float SPLASH_TIME = 6.0f;
+	private final float SPLASH_TIME = 1.0f;
 	private final float GAME_NAME_LOOP_ANIMATION_TIME = 3.0f;
 	private float gameNameAnimationTimer;
 
@@ -121,9 +120,9 @@ public class MenuScreen extends MyAbstractScreen implements IScreen {
 		//
 		// Construct Main Menu Screen element managers
 		// #################################################################
-		jungleMainMenuScreenButtons = new MainMenuScreenButtons();
-		jungleMainMenuScreenEnvironment = new MainMenuScreenEnvironment();
-		jungleMainMenuScreenInstructions = new MainMenuScreenInstructions();
+		jungleMainMenuScreenButtons = new MainMenuScreenButtons(this);
+		jungleMainMenuScreenEnvironment = new MainMenuScreenEnvironment(this);
+		jungleMainMenuScreenInstructions = new MainMenuScreenInstructions(this);
 
 		//
 		// Prepare splash
@@ -145,16 +144,16 @@ public class MenuScreen extends MyAbstractScreen implements IScreen {
 		// We will send the elements after splash is completed
 		// Check the render() method
 
-		jungleMainMenuScreenEnvironment.setUpBackgroundBalloons(this);
-		jungleMainMenuScreenEnvironment.setUpMounatins(this);
-		jungleMainMenuScreenEnvironment.setUpFlowers(this);
-		jungleMainMenuScreenEnvironment.setUpGameName(this);
+		jungleMainMenuScreenEnvironment.setUpBackgroundBalloons();
+		jungleMainMenuScreenEnvironment.setUpMounatins();
+		jungleMainMenuScreenEnvironment.setUpFlowers();
+		jungleMainMenuScreenEnvironment.setUpGameName();
 
-		jungleMainMenuScreenButtons.setUpMainMenuButtons(this);
-		jungleMainMenuScreenButtons.setUpSocialButtons(this);
-		jungleMainMenuScreenButtons.setUpSwipeButtons(this);
+		jungleMainMenuScreenButtons.setUpMainMenuButtons();
+		jungleMainMenuScreenButtons.setUpSocialButtons();
+		jungleMainMenuScreenButtons.setUpSwipeButtons();
 
-		jungleMainMenuScreenInstructions.setUpInstructions(this);
+		jungleMainMenuScreenInstructions.setUpInstructions();
 	}
 
 	@Override
@@ -173,10 +172,10 @@ public class MenuScreen extends MyAbstractScreen implements IScreen {
 		{
 			if (getSecondsTime() > SPLASH_TIME)
 			{
-				jungleMainMenuScreenButtons.sendInMainMenuButtons(this);
-				jungleMainMenuScreenButtons.sendInSocialButtons(this);
-				jungleMainMenuScreenButtons.sendInSwipeForInstruction(this);
-				jungleMainMenuScreenEnvironment.sendInGameName(this);
+				jungleMainMenuScreenButtons.sendInMainMenuButtons();
+				jungleMainMenuScreenButtons.sendInSocialButtons();
+				jungleMainMenuScreenButtons.sendInSwipeForInstruction();
+				jungleMainMenuScreenEnvironment.sendInGameName();
 
 				isSplashCompleted = true;
 				isMenuActive = true;
@@ -251,12 +250,12 @@ public class MenuScreen extends MyAbstractScreen implements IScreen {
 							// Reset all actor actions
 							resetMenuElementsActions();
 
-							jungleMainMenuScreenEnvironment.sendAwayGameName(MenuScreen.this);
-							jungleMainMenuScreenButtons.sendAwaySocialButtons(MenuScreen.this);
-							jungleMainMenuScreenButtons.sendAwayMainMenuButtons(MenuScreen.this);
-							jungleMainMenuScreenButtons.sendInSwipeForMenu(MenuScreen.this);
-							jungleMainMenuScreenButtons.sendAwaySwipeForInstructions(MenuScreen.this);
-							jungleMainMenuScreenInstructions.sendInInstructions(MenuScreen.this);
+							jungleMainMenuScreenEnvironment.sendAwayGameName();
+							jungleMainMenuScreenButtons.sendAwaySocialButtons();
+							jungleMainMenuScreenButtons.sendAwayMainMenuButtons();
+							jungleMainMenuScreenButtons.sendInSwipeForMenu();
+							jungleMainMenuScreenButtons.sendAwaySwipeForInstructions();
+							jungleMainMenuScreenInstructions.sendInInstructions();
 
 							isMenuActive = false;
 						}
@@ -266,18 +265,19 @@ public class MenuScreen extends MyAbstractScreen implements IScreen {
 				else if (inputIntent.getDirectionIntent() == InputIntent.DirectionIntent.TOUCH_D_DOWN) {
 
 					// if swipe down confirmed, send instructions away, get menu
-					if (!isMenuActive && isSplashCompleted) {
-						if (inputIntent.isTouchDragInterval()) {
-							//
+					if (!isMenuActive && isSplashCompleted)
+					{
+						if (inputIntent.isTouchDragInterval())
+						{
 							// Reset all actor actions
 							resetMenuElementsActions();
 							//
-							jungleMainMenuScreenEnvironment.sendInGameName(MenuScreen.this);
-							jungleMainMenuScreenButtons.sendInSocialButtons(MenuScreen.this);
-							jungleMainMenuScreenButtons.sendInMainMenuButtons(MenuScreen.this);
-							jungleMainMenuScreenButtons.sendAwaySwipeForMenu(MenuScreen.this);
-							jungleMainMenuScreenButtons.sendInSwipeForInstruction(MenuScreen.this);
-							jungleMainMenuScreenInstructions.sendAwayInstructions(MenuScreen.this);
+							jungleMainMenuScreenEnvironment.sendInGameName();
+							jungleMainMenuScreenButtons.sendInSocialButtons();
+							jungleMainMenuScreenButtons.sendInMainMenuButtons();
+							jungleMainMenuScreenButtons.sendAwaySwipeForMenu();
+							jungleMainMenuScreenButtons.sendInSwipeForInstruction();
+							jungleMainMenuScreenInstructions.sendAwayInstructions();
 
 							isMenuActive = true;
 						}

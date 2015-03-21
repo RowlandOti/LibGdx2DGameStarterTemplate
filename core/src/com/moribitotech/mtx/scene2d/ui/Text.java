@@ -18,7 +18,6 @@ package com.moribitotech.mtx.scene2d.ui;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.moribitotech.mtx.scene2d.AbstractActorLight;
 import com.moribitotech.mtx.settings.AppSettings;
 

@@ -10,43 +10,49 @@ import com.moribitotech.mtx.scene2d.ui.TableModel;
 import com.moribitotech.mtx.settings.AppSettings;
 import com.rowland.Screens.LoadingScreen;
 import com.rowland.Screens.MenuScreen;
+import com.rowland.Screens.PreGameScreen;
 
 import java.util.Random;
 
 public class MainMenuScreenButtons {
 
-	public void setUpMainMenuButtons(final MenuScreen jungleMainMenuScreen)
+	private MenuScreen mainMenuScreen;
+
+	public MainMenuScreenButtons(final MenuScreen mainMenuScreen)
+	{
+		this.mainMenuScreen = mainMenuScreen;
+	}
+
+	public void setUpMainMenuButtons()
 	{
 
 		// Menu Table (Play, Scores, Settings)
 		// #################################################################
-		jungleMainMenuScreen.menuTable = new TableModel(null,AppSettings.SCREEN_W, AppSettings.SCREEN_H);
-		jungleMainMenuScreen.menuTable.setPosition(0,-120 * AppSettings.getWorldPositionYRatio());
+		mainMenuScreen.menuTable = new TableModel(null,AppSettings.SCREEN_W, AppSettings.SCREEN_H);
+		mainMenuScreen.menuTable.setPosition(0,-120 * AppSettings.getWorldPositionYRatio());
 
 		//
 		// Btn Values
 		// #################################################################
 		Random rnd = new Random();
-		float btnWidth = 270f;
-		float btnHeight = 90f;
-		//float btnWidth = 200f;
-		//float btnHeight = 66.67f;
+		float btnWidth = 270f ;
+		float btnHeight = 90f ;
 
 		//
 		// Btn Play
 		// #################################################################
-		jungleMainMenuScreen.btnPlay = new JungleGameButton(btnWidth,btnHeight, rnd, true);
-		jungleMainMenuScreen.btnPlay.setTextureRegion(jungleMainMenuScreen.img_obj_btn_play,true);
-		jungleMainMenuScreen.btnPlay.setOrigin(jungleMainMenuScreen.btnPlay.getWidth() / 2.0f,jungleMainMenuScreen.btnPlay.getHeight() / 2.0f);
-		jungleMainMenuScreen.btnPlay.addListener(new ActorGestureListener() {
+		mainMenuScreen.btnPlay = new JungleGameButton(btnWidth,btnHeight, rnd, true);
+		mainMenuScreen.btnPlay.setTextureRegion(MenuScreen.img_obj_btn_play,true);
+		mainMenuScreen.btnPlay.setOrigin(mainMenuScreen.btnPlay.getWidth() / 2.0f,mainMenuScreen.btnPlay.getHeight() / 2.0f);
+		mainMenuScreen.btnPlay.addListener(new ActorGestureListener() {
 			@Override
 			public void touchDown(InputEvent event, float x, float y,int pointer, int button)
 			{
 				super.touchDown(event, x, y, pointer, button);
 
-				jungleMainMenuScreen.btnPlay.clearActions();
-				EffectCreator.create_SC_SHK_BTN(jungleMainMenuScreen.btnPlay, 1.3f, 1.3f, 5f, 0, 0.05f, null, false);
-				jungleMainMenuScreen.getMyGame().setScreen(new LoadingScreen(jungleMainMenuScreen.getMyGame(), "Loading Screen", LoadingScreen.TYPE_UI_LEVEL));
+				mainMenuScreen.btnPlay.clearActions();
+				EffectCreator.create_SC_SHK_BTN(mainMenuScreen.btnPlay, 1.3f, 1.3f, 5f, 0, 0.05f, null, false);
+				mainMenuScreen.getMyGame().setScreen(new LoadingScreen(mainMenuScreen.getMyGame(), "Loading Screen", LoadingScreen.TYPE_UI_LEVEL));
 			}
 
 		});
@@ -54,60 +60,60 @@ public class MainMenuScreenButtons {
 		//
 		// Btn Scores
 		// #################################################################
-		jungleMainMenuScreen.btnScores = new JungleGameButton(btnWidth,btnHeight, rnd, true);
-		jungleMainMenuScreen.btnScores.setTextureRegion(jungleMainMenuScreen.img_obj_btn_scores, true);
-		jungleMainMenuScreen.btnScores.setOrigin(jungleMainMenuScreen.btnScores.getWidth() / 2.0f,jungleMainMenuScreen.btnScores.getHeight() / 2.0f);
-		jungleMainMenuScreen.btnScores.addListener(new ActorGestureListener() {
+		mainMenuScreen.btnScores = new JungleGameButton(btnWidth,btnHeight, rnd, true);
+		mainMenuScreen.btnScores.setTextureRegion(MenuScreen.img_obj_btn_scores, true);
+		mainMenuScreen.btnScores.setOrigin(mainMenuScreen.btnScores.getWidth() / 2.0f,mainMenuScreen.btnScores.getHeight() / 2.0f);
+		mainMenuScreen.btnScores.addListener(new ActorGestureListener() {
 			@Override
 			public void touchDown(InputEvent event, float x, float y,int pointer, int button)
 			{
 				super.touchDown(event, x, y, pointer, button);
 
-				jungleMainMenuScreen.btnScores.clearActions();
-				EffectCreator.create_SC_SHK_BTN(jungleMainMenuScreen.btnScores,1.3f, 1.3f, 5f, 0, 0.05f, null, false);
-				//jungleMainMenuScreen.getMyGame().setScreen(new LoadingScreen(jungleMainMenuScreen.getMyGame(), "Highscore Screen", LoadingScreen.TYPE_UI_HIGHSCORE));
+				mainMenuScreen.btnScores.clearActions();
+				EffectCreator.create_SC_SHK_BTN(mainMenuScreen.btnScores,1.3f, 1.3f, 5f, 0, 0.05f, null, false);
+				//mainMenuScreen.getMyGame().setScreen(new LoadingScreen(mainMenuScreen.getMyGame(), "Highscore Screen", LoadingScreen.TYPE_UI_HIGHSCORE));
 			}
 		});
 
 		//
 		// Btn Settings
 		// #################################################################
-		jungleMainMenuScreen.btnSettings = new JungleGameButton(btnWidth, btnHeight, rnd, true);
-		jungleMainMenuScreen.btnSettings.setTextureRegion(jungleMainMenuScreen.img_obj_btn_credit, true);
-		jungleMainMenuScreen.btnSettings.setOrigin(jungleMainMenuScreen.btnSettings.getWidth() / 2.0f,jungleMainMenuScreen.btnSettings.getHeight() / 2.0f);
-		jungleMainMenuScreen.btnSettings.addListener(new ActorGestureListener() {
+		mainMenuScreen.btnSettings = new JungleGameButton(btnWidth, btnHeight, rnd, true);
+		mainMenuScreen.btnSettings.setTextureRegion(MenuScreen.img_obj_btn_credit, true);
+		mainMenuScreen.btnSettings.setOrigin(mainMenuScreen.btnSettings.getWidth() / 2.0f,mainMenuScreen.btnSettings.getHeight() / 2.0f);
+		mainMenuScreen.btnSettings.addListener(new ActorGestureListener() {
 					@Override
 					public void touchDown(InputEvent event, float x, float y, int pointer, int button)
 					{
 						super.touchDown(event, x, y, pointer, button);
 
-						jungleMainMenuScreen.btnSettings.clearActions();
-						EffectCreator.create_SC_SHK_BTN(jungleMainMenuScreen.btnSettings, 1.3f, 1.3f, 5f, 0, 0.05f, null, false);
-						//jungleMainMenuScreen.getMyGame().setScreen(new LoadingScreen(jungleMainMenuScreen.getMyGame(), "Settings Screen", LoadingScreen.TYPE_UI_HIGHSCORE));
+						mainMenuScreen.btnSettings.clearActions();
+						EffectCreator.create_SC_SHK_BTN(mainMenuScreen.btnSettings, 1.3f, 1.3f, 5f, 0, 0.05f, null, false);
+						//mainMenuScreen.getMyGame().setScreen(new LoadingScreen(mainMenuScreen.getMyGame(), "Settings Screen", LoadingScreen.TYPE_UI_HIGHSCORE));
 					}
 				});
 
 		//
 		// Scale them to "0", we will send them in after splash completed
 		// #################################################################
-		jungleMainMenuScreen.btnPlay.setScale(0f);
-		jungleMainMenuScreen.btnScores.setScale(0f);
-		jungleMainMenuScreen.btnSettings.setScale(0f);
+		mainMenuScreen.btnPlay.setScale(0f);
+		mainMenuScreen.btnScores.setScale(0f);
+		mainMenuScreen.btnSettings.setScale(0f);
 
 		//
 		// Add
 		// #################################################################
-		jungleMainMenuScreen.menuTable.add(jungleMainMenuScreen.btnPlay).pad(6);
-		jungleMainMenuScreen.menuTable.row();
-		jungleMainMenuScreen.menuTable.add(jungleMainMenuScreen.btnScores).pad(6);
-		jungleMainMenuScreen.menuTable.row();
-		jungleMainMenuScreen.menuTable.add(jungleMainMenuScreen.btnSettings).pad(6);
+		mainMenuScreen.menuTable.add(mainMenuScreen.btnPlay).pad(6);
+		mainMenuScreen.menuTable.row();
+		mainMenuScreen.menuTable.add(mainMenuScreen.btnScores).pad(6);
+		mainMenuScreen.menuTable.row();
+		mainMenuScreen.menuTable.add(mainMenuScreen.btnSettings).pad(6);
 		//
-		jungleMainMenuScreen.getStage().addActor(jungleMainMenuScreen.menuTable);
+		mainMenuScreen.getStage().addActor(mainMenuScreen.menuTable);
 
 	}
 
-	public void setUpSocialButtons(final MenuScreen jungleMainMenuScreen)
+	public void setUpSocialButtons()
 	{
 		//
 		// Btn Values
@@ -125,17 +131,17 @@ public class MainMenuScreenButtons {
 		//
 		// Btn Facebook
 		// #################################################################
-		jungleMainMenuScreen.btnSocialFacebook = new JungleGameButton(btnWidth, btnHeight, rnd, true);
-		jungleMainMenuScreen.btnSocialFacebook.setTextureRegion(jungleMainMenuScreen.img_obj_social_facebook, true);
-		jungleMainMenuScreen.btnSocialFacebook.setOrigin(jungleMainMenuScreen.btnSocialFacebook.getWidth() / 2.0f, jungleMainMenuScreen.btnSocialFacebook.getHeight() / 2.0f);
-		jungleMainMenuScreen.btnSocialFacebook.addListener(new ActorGestureListener() {
+		mainMenuScreen.btnSocialFacebook = new JungleGameButton(btnWidth, btnHeight, rnd, true);
+		mainMenuScreen.btnSocialFacebook.setTextureRegion(MenuScreen.img_obj_social_facebook, true);
+		mainMenuScreen.btnSocialFacebook.setOrigin(mainMenuScreen.btnSocialFacebook.getWidth() / 2.0f, mainMenuScreen.btnSocialFacebook.getHeight() / 2.0f);
+		mainMenuScreen.btnSocialFacebook.addListener(new ActorGestureListener() {
 
 					@Override
 					public void touchDown(InputEvent event, float x, float y, int pointer, int button)
 					{
 						super.touchDown(event, x, y, pointer, button);
 
-						jungleMainMenuScreen.btnSocialFacebook.addAction(Actions.moveTo(jungleMainMenuScreen.btnSocialFacebook.getX(),AppSettings.SCREEN_H - jungleMainMenuScreen.btnSocialFacebook.getHeight(),touchAnimationDuration));
+						mainMenuScreen.btnSocialFacebook.addAction(Actions.moveTo(mainMenuScreen.btnSocialFacebook.getX(),AppSettings.SCREEN_H - mainMenuScreen.btnSocialFacebook.getHeight(),touchAnimationDuration));
 					}
 
 					@Override
@@ -143,23 +149,23 @@ public class MainMenuScreenButtons {
 					{
 						super.touchDown(event, x, y, pointer, button);
 
-						jungleMainMenuScreen.btnSocialFacebook.addAction(Actions.moveTo(jungleMainMenuScreen.btnSocialFacebook.getX(),AppSettings.SCREEN_H - jungleMainMenuScreen.btnSocialFacebook.getHeight() / 1.25f,touchAnimationDuration));
+						mainMenuScreen.btnSocialFacebook.addAction(Actions.moveTo(mainMenuScreen.btnSocialFacebook.getX(),AppSettings.SCREEN_H - mainMenuScreen.btnSocialFacebook.getHeight() / 1.25f,touchAnimationDuration));
 					}
 				});
 
 		//
 		// Btn Twitter
 		// #################################################################
-		jungleMainMenuScreen.btnSocialTwitter = new JungleGameButton(btnWidth,btnHeight, rnd, true);
-		jungleMainMenuScreen.btnSocialTwitter.setTextureRegion(jungleMainMenuScreen.img_obj_social_twitter, true);
-		jungleMainMenuScreen.btnSocialTwitter.setOrigin(jungleMainMenuScreen.btnSocialTwitter.getWidth() / 2.0f,jungleMainMenuScreen.btnSocialTwitter.getHeight() / 2.0f);
-		jungleMainMenuScreen.btnSocialTwitter.addListener(new ActorGestureListener() {
+		mainMenuScreen.btnSocialTwitter = new JungleGameButton(btnWidth,btnHeight, rnd, true);
+		mainMenuScreen.btnSocialTwitter.setTextureRegion(MenuScreen.img_obj_social_twitter, true);
+		mainMenuScreen.btnSocialTwitter.setOrigin(mainMenuScreen.btnSocialTwitter.getWidth() / 2.0f,mainMenuScreen.btnSocialTwitter.getHeight() / 2.0f);
+		mainMenuScreen.btnSocialTwitter.addListener(new ActorGestureListener() {
 					@Override
 					public void touchDown(InputEvent event, float x, float y,
 							int pointer, int button) {
 						super.touchDown(event, x, y, pointer, button);
 
-						jungleMainMenuScreen.btnSocialTwitter.addAction(Actions.moveTo(jungleMainMenuScreen.btnSocialTwitter.getX(),AppSettings.SCREEN_H- jungleMainMenuScreen.btnSocialTwitter.getHeight(),touchAnimationDuration));
+						mainMenuScreen.btnSocialTwitter.addAction(Actions.moveTo(mainMenuScreen.btnSocialTwitter.getX(),AppSettings.SCREEN_H- mainMenuScreen.btnSocialTwitter.getHeight(),touchAnimationDuration));
 					}
 
 					@Override
@@ -167,98 +173,98 @@ public class MainMenuScreenButtons {
 					{
 						super.touchDown(event, x, y, pointer, button);
 
-						jungleMainMenuScreen.btnSocialTwitter.addAction(Actions.moveTo(jungleMainMenuScreen.btnSocialTwitter.getX(),AppSettings.SCREEN_H- jungleMainMenuScreen.btnSocialTwitter.getHeight() / 1.25f,touchAnimationDuration));
+						mainMenuScreen.btnSocialTwitter.addAction(Actions.moveTo(mainMenuScreen.btnSocialTwitter.getX(),AppSettings.SCREEN_H- mainMenuScreen.btnSocialTwitter.getHeight() / 1.25f,touchAnimationDuration));
 					}
 				});
 
 		//
 		// Btn Google+
 		// #################################################################
-		jungleMainMenuScreen.btnSocialGoogle = new JungleGameButton(btnWidth, btnHeight, rnd, true);
-		jungleMainMenuScreen.btnSocialGoogle.setTextureRegion(jungleMainMenuScreen.img_obj_social_google, true);
-		jungleMainMenuScreen.btnSocialGoogle.setOrigin(jungleMainMenuScreen.btnSocialGoogle.getWidth() / 2.0f,jungleMainMenuScreen.btnSocialGoogle.getHeight() / 2.0f);
-		jungleMainMenuScreen.btnSocialGoogle.addListener(new ActorGestureListener() {
+		mainMenuScreen.btnSocialGoogle = new JungleGameButton(btnWidth, btnHeight, rnd, true);
+		mainMenuScreen.btnSocialGoogle.setTextureRegion(MenuScreen.img_obj_social_google, true);
+		mainMenuScreen.btnSocialGoogle.setOrigin(mainMenuScreen.btnSocialGoogle.getWidth() / 2.0f,mainMenuScreen.btnSocialGoogle.getHeight() / 2.0f);
+		mainMenuScreen.btnSocialGoogle.addListener(new ActorGestureListener() {
 					@Override
 					public void touchDown(InputEvent event, float x, float y, int pointer, int button)
 					{
 						super.touchDown(event, x, y, pointer, button);
 
-						jungleMainMenuScreen.btnSocialGoogle.addAction(Actions.moveTo(jungleMainMenuScreen.btnSocialGoogle.getX(),AppSettings.SCREEN_H- jungleMainMenuScreen.btnSocialGoogle.getHeight(),touchAnimationDuration));
+						mainMenuScreen.btnSocialGoogle.addAction(Actions.moveTo(mainMenuScreen.btnSocialGoogle.getX(),AppSettings.SCREEN_H- mainMenuScreen.btnSocialGoogle.getHeight(),touchAnimationDuration));
 					}
 
 					@Override
 					public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
 						super.touchDown(event, x, y, pointer, button);
 
-						jungleMainMenuScreen.btnSocialGoogle.addAction(Actions.moveTo(jungleMainMenuScreen.btnSocialGoogle.getX(),AppSettings.SCREEN_H- jungleMainMenuScreen.btnSocialGoogle.getHeight() / 1.25f,touchAnimationDuration));
+						mainMenuScreen.btnSocialGoogle.addAction(Actions.moveTo(mainMenuScreen.btnSocialGoogle.getX(),AppSettings.SCREEN_H- mainMenuScreen.btnSocialGoogle.getHeight() / 1.25f,touchAnimationDuration));
 					}
 				});
 
 		//
 		// Construct Position
 		// #################################################################
-		jungleMainMenuScreen.btnSocialFacebook.setPosition(initialPosX,initialposY);
-		jungleMainMenuScreen.btnSocialTwitter.setPosition(jungleMainMenuScreen.btnSocialFacebook.getX()+ jungleMainMenuScreen.btnSocialFacebook.getWidth(),initialposY);
-		jungleMainMenuScreen.btnSocialGoogle.setPosition(jungleMainMenuScreen.btnSocialTwitter.getX()+ jungleMainMenuScreen.btnSocialTwitter.getWidth(),initialposY);
+		mainMenuScreen.btnSocialFacebook.setPosition(initialPosX,initialposY);
+		mainMenuScreen.btnSocialTwitter.setPosition(mainMenuScreen.btnSocialFacebook.getX()+ mainMenuScreen.btnSocialFacebook.getWidth(),initialposY);
+		mainMenuScreen.btnSocialGoogle.setPosition(mainMenuScreen.btnSocialTwitter.getX()+ mainMenuScreen.btnSocialTwitter.getWidth(),initialposY);
 
 		//
 		// Add
 		// #################################################################
-		jungleMainMenuScreen.getStage().addActor(jungleMainMenuScreen.btnSocialFacebook);
-		jungleMainMenuScreen.getStage().addActor(jungleMainMenuScreen.btnSocialTwitter);
-		jungleMainMenuScreen.getStage().addActor(jungleMainMenuScreen.btnSocialGoogle);
+		mainMenuScreen.getStage().addActor(mainMenuScreen.btnSocialFacebook);
+		mainMenuScreen.getStage().addActor(mainMenuScreen.btnSocialTwitter);
+		mainMenuScreen.getStage().addActor(mainMenuScreen.btnSocialGoogle);
 	}
 
-	public void sendInMainMenuButtons(final MenuScreen jungleMainMenuScreen)
+	public void sendInMainMenuButtons()
 	{
-		EffectCreator.create_SC_BTO(jungleMainMenuScreen.btnPlay, 1.3f, 1.3f,0.4f, null, false);
-		EffectCreator.create_SC_BTO(jungleMainMenuScreen.btnScores, 1.3f, 1.3f,0.6f, null, false);
-		EffectCreator.create_SC_BTO(jungleMainMenuScreen.btnSettings, 1.3f,1.3f, 0.8f, null, false);
+		EffectCreator.create_SC_BTO(mainMenuScreen.btnPlay, 1.3f, 1.3f,0.4f, null, false);
+		EffectCreator.create_SC_BTO(mainMenuScreen.btnScores, 1.3f, 1.3f,0.6f, null, false);
+		EffectCreator.create_SC_BTO(mainMenuScreen.btnSettings, 1.3f,1.3f, 0.8f, null, false);
 
-		jungleMainMenuScreen.btnPlay.setTouchable(Touchable.enabled);
-		jungleMainMenuScreen.btnScores.setTouchable(Touchable.enabled);
-		jungleMainMenuScreen.btnSettings.setTouchable(Touchable.enabled);
+		mainMenuScreen.btnPlay.setTouchable(Touchable.enabled);
+		mainMenuScreen.btnScores.setTouchable(Touchable.enabled);
+		mainMenuScreen.btnSettings.setTouchable(Touchable.enabled);
 	}
 
-	public void sendAwayMainMenuButtons(final MenuScreen jungleMainMenuScreen)
+	public void sendAwayMainMenuButtons()
 	{
-		EffectCreator.create_SC(jungleMainMenuScreen.btnPlay, 0f, 0f, 0.4f,null, false);
-		EffectCreator.create_SC(jungleMainMenuScreen.btnScores, 0f, 0f, 0.6f,null, false);
-		EffectCreator.create_SC(jungleMainMenuScreen.btnSettings, 0f, 0f, 0.8f,null, false);
+		EffectCreator.create_SC(mainMenuScreen.btnPlay, 0f, 0f, 0.4f,null, false);
+		EffectCreator.create_SC(mainMenuScreen.btnScores, 0f, 0f, 0.6f,null, false);
+		EffectCreator.create_SC(mainMenuScreen.btnSettings, 0f, 0f, 0.8f,null, false);
 
-		jungleMainMenuScreen.btnPlay.setTouchable(Touchable.disabled);
-		jungleMainMenuScreen.btnScores.setTouchable(Touchable.disabled);
-		jungleMainMenuScreen.btnSettings.setTouchable(Touchable.disabled);
+		mainMenuScreen.btnPlay.setTouchable(Touchable.disabled);
+		mainMenuScreen.btnScores.setTouchable(Touchable.disabled);
+		mainMenuScreen.btnSettings.setTouchable(Touchable.disabled);
 	}
 
-	public void sendInSocialButtons(MenuScreen jungleMainMenuScreen) {
+	public void sendInSocialButtons() {
 		//
 		float duration = 0.6f;
 		//
-		jungleMainMenuScreen.btnSocialFacebook.addAction(Actions.moveTo(jungleMainMenuScreen.btnSocialFacebook.getX(),AppSettings.SCREEN_H- (jungleMainMenuScreen.btnSocialFacebook.getHeight() / 1.25f), duration));
-		jungleMainMenuScreen.btnSocialTwitter.addAction(Actions.moveTo(jungleMainMenuScreen.btnSocialTwitter.getX(),AppSettings.SCREEN_H- (jungleMainMenuScreen.btnSocialTwitter.getHeight() / 1.25f), duration + 0.2f));
-		jungleMainMenuScreen.btnSocialGoogle.addAction(Actions.moveTo(jungleMainMenuScreen.btnSocialGoogle.getX(),AppSettings.SCREEN_H- (jungleMainMenuScreen.btnSocialGoogle.getHeight() / 1.25f), duration + 0.4f));
+		mainMenuScreen.btnSocialFacebook.addAction(Actions.moveTo(mainMenuScreen.btnSocialFacebook.getX(),AppSettings.SCREEN_H- (mainMenuScreen.btnSocialFacebook.getHeight() / 1.25f), duration));
+		mainMenuScreen.btnSocialTwitter.addAction(Actions.moveTo(mainMenuScreen.btnSocialTwitter.getX(),AppSettings.SCREEN_H- (mainMenuScreen.btnSocialTwitter.getHeight() / 1.25f), duration + 0.2f));
+		mainMenuScreen.btnSocialGoogle.addAction(Actions.moveTo(mainMenuScreen.btnSocialGoogle.getX(),AppSettings.SCREEN_H- (mainMenuScreen.btnSocialGoogle.getHeight() / 1.25f), duration + 0.4f));
 
-		jungleMainMenuScreen.btnSocialFacebook.setTouchable(Touchable.enabled);
-		jungleMainMenuScreen.btnSocialGoogle.setTouchable(Touchable.enabled);
-		jungleMainMenuScreen.btnSocialTwitter.setTouchable(Touchable.enabled);
+		mainMenuScreen.btnSocialFacebook.setTouchable(Touchable.enabled);
+		mainMenuScreen.btnSocialGoogle.setTouchable(Touchable.enabled);
+		mainMenuScreen.btnSocialTwitter.setTouchable(Touchable.enabled);
 
 	}
 
-	public void sendAwaySocialButtons(MenuScreen jungleMainMenuScreen) {
+	public void sendAwaySocialButtons() {
 
 		float duration = 0.6f;
 
-		jungleMainMenuScreen.btnSocialFacebook.addAction(Actions.moveTo(jungleMainMenuScreen.btnSocialFacebook.getX(),AppSettings.SCREEN_H, duration));
-		jungleMainMenuScreen.btnSocialTwitter.addAction(Actions.moveTo(jungleMainMenuScreen.btnSocialTwitter.getX(),AppSettings.SCREEN_H, duration + 0.2f));
-		jungleMainMenuScreen.btnSocialGoogle.addAction(Actions.moveTo(jungleMainMenuScreen.btnSocialGoogle.getX(),AppSettings.SCREEN_H, duration + 0.4f));
+		mainMenuScreen.btnSocialFacebook.addAction(Actions.moveTo(mainMenuScreen.btnSocialFacebook.getX(),AppSettings.SCREEN_H, duration));
+		mainMenuScreen.btnSocialTwitter.addAction(Actions.moveTo(mainMenuScreen.btnSocialTwitter.getX(),AppSettings.SCREEN_H, duration + 0.2f));
+		mainMenuScreen.btnSocialGoogle.addAction(Actions.moveTo(mainMenuScreen.btnSocialGoogle.getX(),AppSettings.SCREEN_H, duration + 0.4f));
 
-		jungleMainMenuScreen.btnSocialFacebook.setTouchable(Touchable.disabled);
-		jungleMainMenuScreen.btnSocialGoogle.setTouchable(Touchable.disabled);
-		jungleMainMenuScreen.btnSocialTwitter.setTouchable(Touchable.disabled);
+		mainMenuScreen.btnSocialFacebook.setTouchable(Touchable.disabled);
+		mainMenuScreen.btnSocialGoogle.setTouchable(Touchable.disabled);
+		mainMenuScreen.btnSocialTwitter.setTouchable(Touchable.disabled);
 	}
 
-	public void setUpSwipeButtons(final MenuScreen jungleMainMenuScreen)
+	public void setUpSwipeButtons()
 	{
 		Random rnd = new Random();
 		//float btnWidth = 220f / 1.2f;
@@ -269,49 +275,49 @@ public class MainMenuScreenButtons {
 		//
 		// Btn Start
 		// #################################################################
-		jungleMainMenuScreen.btnSwipeForMenu = new JungleGameButton(btnWidth,btnHeight, rnd, true);
-		jungleMainMenuScreen.btnSwipeForMenu.setTextureRegion(jungleMainMenuScreen.img_obj_swipe_down_menu, true);
-		jungleMainMenuScreen.btnSwipeForMenu.setOrigin(jungleMainMenuScreen.btnSwipeForMenu.getWidth(), 0);
-		jungleMainMenuScreen.btnSwipeForMenu.setPosition(AppSettings.SCREEN_W - jungleMainMenuScreen.btnSwipeForMenu.getWidth(), 0);
+		mainMenuScreen.btnSwipeForMenu = new JungleGameButton(btnWidth,btnHeight, rnd, true);
+		mainMenuScreen.btnSwipeForMenu.setTextureRegion(MenuScreen.img_obj_swipe_down_menu, true);
+		mainMenuScreen.btnSwipeForMenu.setOrigin(mainMenuScreen.btnSwipeForMenu.getWidth(), 0);
+		mainMenuScreen.btnSwipeForMenu.setPosition(AppSettings.SCREEN_W - mainMenuScreen.btnSwipeForMenu.getWidth(), 0);
 
 		//
 		// Btn Start
 		// #################################################################
-		jungleMainMenuScreen.btnSwipeForInstructions = new JungleGameButton(btnWidth, btnHeight, rnd, true);
-		jungleMainMenuScreen.btnSwipeForInstructions.setTextureRegion(jungleMainMenuScreen.img_obj_swipe_up_instructions, true);
-		jungleMainMenuScreen.btnSwipeForInstructions.setOrigin(jungleMainMenuScreen.btnSwipeForInstructions.getWidth(), 0);
-		jungleMainMenuScreen.btnSwipeForInstructions.setPosition(AppSettings.SCREEN_W- jungleMainMenuScreen.btnSwipeForInstructions.getWidth(), 0);
+		mainMenuScreen.btnSwipeForInstructions = new JungleGameButton(btnWidth, btnHeight, rnd, true);
+		mainMenuScreen.btnSwipeForInstructions.setTextureRegion(MenuScreen.img_obj_swipe_up_instructions, true);
+		mainMenuScreen.btnSwipeForInstructions.setOrigin(mainMenuScreen.btnSwipeForInstructions.getWidth(), 0);
+		mainMenuScreen.btnSwipeForInstructions.setPosition(AppSettings.SCREEN_W- mainMenuScreen.btnSwipeForInstructions.getWidth(), 0);
 
 		//
 		// Add
 		// #################################################################
-		jungleMainMenuScreen.btnSwipeForMenu.setScale(0f);
-		jungleMainMenuScreen.btnSwipeForInstructions.setScale(0f);
+		mainMenuScreen.btnSwipeForMenu.setScale(0f);
+		mainMenuScreen.btnSwipeForInstructions.setScale(0f);
 
 		//
 		// Add
 		// #################################################################
-		jungleMainMenuScreen.getStage().addActor(jungleMainMenuScreen.btnSwipeForMenu);
-		jungleMainMenuScreen.getStage().addActor(jungleMainMenuScreen.btnSwipeForInstructions);
+		mainMenuScreen.getStage().addActor(mainMenuScreen.btnSwipeForMenu);
+		mainMenuScreen.getStage().addActor(mainMenuScreen.btnSwipeForInstructions);
 	}
 
-	public void sendInSwipeForMenu(final MenuScreen jungleMainMenuScreen)
+	public void sendInSwipeForMenu()
 	{
-		EffectCreator.create_SC(jungleMainMenuScreen.btnSwipeForMenu, 1f, 1f,0.5f, null, false);
+		EffectCreator.create_SC(mainMenuScreen.btnSwipeForMenu, 1f, 1f,0.5f, null, false);
 	}
 
-	public void sendAwaySwipeForMenu(final MenuScreen jungleMainMenuScreen)
+	public void sendAwaySwipeForMenu()
 	{
-		EffectCreator.create_SC(jungleMainMenuScreen.btnSwipeForMenu, 0f, 0f,0.5f, null, false);
+		EffectCreator.create_SC(mainMenuScreen.btnSwipeForMenu, 0f, 0f,0.5f, null, false);
 	}
 
-	public void sendInSwipeForInstruction(final MenuScreen jungleMainMenuScreen)
+	public void sendInSwipeForInstruction()
 	{
-		EffectCreator.create_SC(jungleMainMenuScreen.btnSwipeForInstructions,1f, 1f, 0.5f, null, false);
+		EffectCreator.create_SC(mainMenuScreen.btnSwipeForInstructions,1f, 1f, 0.5f, null, false);
 	}
 
-	public void sendAwaySwipeForInstructions(final MenuScreen jungleMainMenuScreen)
+	public void sendAwaySwipeForInstructions()
 	{
-		EffectCreator.create_SC(jungleMainMenuScreen.btnSwipeForInstructions,0f, 0f, 0.5f, null, false);
+		EffectCreator.create_SC(mainMenuScreen.btnSwipeForInstructions,0f, 0f, 0.5f, null, false);
 	}
 }

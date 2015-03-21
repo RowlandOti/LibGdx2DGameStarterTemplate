@@ -34,7 +34,7 @@
 {
 "type" : "com.badlogic.gdx.graphics.g2d.TextureAtlas",
 "path" : "data/ui_menu/menu_atlas.pack"
-},
+}
 
 
 ],
@@ -60,14 +60,14 @@
 }
 ],
 
-"ui_tutorial" : [
+"ui_instruction" : [
 {
 "type" : "com.badlogic.gdx.graphics.g2d.TextureAtlas",
-"path" : "data/ui_tutorial/tutorial_atlas.pack"
+"path" : "data/ui_instruction/instruction_atlas.pack"
 }
 ],
 
-"game_screen" : [
+"ui_game" : [
 {
 "type" : "com.badlogic.gdx.graphics.g2d.TextureAtlas",
 "path" : "data/game_screen/game_atlas.pack"

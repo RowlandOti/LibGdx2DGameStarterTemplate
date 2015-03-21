@@ -75,7 +75,7 @@ public class ShaderBlurTest implements ApplicationListener {
 			+ "\n" + "	gl_FragColor = vColor * vec4(sum.rgb, 1.0);\n" + "}";
 
 	@Override
-	public void create() 
+	public void create()
 	{
 		tex = new Texture(Gdx.files.internal("data/loading_screen/logo.png"));
 		tex2 = new Texture(Gdx.files.internal("data/loading_screen/progress_bar.png"));
@@ -85,14 +85,14 @@ public class ShaderBlurTest implements ApplicationListener {
 		// SpriteBatch expects
 		ShaderProgram.pedantic = false;
 		blurShader = new ShaderProgram(VERT, FRAG);
-		if (!blurShader.isCompiled()) 
+		if (!blurShader.isCompiled())
 		{
 			System.err.println(blurShader.getLog());
 			System.exit(0);
 		}
 		if (blurShader.getLog().length() != 0)
 			System.out.println(blurShader.getLog());
-		
+
 		// setup uniforms for our shader
 		blurShader.begin();
 		blurShader.setUniformf("dir", 0f, 0f);
@@ -110,7 +110,9 @@ public class ShaderBlurTest implements ApplicationListener {
 	}
 
 	@Override
-	public void resize(int width, int height) {
+	public void resize(int width, int height)
+	{
+		resizeBatch(width, height);
 	}
 
 	void resizeBatch(int width, int height) {

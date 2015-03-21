@@ -29,9 +29,7 @@ import com.magnetideas.smoothcam.SmoothCamDebugRenderer;
 import com.magnetideas.smoothcam.SmoothCamPoint;
 import com.magnetideas.smoothcam.SmoothCamSubject;
 import com.magnetideas.smoothcam.SmoothCamWorld;
-import com.rowland.GameObjects.Yoyo;
 import com.rowland.Helpers.AssetCentral;
-import com.rowland.Screens.LoadingScreen;
 
 public class SmoothCamTest implements ApplicationListener {
 	private OrthographicCamera camera;
@@ -168,6 +166,7 @@ public class SmoothCamTest implements ApplicationListener {
 		 * start tween with "T"-key
 		 */
 		Gdx.input.setInputProcessor(new InputAdapter() {
+			@Override
 			public boolean keyDown (int key) {
 				if (key == Keys.T) {
 					isTweening = !isTweening;

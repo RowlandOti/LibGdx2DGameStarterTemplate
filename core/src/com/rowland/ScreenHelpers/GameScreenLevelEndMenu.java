@@ -1,6 +1,5 @@
 package com.rowland.ScreenHelpers;
 
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
@@ -18,23 +17,19 @@ public class GameScreenLevelEndMenu extends GameScreenAbstractMenu{
 	private TableModel levelCompletedMenuTable;
 	private ButtonGame infoButton, messageButton, okButton;
 	private ButtonGame creditsBar;
+	private GameScreen gameScreen;
 
 	float dipRatioWidth = 80;
 	float dipRatioHeight = 70;
 	float padding = 5.0f * AppSettings.getWorldSizeRatio();
 
-	private TextureRegion holder, button_overlay_left, button_overlay_right, background_menu_berge;
-
-	public GameScreenLevelEndMenu(TextureRegion[] levelEndMenu)
+	public GameScreenLevelEndMenu(final GameScreen gameScreen)
 	{
-		this.holder = levelEndMenu[0];
-		this.button_overlay_left = levelEndMenu[1];
-		this.button_overlay_right = levelEndMenu[2];
-		this.background_menu_berge = levelEndMenu[3];
+		this.gameScreen = gameScreen;
 	}
 
 	@Override
-	public void setUpMenu(final GameScreen gameScreen) {
+	public void setUpMenu() {
 		//Set Up means create and add the required Actors/UI Widgets to the Screen
 		levelCompletedMenuTable = new TableModel(AssetLoader.holder, 640*AppSettings.getWorldPositionXRatio(), 2*AppSettings.WORLD_HEIGHT/2.7f);
 
@@ -42,18 +37,18 @@ public class GameScreenLevelEndMenu extends GameScreenAbstractMenu{
 
 				gameScreen.getStage().addActor(levelCompletedMenuTable);
 
-				infoButton = MenuCreator.createCustomGameButton(AssetLoader.bigFont,holder, holder, dipRatioWidth*5f,dipRatioHeight, true);
+				infoButton = MenuCreator.createCustomGameButton(AssetLoader.bigFont, GameScreen.holder, GameScreen.holder, dipRatioWidth*5f,dipRatioHeight, true);
 				infoButton.setTextPosXY(30*AppSettings.getWorldPositionXRatio(), 60*AppSettings.getWorldPositionYRatio());
 
-				messageButton = MenuCreator.createCustomGameButton(AssetLoader.smallFont, holder, holder, dipRatioWidth*5f,dipRatioHeight, true);
+				messageButton = MenuCreator.createCustomGameButton(AssetLoader.smallFont, GameScreen.holder, GameScreen.holder, dipRatioWidth*5f,dipRatioHeight, true);
 				messageButton.setOrigin(messageButton.getWidth()/2, messageButton.getHeight()/2);
 				messageButton.setTextPosXY(30*AppSettings.getWorldPositionXRatio(), 60*AppSettings.getWorldPositionYRatio());
 				messageButton.setOrigin(0, 0);
 
-				creditsBar = MenuCreator.createCustomGameButton(AssetLoader.smallFont, holder, holder, dipRatioWidth*5.0f,dipRatioHeight/3, true);
+				creditsBar = MenuCreator.createCustomGameButton(AssetLoader.smallFont, GameScreen.holder, GameScreen.holder, dipRatioWidth*5.0f,dipRatioHeight/3, true);
 				creditsBar.setTextPosXY(20*AppSettings.getWorldPositionXRatio(), -10*AppSettings.getWorldPositionYRatio());
 
-				okButton = MenuCreator.createCustomGameButton(null, button_overlay_right, button_overlay_right, dipRatioWidth, dipRatioWidth, true);
+				okButton = MenuCreator.createCustomGameButton(null, GameScreen.button_overlay_right, GameScreen.button_overlay_right, dipRatioWidth, dipRatioWidth, true);
 				okButton.addListener(new ActorGestureListener() {
 					@Override
 					public void touchUp(InputEvent event, float x, float y,
@@ -63,7 +58,7 @@ public class GameScreenLevelEndMenu extends GameScreenAbstractMenu{
 						if(GameScreen.currentlevel < GameData.NUMBER_OF_LEVELS){
 						GameScreen.currentlevel++;
 						GameData.addToUnLockedLevel(GameScreen.currentlevel);
-						sendAwayMenu(gameScreen);
+						sendAwayMenu();
 						GameScreen.state = GameScreen.State.GAME_READY;
 						gameScreen.resetGame();
 						}
@@ -90,7 +85,7 @@ public class GameScreenLevelEndMenu extends GameScreenAbstractMenu{
 	}
 
 	@Override
-	public void sendInMenu(GameScreen gameScreen) {
+	public void sendInMenu() {
 		infoButton.setText("Level "+GameScreen.currentlevel+" Completed", true);
 		int stars = 0;
 
@@ -111,7 +106,7 @@ public class GameScreenLevelEndMenu extends GameScreenAbstractMenu{
 	}
 
 	@Override
-	public void sendAwayMenu(GameScreen gameScreen) {
+	public void sendAwayMenu() {
 		levelCompletedMenuTable.addAction(Actions.moveTo(180*AppSettings.getWorldPositionXRatio(),- levelCompletedMenuTable.getHeight(), 0.5f));
 	}
 

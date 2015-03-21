@@ -6,7 +6,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.input.GestureDetector.GestureListener;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.rowland.GameWorld.GameWorld;
@@ -139,7 +138,6 @@ public class InputHandler implements InputProcessor, GestureListener {
 	{
 		Vector3 spanCord = new Vector3(x, 0, 0);
 		camera.unproject(spanCord);
-	    //camera.translateSafe(spanCord, tweenManager);
 	    camera.translateSafe(spanCord, tweenManager, world);
 
 		Gdx.app.log("GESTURE", "Game Screen Panned");

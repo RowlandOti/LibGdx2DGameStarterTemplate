@@ -7,25 +7,33 @@ import com.rowland.Screens.MenuScreen;
 
 public class MainMenuScreenInstructions {
 
-	public void setUpInstructions(final MenuScreen jungleMainMenuScreen)
+	private MenuScreen mainMenuScreen;
+
+	public MainMenuScreenInstructions(final MenuScreen mainMenuScreen)
 	{
-		jungleMainMenuScreen.instructions = new EmptyActorLight(AppSettings.SCREEN_W, AppSettings.SCREEN_H, false);
-		jungleMainMenuScreen.instructions.setTextureRegion(jungleMainMenuScreen.img_obj_rectangle, true);
-		jungleMainMenuScreen.instructions.setPosition(0 - AppSettings.SCREEN_W,0);
+		this.mainMenuScreen = mainMenuScreen;
+
+	}
+
+	public void setUpInstructions()
+	{
+		mainMenuScreen.instructions = new EmptyActorLight(AppSettings.SCREEN_W, AppSettings.SCREEN_H, false);
+		mainMenuScreen.instructions.setTextureRegion(MenuScreen.img_obj_rectangle, true);
+		mainMenuScreen.instructions.setPosition(0 - AppSettings.SCREEN_W,0);
 
 		//
-		jungleMainMenuScreen.getStage().addActor(jungleMainMenuScreen.instructions);
+		mainMenuScreen.getStage().addActor(mainMenuScreen.instructions);
 	}
 
 	//
-	public void sendInInstructions(final MenuScreen jungleMainMenuScreen)
+	public void sendInInstructions()
 	{
-		float widthAsX = jungleMainMenuScreen.btnSwipeForMenu.getWidth();
-		jungleMainMenuScreen.instructions.addAction(Actions.moveTo(0 - widthAsX, 0, 0.5f));
+		float widthAsX = mainMenuScreen.btnSwipeForMenu.getWidth();
+		mainMenuScreen.instructions.addAction(Actions.moveTo(0 - widthAsX, 0, 0.5f));
 	}
 
-	public void sendAwayInstructions(final MenuScreen jungleMainMenuScreen)
+	public void sendAwayInstructions()
 	{
-		jungleMainMenuScreen.instructions.addAction(Actions.moveTo(0 - AppSettings.SCREEN_W, 0, 0.5f));
+		mainMenuScreen.instructions.addAction(Actions.moveTo(0 - AppSettings.SCREEN_W, 0, 0.5f));
 	}
 }

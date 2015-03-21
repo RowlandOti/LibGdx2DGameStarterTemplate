@@ -25,6 +25,7 @@ public class CameraControllerTest extends ApplicationAdapter {
 	private InputMultiplexer plex;
 	private SpriteBatch batch;
 
+	@Override
 	public void create() 
 	{
 		space = new Sprite(AssetLoader.getSpriteAtlas().findRegion("blue_grass"));
@@ -47,6 +48,7 @@ public class CameraControllerTest extends ApplicationAdapter {
 		camera.update();
 	}
 
+	@Override
 	public void render() 
 	{
 		Gdx.gl.glClearColor(1, 1, 1, 1);
@@ -61,10 +63,12 @@ public class CameraControllerTest extends ApplicationAdapter {
 		camController.update();
 	}
 
+	@Override
 	public void resize(int width, int height) {
 		
 	}
 
+	@Override
 	public void dispose() 
 	{
 		batch.dispose();

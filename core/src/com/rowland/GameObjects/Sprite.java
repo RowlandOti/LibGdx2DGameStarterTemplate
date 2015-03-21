@@ -39,7 +39,8 @@ public class Sprite extends SmoothCamSubject {
     }
 
 
-    public void setPosition(float x, float y)
+    @Override
+	public void setPosition(float x, float y)
     {
     	this.position.x =x;
     	this.position.y =y;

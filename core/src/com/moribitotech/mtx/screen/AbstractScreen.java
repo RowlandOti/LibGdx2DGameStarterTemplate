@@ -86,13 +86,9 @@ public abstract class AbstractScreen implements Screen {
 		this.game = game;
 		this.screenName = screenName;
 		//
-		if (!AppSettings.isAppSettingSet) {
-			MtxLogger
-					.log(logActive,
-							true,
-							logTag,
-							"WARNING!: "
-									+ "AppSettings.setUp() not called anywhere, Stage size will be 0,0");
+		if (!AppSettings.isAppSettingSet)
+		{
+			MtxLogger.log(logActive, true, logTag, "WARNING!: " + "AppSettings.setUp() not called anywhere, Stage size will be 0,0");
 		}
 		//
 		viewPort = new StretchViewport(AppSettings.SCREEN_W, AppSettings.SCREEN_H);
@@ -103,10 +99,8 @@ public abstract class AbstractScreen implements Screen {
 		Gdx.input.setInputProcessor(stage);
 
 		// INFO LOG
-		MtxLogger.log(logActive, true, logTag, "Scene2D Stage Constructed: "
-				+ AppSettings.SCREEN_W + " - " + AppSettings.SCREEN_H);
-		MtxLogger.log(logActive, true, logTag, "SCREEN CONSTRUCTED: "
-				+ getScreenName());
+		MtxLogger.log(logActive, true, logTag, "Scene2D Stage Constructed: " + AppSettings.SCREEN_W + " - " + AppSettings.SCREEN_H);
+		MtxLogger.log(logActive, true, logTag, "SCREEN CONSTRUCTED: " + getScreenName());
 		//
 		setOpenGLClearColor(1, 0, 0, 1);
 		setBackBackButton();
@@ -129,6 +123,8 @@ public abstract class AbstractScreen implements Screen {
 		// ############################################################
 		Gdx.gl.glClearColor(colorR, colorG, colorB, alpha);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		Gdx.gl.glEnable(GL20.GL_BLEND);
+		Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 
 		// Update stage/actors logic (update() method in previous games)
 		// ############################################################
@@ -145,7 +141,8 @@ public abstract class AbstractScreen implements Screen {
 	 * @param backgroundTextureRegion
 	 *
 	 * */
-	public void setBackgroundTexture(TextureRegion textureBackground) {
+	public void setBackgroundTexture(TextureRegion textureBackground)
+	{
 		Drawable tBg = new TextureRegionDrawable(textureBackground);
 		Image imgbg = new Image(tBg, Scaling.stretch);
 		imgbg.setFillParent(true);
@@ -338,37 +335,31 @@ public abstract class AbstractScreen implements Screen {
 
 	@Override
 	public void resize(int width, int height) {
-		MtxLogger.log(logActive, true, logTag, "SCREEN RESIZE: "
-				+ getScreenName());
+		MtxLogger.log(logActive, true, logTag, "SCREEN RESIZE: "+ getScreenName());
 	}
 
 	@Override
 	public void show() {
-		MtxLogger.log(logActive, true, logTag, "SCREEN SHOW: "
-				+ getScreenName());
+		MtxLogger.log(logActive, true, logTag, "SCREEN SHOW: "+ getScreenName());
 	}
 
 	@Override
 	public void hide() {
-		MtxLogger.log(logActive, true, logTag, "SCREEN HIDE: "
-				+ getScreenName());
+		MtxLogger.log(logActive, true, logTag, "SCREEN HIDE: "+ getScreenName());
 	}
 
 	@Override
 	public void pause() {
-		MtxLogger.log(logActive, true, logTag, "SCREEN PAUSE: "
-				+ getScreenName());
+		MtxLogger.log(logActive, true, logTag, "SCREEN PAUSE: "+ getScreenName());
 	}
 
 	@Override
 	public void resume() {
-		MtxLogger.log(logActive, true, logTag, "SCREEN RESUME: "
-				+ getScreenName());
+		MtxLogger.log(logActive, true, logTag, "SCREEN RESUME: "+ getScreenName());
 	}
 
 	@Override
 	public void dispose() {
-		MtxLogger.log(logActive, true, logTag, "SCREEN DISPOSE: "
-				+ getScreenName());
+		MtxLogger.log(logActive, true, logTag, "SCREEN DISPOSE: "+ getScreenName());
 	}
 }

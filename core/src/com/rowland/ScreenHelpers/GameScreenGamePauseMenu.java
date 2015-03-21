@@ -1,7 +1,6 @@
 package com.rowland.ScreenHelpers;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
@@ -12,52 +11,45 @@ import com.moribitotech.mtx.settings.AppSettings;
 import com.rowland.Helpers.AssetLoader;
 import com.rowland.Screens.GameScreen;
 import com.rowland.Screens.LoadingScreen;
-import com.rowland.Screens.MenuScreen;
-import com.sun.org.apache.bcel.internal.generic.GETSTATIC;
 
 public class GameScreenGamePauseMenu extends GameScreenAbstractMenu{
 
 	private TableModel pauseMenuTable;
 	private ButtonGame mainMenuButton,resumeButton, quitButton;
-	private TextureRegion button_menu_up, button_menu_down,button_resume_up, button_resume_down,button_quit_up, button_quit_down;
+	private GameScreen gameScreen;
 
-	public GameScreenGamePauseMenu(TextureRegion[] pauseMenu)
+	public GameScreenGamePauseMenu(final GameScreen gameScreen)
 	{
-		this.button_menu_up = pauseMenu[4];
-		this.button_menu_down = pauseMenu[5];
-		this.button_resume_up = pauseMenu[6];
-		this.button_resume_down = pauseMenu[7];
-		this.button_quit_up = pauseMenu[8];
-		this.button_quit_down = pauseMenu[9];
+		this.gameScreen = gameScreen;
 	}
 
 	@Override
-	public void setUpMenu(final GameScreen gameScreen)
+	public void setUpMenu()
 	{
 		pauseMenuTable = new TableModel(null, AppSettings.WORLD_WIDTH , AppSettings.WORLD_HEIGHT);
 		pauseMenuTable.setPosition(0 , AppSettings.WORLD_HEIGHT + pauseMenuTable.getHeight());
 
 		//MAIN MENU BUTTON ON THE RIGHT SIDE
-		mainMenuButton = MenuCreator.createCustomGameButton(AssetLoader.bigFont, button_menu_up, button_menu_down);
+		mainMenuButton = MenuCreator.createCustomGameButton(AssetLoader.bigFont, GameScreen.button_menu_up, GameScreen.button_menu_down);
 		mainMenuButton.addListener(new ActorGestureListener() {
 			@Override
 			public void touchUp(InputEvent event, float x, float y,
 					int pointer, int button) {
 				super.touchUp(event, x, y, pointer, button);
 
-				sendAwayMenu(gameScreen);
+				sendAwayMenu();
 				gameScreen.getGame().setScreen(new LoadingScreen(gameScreen.getGame(), "Menu Screen", LoadingScreen.TYPE_UI_MENU));
 			}
 		});
 
-		resumeButton = MenuCreator.createCustomGameButton(AssetLoader.bigFont, button_resume_up, button_resume_down);
+		resumeButton = MenuCreator.createCustomGameButton(AssetLoader.bigFont, GameScreen.button_resume_up, GameScreen.button_resume_down);
 		resumeButton.addListener(new ActorGestureListener() {
 			@Override
 			public void touchUp(InputEvent event, float x, float y,
 					int pointer, int button) {
 				super.touchUp(event, x, y, pointer, button);
 
-				sendAwayMenu(gameScreen);
+				sendAwayMenu();
 				GameScreen.state = GameScreen.State.GAME_RUNNING;
 				gameScreen.removeBackgroundTexture();
 		        gameScreen.toggleGestureProcessor(true);
@@ -65,7 +57,7 @@ public class GameScreenGamePauseMenu extends GameScreenAbstractMenu{
 		});
 
 
-		quitButton = MenuCreator.createCustomGameButton(AssetLoader.bigFont, button_quit_up, button_quit_down);
+		quitButton = MenuCreator.createCustomGameButton(AssetLoader.bigFont, GameScreen.button_quit_up, GameScreen.button_quit_down);
 		quitButton.addListener(new ActorGestureListener() {
 			@Override
 			public void touchUp(InputEvent event, float x, float y, int pointer, int button)
@@ -91,14 +83,14 @@ public class GameScreenGamePauseMenu extends GameScreenAbstractMenu{
 	}
 
 	@Override
-	public void sendInMenu(GameScreen gameScreen)
+	public void sendInMenu()
 	{
 		gameScreen.getStage().addActor(pauseMenuTable);
     	pauseMenuTable.addAction(Actions.moveTo(0, AppSettings.WORLD_HEIGHT- pauseMenuTable.getHeight(), 0.5f));
 	}
 
 	@Override
-	public void sendAwayMenu(GameScreen gameScreen)
+	public void sendAwayMenu()
 	{
 		pauseMenuTable.addAction(Actions.moveTo(0 , AppSettings.WORLD_HEIGHT + pauseMenuTable.getHeight(), 0.5f));
 	}

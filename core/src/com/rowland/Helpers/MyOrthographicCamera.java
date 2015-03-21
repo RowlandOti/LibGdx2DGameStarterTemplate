@@ -4,14 +4,11 @@ import aurelienribon.tweenengine.Timeline;
 import aurelienribon.tweenengine.Tween;
 import aurelienribon.tweenengine.TweenEquations;
 import aurelienribon.tweenengine.TweenManager;
+import aurelienribon.tweenengine.equations.Bounce;
 import aurelienribon.tweenengine.equations.Elastic;
-import aurelienribon.tweenengine.equations.Quad;
-
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector3;
-import com.magnetideas.smoothcam.SmoothCamAccessor;
-import com.magnetideas.smoothcam.SmoothCamWorld;
 import com.rowland.GameWorld.GameWorld;
 import com.rowland.TweenAccessors.OrthographicCameraAccessor;
 
@@ -49,32 +46,40 @@ public class MyOrthographicCamera extends OrthographicCamera {
 		this.ymax = ymax;
 	}
 
+	public void setCameraToPlayer(float x, float y, float z, TweenManager tweenManager)
+	{
+		Tween.to(this, OrthographicCameraAccessor.POSITION, 0.2f).target(x,y,z).ease(TweenEquations.easeInOutQuad).start(tweenManager);
+	}
+
+
+	public void setPosition(Vector3 newPos)
+	{
+		position.x = newPos.x;
+		position.y = newPos.y;
+		position.z = newPos.z;
+	}
+
 	public void setPosition(float x, float y)
 	{
 		setPosition(x,y,0);
 	}
-	public void setPosition(Vector3 position)
-	{
-		position.set(position);
-	}
 
-	public void setPosition(float x, float y, int z)
+	public void setPosition(float x, float y, float z)
 	{
-		position.set(x,y,z);
+		setPosition(new Vector3(x, y, z));
 		fixBounds();
-
 	}
 
 	public void setZoom(float zoomValue)
 	{
-		float maxZoom = 1.4f;
+		float maxZoom = 1.3f;
 		float minZoom = GameWorld.WORLD_WIDTH/viewportWidth;
 
 		zoom = MathUtils.clamp(zoomValue, minZoom, maxZoom);
-		fixBounds();
+		//fixBounds();
 	}
 
-	private void fixBounds()
+	public void fixBounds()
 	{
 		float scaledViewportWidth =viewportWidth * zoom;
 		float scaledViewportHeight = viewportHeight * zoom;
@@ -100,6 +105,7 @@ public class MyOrthographicCamera extends OrthographicCamera {
 		}
 	}
 
+	@Override
 	public void translate(float x, float y)
 	{
 		super.translate(x,y);
@@ -118,6 +124,7 @@ public class MyOrthographicCamera extends OrthographicCamera {
 	public void translateSafe(Vector3 spanCord, TweenManager tweenManager, GameWorld world)
 	{
 		panZoom(spanCord, tweenManager, world);
+
 	}
 
 	public void translateSafe(Vector3 spanCord)
@@ -135,15 +142,30 @@ public class MyOrthographicCamera extends OrthographicCamera {
 			 * starting position, Zoom back to the initial value
 			 */
 			Timeline.createSequence()
-			    .push(Tween.to(this, OrthographicCameraAccessor.POSITION, 3.5f).target(spanCord.x,spanCord.y,spanCord.z).ease(Elastic.INOUT)).pushPause(1.0f)
-			    .push(Tween.to(this, OrthographicCameraAccessor.POSITION, 4.5f).target(world.getYoyo().position.x,0,0).ease(Elastic.INOUT))
-
 			    .beginParallel()
-                .push(Tween.to(this, OrthographicCameraAccessor.ZOOM, 3.5f).target(1.26f).ease(Quad.OUT).start(tweenManager)).pushPause(3.0f).pushPause(1.0f)
+			    .push(Tween.to(this, OrthographicCameraAccessor.POSITION, 3.5f).target(spanCord.x,spanCord.y,spanCord.z).ease(Elastic.OUT))
+                //.push(Tween.to(this, OrthographicCameraAccessor.ZOOM, 3.5f).target(1.20f).ease(Elastic.OUT))
                 .end()
 
-                .push(Tween.to(this, OrthographicCameraAccessor.ZOOM, 4.0f).target(1).ease(Elastic.INOUT).start(tweenManager))
+                .beginParallel()
+                .push(Tween.to(this, OrthographicCameraAccessor.POSITION, 2.8f).target(world.getYoyo().position.x,0,0).ease(Bounce.INOUT))
+                //.push(Tween.to(this, OrthographicCameraAccessor.ZOOM, 3.0f).target(1).ease(Bounce.INOUT))
+                .end()
 				.start(tweenManager);
+
+		/*Timeline.createSequence()
+	    .beginParallel()
+	    .push(Tween.to(this, OrthographicCameraAccessor.POSITION, 3.5f).target(spanCord.x,spanCord.y,spanCord.z).ease(TweenEquations.easeInOutQuad))
+        //.push(Tween.to(this, OrthographicCameraAccessor.ZOOM, 3.5f).target(1.10f).ease(TweenEquations.easeInOutQuad))
+        .end()
+
+        .beginParallel()
+        .push(Tween.to(this, OrthographicCameraAccessor.POSITION, 2.8f).target(world.getYoyo().position.x,0,0).ease(TweenEquations.easeInOutQuad))
+        //.push(Tween.to(this, OrthographicCameraAccessor.ZOOM, 3.0f).target(1).ease(TweenEquations.easeInOutQuad))
+        .end()
+		.start(tweenManager);*/
+
+			//world.isPanning = false;
 	}
 
 
@@ -179,6 +201,7 @@ public class MyOrthographicCamera extends OrthographicCamera {
 		float nextZoom = zoom + ratio;
 
 		return nextZoom;
+
 	}
 
 }

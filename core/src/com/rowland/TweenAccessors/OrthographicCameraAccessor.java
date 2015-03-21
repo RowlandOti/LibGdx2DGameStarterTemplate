@@ -1,9 +1,7 @@
 package com.rowland.TweenAccessors;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.math.Vector3;
 import com.rowland.Helpers.MyOrthographicCamera;
-
 import aurelienribon.tweenengine.TweenAccessor;
 
 /**
@@ -57,12 +55,12 @@ public class OrthographicCameraAccessor implements TweenAccessor<MyOrthographicC
 		switch (tweenType)
 		{
 			case POSITION:
-				camera.setPosition(newValues[0], 0);
+				camera.setPosition(newValues[0], 0, 0);
 				camera.update();
 				break;
 			case ZOOM:
-				camera.setZoom(newValues[0]);
-                //camera.setPosition(camera.position.x, camera.position.y);
+				camera.setZoom(camera.zoom = newValues[0]);
+				camera.setPosition(camera.position.x, camera.position.y);
 			    camera.update();
 
 			    Gdx.app.log("CAMERA", "Clamped Zoom" +camera.zoom);

@@ -1,0 +1,40 @@
+
+instruction_atlas.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+button_overlay_left
+  rotate: false
+  xy: 910, 767
+  size: 40, 43
+  orig: 45, 45
+  offset: 2, 2
+  index: -1
+button_overlay_right
+  rotate: false
+  xy: 173, 191
+  size: 40, 43
+  orig: 45, 45
+  offset: 2, 1
+  index: -1
+img_obj_rectangle
+  rotate: false
+  xy: 0, 234
+  size: 910, 576
+  orig: 910, 576
+  offset: 0, 0
+  index: -1
+img_obj_swipe_down_menu
+  rotate: false
+  xy: 0, 0
+  size: 148, 117
+  orig: 148, 117
+  offset: 0, 0
+  index: -1
+img_obj_swipe_up_instructions
+  rotate: false
+  xy: 0, 117
+  size: 173, 117
+  orig: 173, 117
+  offset: 0, 0
+  index: -1

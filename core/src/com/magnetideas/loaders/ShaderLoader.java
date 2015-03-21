@@ -12,24 +12,29 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 
 @SuppressWarnings("unused")
 public final class ShaderLoader {
-	
+
 	public static String BASEPATH = "";
 	public static boolean pedantic = true;
 
-	public static ShaderProgram fromFile(String vertexFileName, String fragmentFileName) 
+	public ShaderLoader()
+	{
+
+	}
+
+	public static ShaderProgram fromFile(String vertexFileName, String fragmentFileName)
 	{
 		return ShaderLoader.fromFile(vertexFileName, fragmentFileName, "");
 	}
 
-	public static ShaderProgram fromFile(String vertexFileName, String fragmentFileName, String defines) 
+	public static ShaderProgram fromFile(String vertexFileName, String fragmentFileName, String defines)
 	{
 		String log = "\"" + vertexFileName + "/" + fragmentFileName + "\"";
-		
-		if (defines.length() > 0) 
+
+		if (defines.length() > 0)
 		{
 			log += " w/ (" + defines.replace("\n", ", ") + ")";
 		}
-		
+
 		log += "...";
 		Gdx.app.log("ShaderLoader", "Compiling " + log);
 
@@ -37,22 +42,22 @@ public final class ShaderLoader {
 		String fpSrc = Gdx.files.internal(BASEPATH + fragmentFileName + ".fs").readString();
 
 		ShaderProgram program = ShaderLoader.fromString(vpSrc, fpSrc, vertexFileName, fragmentFileName, defines);
-		
+
 		return program;
 	}
 
-	public static ShaderProgram fromString(String vertex, String fragment, String vertexName, String fragmentName) 
+	public static ShaderProgram fromString(String vertex, String fragment, String vertexName, String fragmentName)
 	{
 		return ShaderLoader.fromString(vertex, fragment, vertexName, fragmentName, "");
 	}
 
-	public static ShaderProgram fromString(String vertex, String fragment, String vertexName, String fragmentName, String defines) 
+	public static ShaderProgram fromString(String vertex, String fragment, String vertexName, String fragmentName, String defines)
 	{
 		ShaderProgram.pedantic = ShaderLoader.pedantic;
 		ShaderProgram shader = new ShaderProgram(defines + "\n" + vertex, defines + "\n" + fragment);
-		
+
         String log = shader.getLog();
-		
+
 		if (!shader.isCompiled())
 		{
 			throw new GdxRuntimeException(log);
@@ -64,15 +69,15 @@ public final class ShaderLoader {
 
 		return shader;
 	}
-	
-	public ShaderProgram createShader(String vertexShader, String horizontalShader, ShaderType blurType) 
+
+	public ShaderProgram createShader(String vertexShader, String horizontalShader, ShaderType blurType)
 	{
 		pedantic = false;
 		BASEPATH = "data/shaders/";
-        
+
 		ShaderProgram blurShader = ShaderLoader.fromFile(vertexShader, horizontalShader);
-		
-		switch (blurType) 
+
+		switch (blurType)
 		{
 		case GAUSSIANBLUR:
 			blurShader.begin();
@@ -83,7 +88,7 @@ public final class ShaderLoader {
 			blurShader.end();
 			break;
         case VIGNETTE:
-			
+
 			break;
 
 		default:
@@ -92,8 +97,4 @@ public final class ShaderLoader {
 		return blurShader;
 	}
 
-	private ShaderLoader() 
-	{
-		
-	}
 }

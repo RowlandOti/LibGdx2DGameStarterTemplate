@@ -23,21 +23,27 @@ public abstract class GdxSample extends InputAdapter implements
 		m_platformResolver = platformResolver;
 	}
 
+	@Override
 	public void create() {
 	}
 
+	@Override
 	public void resume() {
 	}
 
+	@Override
 	public void render() {
 	}
 
+	@Override
 	public void resize(int width, int height) {
 	}
 
+	@Override
 	public void pause() {
 	}
 
+	@Override
 	public void dispose() {
 	}
 }

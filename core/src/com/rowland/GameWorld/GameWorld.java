@@ -7,7 +7,6 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Pool;
-import com.magnetideas.smoothcam.SmoothCamSubject;
 import com.magnetideas.smoothcam.SmoothCamWorld;
 import com.moribitotech.mtx.settings.AppSettings;
 import com.rowland.GameData.PlayerData;
@@ -68,7 +67,6 @@ public class GameWorld extends SmoothCamWorld
 
 	private Array<Rectangle> tiles = new Array<Rectangle>();
 
-
 	 public GameWorld(WorldListener listener, MadBoyGame game)
 	 {
 			 this.listener = listener;
@@ -87,12 +85,6 @@ public class GameWorld extends SmoothCamWorld
 			        //CREATE THE Yoyo
 			        this.yoyo = new Yoyo(0,0);
 			        yoyo.setPosition(PlayerData.getPlayerPosition(levelID)[0][0], PlayerData.getPlayerPosition(levelID)[0][1]);
-			        yoyo.setVelocityRadius(50f);
-			        yoyo.setAimingRadius(30f);
-			        setSubject(this.yoyo);
-
-
-
 	}
 
 	private void generateLevelMap(int levelID, MadBoyGame game)
