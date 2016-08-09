@@ -1,2 +1,2 @@
-# RowlandGameFramework
-Rowland Oti's Libgdx based game framework for android, java, ios and html5
+# LibGdx2DGameStarterTemplate
+Libgdx based game template for android, java, ios and html5
