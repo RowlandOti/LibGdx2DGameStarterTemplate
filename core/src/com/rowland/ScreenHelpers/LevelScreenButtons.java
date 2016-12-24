@@ -159,7 +159,6 @@ public class LevelScreenButtons {
 				{
 					GameScreen.currentlevel = selectedLevel;
 					levelSelectScreen.getMyGame().setScreen(new LoadingScreen(levelSelectScreen.getMyGame(), "Instruction Screen", LoadingScreen.TYPE_UI_INSTRUCTION));
-					//levelSelectScreen.getMyGame().setScreen(new LoadingScreen(levelSelectScreen.getMyGame(), "Loading Screen", LoadingScreen.TYPE_GAME));
 				}
 				else
 				{
