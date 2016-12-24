@@ -38,7 +38,7 @@ public abstract class MyAbstractScreen extends AbstractScreen
 	/**
 	 * Set stage background. Sets the image (Adds to stage as image)
 	 *
-	 * @param backgroundTextureRegion
+	 * @param textureBackground
 	 *
 	 * */
 	@Override
@@ -54,8 +54,6 @@ public abstract class MyAbstractScreen extends AbstractScreen
 
 	/**
 	 * Remove the background texture
-	 *
-	 *
 	 * */
 	public void removeBackgroundTexture()
 	{
@@ -65,9 +63,7 @@ public abstract class MyAbstractScreen extends AbstractScreen
 
 
 	/**
-	 * Blurr the background texture before setBackground()
-	 *
-	 *
+	 * Blur the background texture before setBackground()
 	 * */
 	public TextureRegion getBlurredTextureRegion()
 	{

@@ -322,7 +322,7 @@ public class GameScreen extends MyAbstractScreen implements IScreen
         }
         getStage().getBatch().end();
 
-        //Update the gamescreen according to the current game state
+        // Update the gamescreen according to the current game state
         update(delta);
     }
 
@@ -413,7 +413,7 @@ public class GameScreen extends MyAbstractScreen implements IScreen
 
     private void updateScreenElements() {
         Batch batch = getStage().getBatch();
-        gameFont.setScale(0.6f);
+        gameFont.setScale(1.0f);
         batch.begin();
         gameFont.draw(getStage().getBatch(), "Score :" + GameWorld.score, 140 * AppSettings.getWorldPositionXRatio(), AppSettings.SCREEN_H - 30 * AppSettings.getWorldPositionYRatio());
         //Display the Health Bar here using Scene2D Actor
@@ -421,13 +421,12 @@ public class GameScreen extends MyAbstractScreen implements IScreen
         healthBar.draw(batch, 1.0f);
         gameFont.draw(batch, Math.min(100, world.getYoyo().health / 10) + " %", healthBar.getX() + 1.05f * healthBar.getWidth(), AppSettings.SCREEN_H - 8 * AppSettings.getWorldPositionYRatio());
 
-        //To be drawn only after all game elements are drawn to avoid override
         //Draw the game control UI only on Android and iOs devices if the game is running
         if ((Gdx.app.getType() == ApplicationType.Android) || (Gdx.app.getType() == ApplicationType.iOS)) {
             batch.draw(button_overlay_left, 0f, 0f, 0f, 0f, buttonSize, buttonSize, 1f, 1f, 0f);
             batch.draw(button_overlay_right, 1.2f * buttonSize, 0f, 0f, 0f, buttonSize, buttonSize, 1f, 1f, 0f);
             batch.draw(button_overlay_right, AppSettings.SCREEN_W - 0.03f * buttonSize, 0f, 0f, 0f, buttonSize, buttonSize, 1, 1, 90);
-            batch.draw(button_overlay_pause, AppSettings.SCREEN_W - 45, AppSettings.SCREEN_H - 45, 0, 0, 45, 45, 1, 1, 0);
+            batch.draw(button_overlay_pause, AppSettings.SCREEN_W - 95, AppSettings.SCREEN_H - 95, 0f, 0f, buttonSize, buttonSize, 2, 2, 0);
         }
         batch.end();
     }
@@ -505,63 +504,46 @@ public class GameScreen extends MyAbstractScreen implements IScreen
             inputMux.removeProcessor(inputProcessor);
             inputMux.removeProcessor(gestureDetector);
         }
-
-
     }
 
     private void updateReady() {
-
-
     }
 
     private void renderGameOver() {
-
     }
 
     private void renderLevelEnd() {
-
     }
 
     private void renderPaused() {
+    }
 
+    private void renderReady() {
     }
 
     private void renderRunning(float delta) {
         renderer.renderBackground(parallaxBackground, camera);
-
         renderer.render(new int[]{0, 1});
         renderer.renderPlayer(delta);
-
         renderer.renderForeground(parallaxForeground, camera);
 
         tweenManager.update(delta);
         //Update the camera to reflect all the changes
         camera.update();
-
-		//Base the horizontal/vertical movement of the camera on the player
-        camera.setPosition(world.getYoyo().position.x, 0);
-        //camera.setCameraToPlayer(world.getYoyo().position.x, 0f, 0f, tweenManager);
-
-    }
-
-    private void renderReady() {
-
+        //Base the horizontal/vertical movement of the camera on the player
+        camera.setCameraToPlayer(world.getYoyo().position.x, 0f, 0f, tweenManager);
     }
 
     private void saveGameStates() {
-        //States are saved in key and value pairs as preference
-
-        //Get the existing highscore from prefernces
+        // Get the existing highscore from prefernces
         int[] scoresfromdb = GameData.getHighScores();
-
-        //Check if the current score is greater than the stored one
+        // Check if the current score is greater than the stored one
         if (lastScore > scoresfromdb[4]) {
             scoreString = "NEW RECORD : " + lastScore;
         } else {
             scoreString = "SCORE : " + lastScore;
         }
-
-        //Add the new score to the prefernmces in decreasing order
+        // Add the new score to the preferences in decreasing order
         GameData.addScore(lastScore);
         GameData.savePefs();
     }
@@ -577,5 +559,4 @@ public class GameScreen extends MyAbstractScreen implements IScreen
         super.pause();
         GameScreen.state = State.GAME_RUNNING;
     }
-
 }
