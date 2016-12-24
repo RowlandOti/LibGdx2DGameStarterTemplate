@@ -425,8 +425,8 @@ public class GameScreen extends MyAbstractScreen implements IScreen
         if ((Gdx.app.getType() == ApplicationType.Android) || (Gdx.app.getType() == ApplicationType.iOS)) {
             batch.draw(button_overlay_left, 0f, 0f, 0f, 0f, buttonSize, buttonSize, 1f, 1f, 0f);
             batch.draw(button_overlay_right, 1.2f * buttonSize, 0f, 0f, 0f, buttonSize, buttonSize, 1f, 1f, 0f);
-            batch.draw(button_overlay_right, AppSettings.SCREEN_W - 0.03f * buttonSize, 0f, 0f, 0f, buttonSize, buttonSize, 1, 1, 90);
-            batch.draw(button_overlay_pause, AppSettings.SCREEN_W - 95, AppSettings.SCREEN_H - 95, 0f, 0f, buttonSize, buttonSize, 2, 2, 0);
+            batch.draw(button_overlay_right, AppSettings.SCREEN_W - 0.03f * buttonSize, 0f, 0f, 0f, buttonSize, buttonSize, 1f, 1f, 90);
+            batch.draw(button_overlay_pause, AppSettings.SCREEN_W - buttonSize, AppSettings.SCREEN_H - buttonSize, 0f, 0f, buttonSize, buttonSize, 1f, 1f, 0);
         }
         batch.end();
     }
@@ -440,22 +440,23 @@ public class GameScreen extends MyAbstractScreen implements IScreen
         if (Gdx.app.getType() == ApplicationType.Android || Gdx.app.getType() == ApplicationType.iOS) {
             for (int i = 0; i < 2; i++) {
                 int x = (int) (Gdx.input.getX(i) / (float) Gdx.graphics.getWidth() * AppSettings.SCREEN_W);
-                int y = (int) (Gdx.input.getY(i) / (float) Gdx.graphics.getWidth() * AppSettings.SCREEN_W);
+                int y = (int) (Gdx.input.getY(i) / (float) Gdx.graphics.getHeight() * AppSettings.SCREEN_H);
                 if (!Gdx.input.isTouched(i)) continue;
 
-                if (y <= AppSettings.SCREEN_H && y >= AppSettings.SCREEN_H - 50) {
-                    if (x <= 90) {
+                if (y <= AppSettings.SCREEN_H && y >= AppSettings.SCREEN_H - buttonSize) {
+                    if (x <= buttonSize) {
                         left |= true;
                     }
                     if (x > 1.2f * buttonSize && x <= 2.2f * buttonSize) {
                         right |= true;
                     }
-                    if (x >= AppSettings.SCREEN_W - 50 && x < AppSettings.SCREEN_W) {
+                    if (x >= AppSettings.SCREEN_W - buttonSize && x < AppSettings.SCREEN_W) {
                         jump |= true;
                     }
                 }
-                if (x >= AppSettings.SCREEN_W - 45 && y >= 0 && y <= 50) {
-                    pause |= true;
+                if (x <= AppSettings.SCREEN_W && y <= buttonSize)  {
+                    if(x >= AppSettings.SCREEN_W - buttonSize)
+                       pause |= true;
                 }
             }
         }
@@ -484,16 +485,10 @@ public class GameScreen extends MyAbstractScreen implements IScreen
 
         if (Gdx.input.isKeyPressed(Keys.P) || pause) {
             state = State.GAME_PAUSED;
-
             setBackgroundTexture(getBlurredTextureRegion());
-
             toggleGestureProcessor(false);
-
-            Gdx.app.log("BLURRRING", "Blurring Efect");
-
             gameScreenGamePauseMenu.sendInMenu();
         }
-
     }
 
     public void toggleGestureProcessor(boolean isKeepGestures) {
