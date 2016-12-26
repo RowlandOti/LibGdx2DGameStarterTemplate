@@ -183,16 +183,19 @@ public class GameScreen extends MyAbstractScreen implements IScreen
         pummaJump.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
 
         skyRegion = atlas.findRegion("sky");
-        skyRegion.getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
+        skyRegion.getTexture().setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
         TextureRegionParallaxLayer skyLayer = new TextureRegionParallaxLayer(skyRegion, GameWorld.WORLD_WIDTH, new Vector2(.3f, .3f), WH.width);
 
         downtownNairobiRegion = atlas.findRegion("background_downtown");
+        downtownNairobiRegion.getTexture().setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
         TextureRegionParallaxLayer downtownNairobiLayer = new TextureRegionParallaxLayer(downtownNairobiRegion, GameWorld.WORLD_WIDTH, new Vector2(.6f, .6f), WH.width);
 
         uptownNairobiRegion = atlas.findRegion("nairobi_city_uptown");
+        uptownNairobiRegion.getTexture().setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
         TextureRegionParallaxLayer uptownNairobiLayer = new TextureRegionParallaxLayer(uptownNairobiRegion, GameWorld.WORLD_WIDTH, new Vector2(.75f, .75f), WH.width);
 
         ghettoFenceRegion = atlas.findRegion("ghettofence");
+        ghettoFenceRegion.getTexture().setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
         TextureRegionParallaxLayer ghettofenceLayer = new TextureRegionParallaxLayer(ghettoFenceRegion, GameWorld.WORLD_WIDTH, new Vector2(1.3f, 1.3f), WH.width);
 
         parallaxBackground = new ParallaxBackground();
