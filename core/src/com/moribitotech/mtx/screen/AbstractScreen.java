@@ -138,7 +138,7 @@ public abstract class AbstractScreen implements Screen {
 	/**
 	 * Set stage background. Sets the image (Adds to stage as image)
 	 *
-	 * @param backgroundTextureRegion
+	 * @param textureBackground
 	 *
 	 * */
 	public void setBackgroundTexture(TextureRegion textureBackground)

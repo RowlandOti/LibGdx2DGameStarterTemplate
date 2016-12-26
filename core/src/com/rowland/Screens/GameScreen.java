@@ -54,8 +54,6 @@ public class GameScreen extends MyAbstractScreen implements IScreen
 {
     private TweenManager tweenManager;
 
-    public EmptyActorLight instructions;
-
     private BitmapFont gameFont;
     public static int gameOverCounterForAds = 0;
 
@@ -65,10 +63,11 @@ public class GameScreen extends MyAbstractScreen implements IScreen
     public GameScreenGameOverMenu gameScreenGameOverMenu;
     public GameScreenLevelEndMenu gameScreenLevelEndMenu;
     public GameScreenInstructions gameScreenGameInstruction;
-    EmptyActorLight healthBar;
+
+    private EmptyActorLight healthBar;
+    private EmptyActorLight instructions;
     private float buttonSize = 100 * AppSettings.getWorldSizeRatio();
     private MyOrthographicCamera camera;
-    boolean isBlurred = false;
 
     public enum State {
         GAME_READY,
@@ -198,9 +197,10 @@ public class GameScreen extends MyAbstractScreen implements IScreen
 
         parallaxBackground = new ParallaxBackground();
         parallaxForeground = new ParallaxBackground();
-        parallaxBackground.addLayers(skyLayer, downtownNairobiLayer, uptownNairobiLayer);
+        parallaxBackground.addLayers(downtownNairobiLayer, uptownNairobiLayer);
         parallaxForeground.addLayers(ghettofenceLayer);
 
+        setBackgroundTexture(skyRegion);
     }
 
     public void resetGame() {

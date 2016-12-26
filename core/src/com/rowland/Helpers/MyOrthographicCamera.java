@@ -76,7 +76,6 @@ public class MyOrthographicCamera extends OrthographicCamera {
 		float minZoom = GameWorld.WORLD_WIDTH/viewportWidth;
 
 		zoom = MathUtils.clamp(zoomValue, minZoom, maxZoom);
-		//fixBounds();
 	}
 
 	public void fixBounds()
