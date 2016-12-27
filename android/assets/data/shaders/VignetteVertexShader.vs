@@ -1,5 +1,5 @@
 //"in" attributes from our SpriteBatch
-attribute vec2 a_position;
+attribute vec4 a_position;
 attribute vec2 a_texCoord0;
 attribute vec4 a_color;
 

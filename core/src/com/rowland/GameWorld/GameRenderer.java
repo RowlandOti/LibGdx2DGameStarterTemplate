@@ -80,47 +80,67 @@ public class GameRenderer {
         batch.end();
     }
 
-   /* public void renderPauseBackground(GameScreen gameScreen, OrthographicCamera camera) {
+    public void renderPauseBackground(GameScreen gameScreen) {
+
+        final int FBO_SIZE_WIDTH = Gdx.graphics.getWidth();
+        final int FBO_SIZE_HEIGHT = Gdx.graphics.getHeight();
 
 
-        TextureRegion  pauseTextureRegion = gameScreen.getScreenTexture();
-        // gameScreen.setBackgroundTexture(pauseTextureRegion);
-        //Texture pauseTexture = new Texture(Gdx.files.internal("data/yoyo_sprite.png"));
-        //pauseTexture.flip(false, true);
+        TextureRegion pauseTextureRegion = gameScreen.getScreenTexture();
+        pauseTextureRegion.getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 
-   *//*     if (blurShader == null)
+
+        if (blurShader == null)
             blurShader = ShaderLoader.fromFile("VignetteVertexShader", "VignetteFragmentShader");
-*//*
-
-        blurShader = new ShaderProgram(VERT, FRAG);
-        if (!blurShader.isCompiled()) {
-            System.err.println(blurShader.getLog());
-            System.exit(0);
-        }
-        if (blurShader.getLog().length() != 0)
-            System.out.println(blurShader.getLog());
-
-        batch.setShader(blurShader);
-
-        //camera.setToOrtho(false, 32f, 18f);
-        //batch.setProjectionMatrix(camera.combined);
 
         //bind the shader, then set the uniform, then unbind the shader
         blurShader.begin();
-        blurShader.setUniformf("resolution", Gdx.graphics.getWidth() / 32, Gdx.graphics.getHeight() / 32);
+        blurShader.setUniformf("resolution", FBO_SIZE_WIDTH, FBO_SIZE_HEIGHT);
         blurShader.end();
 
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        FrameBuffer blurTargetA = new FrameBuffer(Pixmap.Format.RGBA8888, FBO_SIZE_WIDTH, FBO_SIZE_HEIGHT, false);
+        FrameBuffer blurTargetB = new FrameBuffer(Pixmap.Format.RGBA8888, FBO_SIZE_WIDTH, FBO_SIZE_HEIGHT, false);
+        TextureRegion fboRegion = new TextureRegion(blurTargetA.getColorBufferTexture());
+        fboRegion.flip(false, true);
 
-        gameScreen.getStage().getBatch().begin();
-        gameScreen.getStage().getBatch().draw(pauseTextureRegion, 0, 0, Gdx.graphics.getWidth() / 32, Gdx.graphics.getHeight() / 32);
-        gameScreen.getStage().getBatch().end();
+        SpriteBatch batchPause = new SpriteBatch();
+        batchPause.setShader(blurShader);
+
+        blurTargetA.begin();
+        // before rendering, ensure we are using the default shader
+        batchPause.setShader(SpriteBatch.createDefaultShader());
+        // now we can start drawing...
+        batchPause.begin();
+        // draw our scene here
+        batchPause.draw(pauseTextureRegion, 0, 0);
+        // finish rendering to the offscreen buffer
+        batchPause.flush();
+        // finish rendering to the offscreen buffer
+        blurTargetA.end();
+
+        // now let's start blurring the offscreen image
+        batchPause.setShader(blurShader);
+
+        blurTargetB.begin();
+        // we want to render FBO target A into target B
+        fboRegion.setTexture(blurTargetA.getColorBufferTexture());
+        // draw the scene to target B with a horizontal blur effect
+        batchPause.draw(fboRegion, 0, 0);
+        // flush the batch before ending the FBO
+        batchPause.flush();
+        // finish rendering target B
+        blurTargetB.end();
 
 
-        batch.setShader(SpriteBatch.createDefaultShader());
-    }*/
+        fboRegion.setTexture(blurTargetB.getColorBufferTexture());
+        gameScreen.setBackgroundTexture(fboRegion);
+        // reset to default shader without blurs
+        batchPause.setShader(SpriteBatch.createDefaultShader());
+        // finally, end the batch since we have reached the end of the frame
+        batchPause.end();
+    }
 
-    public void renderPauseBackground(GameScreen gameScreen, OrthographicCamera camera) {
+  /*  public void renderPauseBackground(GameScreen gameScreen) {
         final float MAX_BLUR = 2f;
         final int FBO_SIZE_WIDTH = Gdx.graphics.getWidth();
         final int FBO_SIZE_HEIGHT = Gdx.graphics.getHeight();
@@ -159,6 +179,7 @@ public class GameRenderer {
         batch.flush();
         // finish rendering to the offscreen buffer
         blurTargetA.end();
+
         // now let's start blurring the offscreen image
         batch.setShader(blurShader);
 
@@ -180,7 +201,7 @@ public class GameRenderer {
         batch.setShader(SpriteBatch.createDefaultShader());
         // finally, end the batch since we have reached the end of the frame
         batch.end();
-    }
+    }*/
 
     public OrthogonalTiledMapRenderer getOrthogonalTiledMapRenderer() {
         return orthogonalTiledMapRenderer;

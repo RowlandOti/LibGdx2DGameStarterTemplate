@@ -508,8 +508,7 @@ public class GameScreen extends MyAbstractScreen implements IScreen {
     public void pause() {
         super.pause();
         GameScreen.state = State.GAME_PAUSED;
-        renderer.renderPauseBackground(this,camera);
-        //setBackgroundTexture(getBlurredTextureRegion());
+        renderer.renderPauseBackground(this);
         toggleGestureProcessor(false);
         gameScreenGamePauseMenu.sendInMenu();
     }
