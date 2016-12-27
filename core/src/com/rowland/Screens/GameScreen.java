@@ -78,8 +78,6 @@ public class GameScreen extends MyAbstractScreen implements IScreen {
     private InputMultiplexer inputMux;
     private InputProcessor inputProcessor;
     private GestureDetector gestureDetector;
-    //Keeping a mode for debugging
-    public static boolean DEBUG_MODE = false;
 
     public static int creditsPoint;
 
@@ -229,8 +227,8 @@ public class GameScreen extends MyAbstractScreen implements IScreen {
         camera.setWorldBounds(0, GameWorld.mapWidth / GameWorld.WORLD_UNIT, 0, GameWorld.mapHeight / GameWorld.WORLD_UNIT);
         camera.update();
 
-        Gdx.app.log("WORLD", "Width: " + GameWorld.mapWidth + "Height: "+ GameWorld.mapHeight);
-        Gdx.app.log("SCREEN", "Width: " + AppSettings.SCREEN_W + "Height: "+ AppSettings.SCREEN_H);
+        Gdx.app.log("WORLD", "Width: " + GameWorld.mapWidth + "Height: " + GameWorld.mapHeight);
+        Gdx.app.log("SCREEN", "Width: " + AppSettings.SCREEN_W + "Height: " + AppSettings.SCREEN_H);
     }
 
     private void setUpInputProcessor() {
@@ -515,7 +513,7 @@ public class GameScreen extends MyAbstractScreen implements IScreen {
 
     @Override
     public void resume() {
-        super.pause();
+        super.resume();
         GameScreen.state = State.GAME_RUNNING;
         setBackgroundTexture(skyRegion);
         toggleGestureProcessor(true);

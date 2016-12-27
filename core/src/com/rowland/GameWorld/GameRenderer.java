@@ -17,6 +17,9 @@ import com.magnetideas.parallax.ParallaxBackground;
 import com.rowland.GameObjects.Yoyo;
 import com.rowland.Screens.GameScreen;
 
+/*Useful Links
+*  https://github.com/mattdesl/lwjgl-basics/wiki/ShaderLesson3
+* */
 public class GameRenderer {
 
     private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer;
@@ -84,6 +87,7 @@ public class GameRenderer {
 
         final int FBO_SIZE_WIDTH = Gdx.graphics.getWidth();
         final int FBO_SIZE_HEIGHT = Gdx.graphics.getHeight();
+        final float MAX_BLUR = 2f;
 
 
         TextureRegion pauseTextureRegion = gameScreen.getScreenTexture();
@@ -96,6 +100,8 @@ public class GameRenderer {
         //bind the shader, then set the uniform, then unbind the shader
         blurShader.begin();
         blurShader.setUniformf("resolution", FBO_SIZE_WIDTH, FBO_SIZE_HEIGHT);
+        blurShader.setUniformf("dir", 1f, 0f);
+        blurShader.setUniformf("radius", MAX_BLUR);
         blurShader.end();
 
         FrameBuffer blurTargetA = new FrameBuffer(Pixmap.Format.RGBA8888, FBO_SIZE_WIDTH, FBO_SIZE_HEIGHT, false);
