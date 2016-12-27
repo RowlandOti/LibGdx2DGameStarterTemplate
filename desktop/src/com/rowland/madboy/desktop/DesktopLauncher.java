@@ -8,6 +8,7 @@ import com.rowland.tests.MaskTest;
 import com.rowland.tests.ScrollingBackground;
 import com.rowland.tests.ShaderBlurTest;
 import com.rowland.tests.SmoothCamTest;
+import com.rowland.tests.screen.ShaderLesson3;
 
 public class DesktopLauncher
 {
@@ -20,9 +21,10 @@ public class DesktopLauncher
 
 		//new LwjglApplication(new ScrollingBackground(), config);
 		//new LwjglApplication(new GameListener(), config);
-		//new LwjglApplication(new ShaderBlurTest(), config);
+		// new LwjglApplication(new ShaderBlurTest(), config);
 		//new LwjglApplication(new SmoothCamTest(), config);
 		//new LwjglApplication(new MaskTest(), config);
-		new LwjglApplication(new MadBoyGame(), config);
+		//new LwjglApplication(new ShaderLesson3(), config);
+		 new LwjglApplication(new MadBoyGame(), config);
 	}
 }

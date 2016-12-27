@@ -14,73 +14,68 @@ import com.rowland.Screens.GameScreen;
 
 public class GameScreenGameReadyMenu extends GameScreenAbstractMenu {
 
-	private TableModel gameReadyMenuTable;
-	private ButtonGame  okButton,cancelButton;
-	private GameScreen gameScreen;
+    private TableModel gameReadyMenuTable;
+    private ButtonGame okButton, cancelButton;
+    private GameScreen gameScreen;
 
-	public GameScreenGameReadyMenu(final GameScreen gameScreen)
-	{
-		this.gameScreen = gameScreen;
-	}
+    public GameScreenGameReadyMenu(final GameScreen gameScreen) {
+        this.gameScreen = gameScreen;
+    }
 
-	@Override
-	public void setUpMenu()
-	{
+    @Override
+    public void setUpMenu() {
 
-		gameReadyMenuTable = new TableModel(GameScreen.background_menu_berge, AppSettings.SCREEN_W/1.3f , AppSettings.WORLD_HEIGHT/1.3f);
-		gameReadyMenuTable.setPosition(100*AppSettings.getWorldPositionXRatio(), -AppSettings.SCREEN_H);
+        gameReadyMenuTable = new TableModel(GameScreen.background_menu_berge, AppSettings.SCREEN_W / 1.3f, AppSettings.WORLD_HEIGHT / 1.3f);
+        gameReadyMenuTable.setPosition(100 * AppSettings.getWorldPositionXRatio(), -AppSettings.SCREEN_H);
 
-		cancelButton = MenuCreator.createCustomGameButton(null,GameScreen.button_overlay_left, GameScreen.button_overlay_left);
-		cancelButton.addListener(new ActorGestureListener() {
-			@Override
-			public void touchUp(InputEvent event, float x, float y,
-					int pointer, int button) {
-				super.touchUp(event, x, y, pointer, button);
-				//gameScreen.setBackgroundTexture(textureBackground);
-				gameScreen.getGame().setScreen(new LevelSelectScreen(gameScreen.getGame(), "LevelSelect Screen"));
-			}
-		});
+        cancelButton = MenuCreator.createCustomGameButton(null, GameScreen.button_overlay_left, GameScreen.button_overlay_left);
+        cancelButton.addListener(new ActorGestureListener() {
+            @Override
+            public void touchUp(InputEvent event, float x, float y,
+                                int pointer, int button) {
+                super.touchUp(event, x, y, pointer, button);
+                gameScreen.getGame().setScreen(new LevelSelectScreen(gameScreen.getGame(), "LevelSelect Screen"));
+            }
+        });
 
-		okButton = MenuCreator.createCustomGameButton(null, GameScreen.button_overlay_right, GameScreen.button_overlay_right);
-		okButton.addListener(new ActorGestureListener() {
-			@Override
-			public void touchUp(InputEvent event, float x, float y,
-					int pointer, int button) {
-				super.touchUp(event, x, y, pointer, button);
-				sendAwayMenu();
+        okButton = MenuCreator.createCustomGameButton(null, GameScreen.button_overlay_right, GameScreen.button_overlay_right);
+        okButton.addListener(new ActorGestureListener() {
+            @Override
+            public void touchUp(InputEvent event, float x, float y,
+                                int pointer, int button) {
+                super.touchUp(event, x, y, pointer, button);
+                sendAwayMenu();
 
-				gameScreen.state = GameScreen.State.GAME_RUNNING;
-				gameScreen.removeBackgroundTexture();
-				gameScreen.resetGame();
-				gameScreen.setUpTheWorld();
-				gameScreen.toggleGestureProcessor(true);
+                gameScreen.state = GameScreen.State.GAME_RUNNING;
+                gameScreen.removeBackgroundTexture();
+                gameScreen.resetGame();
+                gameScreen.setUpTheWorld();
+                gameScreen.resume();
 
-			}
-		});
+            }
+        });
 
 
-		float dipRatioWidth = 80 * AppSettings.getWorldSizeRatio();
-		float dipRatioHeight = 80 * AppSettings.getWorldSizeRatio();
+        float dipRatioWidth = 80 * AppSettings.getWorldSizeRatio();
+        float dipRatioHeight = 80 * AppSettings.getWorldSizeRatio();
 
 
-		gameReadyMenuTable.add(cancelButton).align(Align.left).size(dipRatioWidth, dipRatioHeight).pad(150f);
-		gameReadyMenuTable.add(okButton).align(Align.right).size(dipRatioWidth, dipRatioHeight).pad(150f);
+        gameReadyMenuTable.add(cancelButton).align(Align.left).size(dipRatioWidth, dipRatioHeight).pad(150f);
+        gameReadyMenuTable.add(okButton).align(Align.right).size(dipRatioWidth, dipRatioHeight).pad(150f);
 
-	}
+    }
 
-	//Send in menu
-	@Override
-	public void sendInMenu()
-	{
-		gameScreen.getStage().addActor(gameReadyMenuTable);
-		gameReadyMenuTable.addAction(Actions.moveTo(100*AppSettings.getWorldPositionXRatio(), 60*AppSettings.getWorldPositionYRatio(), 0.5f));
-	}
+    //Send in menu
+    @Override
+    public void sendInMenu() {
+        gameScreen.getStage().addActor(gameReadyMenuTable);
+        gameReadyMenuTable.addAction(Actions.moveTo(100 * AppSettings.getWorldPositionXRatio(), 60 * AppSettings.getWorldPositionYRatio(), 0.5f));
+    }
 
-	//Send away menu
-	@Override
-	public void sendAwayMenu()
-	{
-		gameReadyMenuTable.addAction(Actions.moveTo(100*AppSettings.getWorldPositionXRatio(),- gameReadyMenuTable.getHeight(), 0.5f));
-	}
+    //Send away menu
+    @Override
+    public void sendAwayMenu() {
+        gameReadyMenuTable.addAction(Actions.moveTo(100 * AppSettings.getWorldPositionXRatio(), -gameReadyMenuTable.getHeight(), 0.5f));
+    }
 
 }

@@ -12,99 +12,93 @@ import com.rowland.Screens.GameScreen;
 import com.rowland.Screens.LoadingScreen;
 import com.rowland.Screens.MenuScreen;
 
-public class GameScreenGameOverMenu extends GameScreenAbstractMenu{
+public class GameScreenGameOverMenu extends GameScreenAbstractMenu {
 
-	private TableModel gameOverMenuTable;
-	private ButtonGame infoButton,scoreButton;
-	private GameScreen gameScreen;
+    private TableModel gameOverMenuTable;
+    private ButtonGame infoButton, scoreButton;
+    private GameScreen gameScreen;
 
-	private ButtonGame okButton, cancelButton;
+    private ButtonGame okButton, cancelButton;
 
-	float buttonWidth = 174 * AppSettings.getWorldSizeRatio();
-	float buttonHeight = 74 * AppSettings.getWorldSizeRatio();
-	float dipRatioWidth = 80 * AppSettings.getWorldSizeRatio();
-	float dipRatioHeight = 80 * AppSettings.getWorldSizeRatio();
-	float padding = 10.0f * AppSettings.getWorldSizeRatio();
-
-
-	public GameScreenGameOverMenu(final GameScreen gameScreen)
-	{
-		this.gameScreen = gameScreen;
-	}
+    float buttonWidth = 174 * AppSettings.getWorldSizeRatio();
+    float buttonHeight = 74 * AppSettings.getWorldSizeRatio();
+    float dipRatioWidth = 80 * AppSettings.getWorldSizeRatio();
+    float dipRatioHeight = 80 * AppSettings.getWorldSizeRatio();
+    float padding = 10.0f * AppSettings.getWorldSizeRatio();
 
 
-	@Override
-	public void setUpMenu() {
-		//Set Up means create and add the required Actors/UI Widgets to the Screen
-
-		gameOverMenuTable = new TableModel(GameScreen.background_menu_berge, AppSettings.SCREEN_W, AppSettings.WORLD_HEIGHT);
-		gameOverMenuTable.setPosition(0, -gameOverMenuTable.getHeight());
-
-		gameScreen.getStage().addActor(gameOverMenuTable);
-
-		infoButton = MenuCreator.createCustomGameButton(AssetLoader.bigFont, GameScreen.holder, GameScreen.holder, dipRatioWidth/2, dipRatioHeight, true);
-
-		infoButton.setTextPosXY(100*AppSettings.getWorldSizeRatio(), 60*AppSettings.getWorldSizeRatio());
-
-		scoreButton = MenuCreator.createCustomGameButton(AssetLoader.bigFont, GameScreen.holder, GameScreen.holder, dipRatioWidth, dipRatioHeight, true);
-
-		scoreButton.setTextPosXY(100*AppSettings.getWorldSizeRatio(), 60*AppSettings.getWorldSizeRatio());
+    public GameScreenGameOverMenu(final GameScreen gameScreen) {
+        this.gameScreen = gameScreen;
+    }
 
 
-		okButton = MenuCreator.createCustomGameButton(null, GameScreen.button_overlay_right, GameScreen.button_overlay_right);
-		okButton.addListener(new ActorGestureListener() {
-			@Override
-			public void touchUp(InputEvent event, float x, float y,
-					int pointer, int button) {
-				super.touchUp(event, x, y, pointer, button);
+    @Override
+    public void setUpMenu() {
+        //Set Up means create and add the required Actors/UI Widgets to the Screen
 
-				sendAwayMenu();
-				gameScreen.restartGame();
-				gameScreen.resetGame();
-				GameScreen.state = GameScreen.State.GAME_RUNNING;
-				gameScreen.resetGame();
-			}
-		});
+        gameOverMenuTable = new TableModel(GameScreen.background_menu_berge, AppSettings.SCREEN_W, AppSettings.WORLD_HEIGHT);
+        gameOverMenuTable.setPosition(0, -gameOverMenuTable.getHeight());
 
-		cancelButton = MenuCreator.createCustomGameButton(null, GameScreen.button_overlay_left, GameScreen.button_overlay_left);
-		cancelButton.addListener(new ActorGestureListener() {
-			@Override
-			public void touchUp(InputEvent event, float x, float y,
-					int pointer, int button) {
-				super.touchUp(event, x, y, pointer, button);
-				gameScreen.resetGame();
-				sendAwayMenu();
-				gameScreen.getGame().setScreen(new LoadingScreen(gameScreen.getGame(), "Menu Screen", LoadingScreen.TYPE_UI_MENU));
+        gameScreen.getStage().addActor(gameOverMenuTable);
+
+        infoButton = MenuCreator.createCustomGameButton(AssetLoader.bigFont, GameScreen.holder, GameScreen.holder, dipRatioWidth / 2, dipRatioHeight, true);
+
+        infoButton.setTextPosXY(100 * AppSettings.getWorldSizeRatio(), 60 * AppSettings.getWorldSizeRatio());
+
+        scoreButton = MenuCreator.createCustomGameButton(AssetLoader.bigFont, GameScreen.holder, GameScreen.holder, dipRatioWidth, dipRatioHeight, true);
+
+        scoreButton.setTextPosXY(100 * AppSettings.getWorldSizeRatio(), 60 * AppSettings.getWorldSizeRatio());
 
 
-			}
-		});
+        okButton = MenuCreator.createCustomGameButton(null, GameScreen.button_overlay_right, GameScreen.button_overlay_right);
+        okButton.addListener(new ActorGestureListener() {
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                super.touchUp(event, x, y, pointer, button);
 
-		gameOverMenuTable.add(infoButton).left().size(infoButton.getWidth(), infoButton.getHeight()).pad(padding);
-		gameOverMenuTable.row();
+                sendAwayMenu();
+                gameScreen.restartGame();
+                gameScreen.resetGame();
+                GameScreen.state = GameScreen.State.GAME_RUNNING;
+                gameScreen.resetGame();
+            }
+        });
 
-		gameOverMenuTable.add(scoreButton).left().size(scoreButton.getWidth(), scoreButton.getHeight()).pad(padding);
-		gameOverMenuTable.row();
+        cancelButton = MenuCreator.createCustomGameButton(null, GameScreen.button_overlay_left, GameScreen.button_overlay_left);
+        cancelButton.addListener(new ActorGestureListener() {
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                super.touchUp(event, x, y, pointer, button);
+                gameScreen.resetGame();
+                sendAwayMenu();
+                gameScreen.getGame().setScreen(new LoadingScreen(gameScreen.getGame(), "Menu Screen", LoadingScreen.TYPE_UI_MENU));
 
-		gameOverMenuTable.add(cancelButton).size(buttonWidth, buttonHeight).pad(padding).left();
-		gameOverMenuTable.add(okButton).size(buttonWidth, buttonHeight).pad(padding).right();
 
-	}
+            }
+        });
 
-	@Override
-	public void sendInMenu()
-	{
-		GameScreen.gameOverCounterForAds++;
-		infoButton.setText(""+GameScreen.gameoverinfo, true);
-		scoreButton.setText(""+GameScreen.scoreString, true);
-		gameOverMenuTable.addAction(Actions.moveTo(0, 0, 0.5f));
-	}
+        gameOverMenuTable.add(infoButton).left().size(infoButton.getWidth(), infoButton.getHeight()).pad(padding);
+        gameOverMenuTable.row();
 
-	@Override
-	public void sendAwayMenu() {
-		// TODO Auto-generated method stub
+        gameOverMenuTable.add(scoreButton).left().size(scoreButton.getWidth(), scoreButton.getHeight()).pad(padding);
+        gameOverMenuTable.row();
 
-		gameOverMenuTable.addAction(Actions.moveTo(0,- gameOverMenuTable.getHeight(), 0.5f));
-	}
+        gameOverMenuTable.add(cancelButton).size(buttonWidth, buttonHeight).pad(padding).left();
+        gameOverMenuTable.add(okButton).size(buttonWidth, buttonHeight).pad(padding).right();
+
+    }
+
+    @Override
+    public void sendInMenu() {
+        GameScreen.gameOverCounterForAds++;
+        infoButton.setText("" + GameScreen.gameoverinfo, true);
+        scoreButton.setText("" + GameScreen.scoreString, true);
+        gameOverMenuTable.addAction(Actions.moveTo(0, 0, 0.5f));
+    }
+
+    @Override
+    public void sendAwayMenu() {
+        gameOverMenuTable.addAction(Actions.moveTo(0, -gameOverMenuTable.getHeight(), 0.5f));
+    }
 
 }

@@ -23,11 +23,25 @@ public final class ShaderLoader {
 
 	public static ShaderProgram fromFile(String vertexFileName, String fragmentFileName)
 	{
-		return ShaderLoader.fromFile(vertexFileName, fragmentFileName, "");
+		//return ShaderLoader.fromFile(vertexFileName, fragmentFileName, "");
+		ShaderProgram.pedantic = false;
+		BASEPATH = "data/shaders/";
+
+		String vpSrc = Gdx.files.internal(BASEPATH + vertexFileName + ".vs").readString();
+		String fpSrc = Gdx.files.internal(BASEPATH + fragmentFileName + ".fs").readString();
+
+		//print it out for clarity
+		System.out.println("Vertex Shader:\n-------------\n\n" + vpSrc);
+		System.out.println("\n");
+		System.out.println("Fragment Shader:\n-------------\n\n" + fpSrc);
+		return new ShaderProgram(vpSrc, fpSrc);
 	}
 
 	public static ShaderProgram fromFile(String vertexFileName, String fragmentFileName, String defines)
 	{
+		pedantic = false;
+		BASEPATH = "data/shaders/";
+
 		String log = "\"" + vertexFileName + "/" + fragmentFileName + "\"";
 
 		if (defines.length() > 0)
@@ -40,6 +54,11 @@ public final class ShaderLoader {
 
 		String vpSrc = Gdx.files.internal(BASEPATH + vertexFileName + ".vs").readString();
 		String fpSrc = Gdx.files.internal(BASEPATH + fragmentFileName + ".fs").readString();
+
+		//print it out for clarity
+		System.out.println("Vertex Shader:\n-------------\n\n" + vpSrc);
+		System.out.println("\n");
+		System.out.println("Fragment Shader:\n-------------\n\n" + fpSrc);
 
 		ShaderProgram program = ShaderLoader.fromString(vpSrc, fpSrc, vertexFileName, fragmentFileName, defines);
 
@@ -70,31 +89,31 @@ public final class ShaderLoader {
 		return shader;
 	}
 
-	public ShaderProgram createShader(String vertexShader, String horizontalShader, ShaderType blurType)
+	public static ShaderProgram createShader(String vertexShader, String fragmentShader, ShaderType blurType)
 	{
 		pedantic = false;
 		BASEPATH = "data/shaders/";
 
-		ShaderProgram blurShader = ShaderLoader.fromFile(vertexShader, horizontalShader);
+		ShaderProgram shaderProgram = ShaderLoader.fromFile(vertexShader, fragmentShader);
 
 		switch (blurType)
 		{
 		case GAUSSIANBLUR:
-			blurShader.begin();
-			blurShader.setUniformf("dir", 0.5f, 0.5f);
-			blurShader.setUniformf("resolution", Gdx.graphics.getWidth());
-			blurShader.setUniformf("radius", 2f);
-			blurShader.setUniformi("u_texture", 0);
-			blurShader.end();
+			shaderProgram.begin();
+			shaderProgram.setUniformf("dir", 0.5f, 0.5f);
+			shaderProgram.setUniformf("resolution", Gdx.graphics.getWidth());
+			shaderProgram.setUniformf("radius", 2f);
+			shaderProgram.setUniformi("u_texture", 0);
+			shaderProgram.end();
 			break;
         case VIGNETTE:
-
+			shaderProgram.setUniformf("resolution", Gdx.graphics.getWidth());
 			break;
 
 		default:
 			break;
 		}
-		return blurShader;
+		return shaderProgram;
 	}
 
 }

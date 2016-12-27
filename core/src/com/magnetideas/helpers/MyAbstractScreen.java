@@ -75,6 +75,16 @@ public abstract class MyAbstractScreen extends AbstractScreen
 		return backgroundBlur;
 	}
 
+	public TextureRegion getScreenTexture()
+	{
+		Pixmap bgPix = ScreenUtils.getFrameBufferPixmap(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
+		TextureRegion backgroundBlur = new TextureRegion(new Texture(bgPix));
+		backgroundBlur.flip(false, true);
+
+		return backgroundBlur;
+	}
+
 	public MadBoyGame getMyGame() {
 		return myGame;
 	}

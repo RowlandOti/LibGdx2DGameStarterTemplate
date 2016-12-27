@@ -18,7 +18,7 @@ public class OrthographicCameraAccessor implements TweenAccessor<MyOrthographicC
 	/**
 	 * @param camera
 	 * camera to get values from
-	 * @param tweentype
+	 * @param tweenType
 	 * type of tween (Position or Zoom)
 	 * @param returnValues
 	 * out parameter with the requested values
