@@ -35,8 +35,8 @@ public class TextureRegionParallaxLayer extends ParallaxLayer{
 	/**
 	 * Creates a TextureRegionParallaxLayer with regionWidth and regionHeight equal to parameters width and height. Paddings are set to 0.
 	 * @param texRegion the texture region
-	 * @param width width to be used as regionWidth
-	 * @param height height to be used as regionHeight
+	 * @param regionWidth width to be used as regionWidth
+	 * @param regionHeight height to be used as regionHeight
 	 * @param parallaxScrollRatio the parallax ratio in x and y direction
 	 */
 	public TextureRegionParallaxLayer(TextureRegion texRegion, float regionWidth, float regionHeight, Vector2 parallaxScrollRatio){
@@ -130,7 +130,7 @@ public class TextureRegionParallaxLayer extends ParallaxLayer{
 
 	/**
 	 * sets the left padding
-	 * @param left padding
+	 * @param padLeft padding
 	 */
 	public void setPadLeft(float padLeft) {
 		this.padLeft = padLeft;
@@ -146,7 +146,7 @@ public class TextureRegionParallaxLayer extends ParallaxLayer{
 
 	/**
 	 * sets the right padding
-	 * @param right padding
+	 * @param padRight padding
 	 */
 	public void setPadRight(float padRight) {
 		this.padRight = padRight;
@@ -162,7 +162,7 @@ public class TextureRegionParallaxLayer extends ParallaxLayer{
 
 	/**
 	 * sets the bottom padding
-	 * @param bottom padding
+	 * @param padBottom padding
 	 */
 	public void setPadBottom(float padBottom) {
 		this.padBottom = padBottom;
@@ -178,7 +178,7 @@ public class TextureRegionParallaxLayer extends ParallaxLayer{
 
 	/**
 	 * sets the top padding
-	 * @param top padding
+	 * @param padTop padding
 	 */
 	public void setPadTop(float padTop) {
 		this.padTop = padTop;

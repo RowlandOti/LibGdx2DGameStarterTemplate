@@ -15,6 +15,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.magnetideas.loaders.ShaderLoader;
 import com.magnetideas.parallax.ParallaxBackground;
 import com.rowland.GameObjects.Yoyo;
+import com.rowland.Helpers.MyOrthographicCamera;
 import com.rowland.Screens.GameScreen;
 
 /*Useful Links
@@ -71,13 +72,13 @@ public class GameRenderer {
         }
     }
 
-    public void renderBackground(ParallaxBackground parallaxBackground, OrthographicCamera camera) {
+    public void renderBackground(ParallaxBackground parallaxBackground, MyOrthographicCamera camera) {
         batch.begin();
         parallaxBackground.draw(camera, batch);
         batch.end();
     }
 
-    public void renderForeground(ParallaxBackground parallaxForeground, OrthographicCamera camera) {
+    public void renderForeground(ParallaxBackground parallaxForeground, MyOrthographicCamera camera) {
         batch.begin();
         parallaxForeground.draw(camera, batch);
         batch.end();
@@ -145,69 +146,6 @@ public class GameRenderer {
         // finally, end the batch since we have reached the end of the frame
         batchPause.end();
     }
-
-  /*  public void renderPauseBackground(GameScreen gameScreen) {
-        final float MAX_BLUR = 2f;
-        final int FBO_SIZE_WIDTH = Gdx.graphics.getWidth();
-        final int FBO_SIZE_HEIGHT = Gdx.graphics.getHeight();
-
-
-        TextureRegion pauseTexture = gameScreen.getScreenTexture();
-        pauseTexture.getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
-
-        ShaderProgram.pedantic = false;
-
-        if (blurShader == null)
-            blurShader = ShaderLoader.fromFile("UniBlurVertexShader", "UniBlurFragmentShader");
-
-        // setup uniforms for our shader
-        blurShader.begin();
-        blurShader.setUniformf("dir", 1f, 0f);
-        blurShader.setUniformf("resolution", FBO_SIZE_WIDTH);
-        blurShader.setUniformf("radius", MAX_BLUR);
-        blurShader.end();
-
-        FrameBuffer blurTargetA = new FrameBuffer(Pixmap.Format.RGBA8888, FBO_SIZE_WIDTH, FBO_SIZE_HEIGHT, false);
-        FrameBuffer blurTargetB = new FrameBuffer(Pixmap.Format.RGBA8888, FBO_SIZE_WIDTH, FBO_SIZE_HEIGHT, false);
-        TextureRegion fboRegion = new TextureRegion(blurTargetA.getColorBufferTexture());
-        fboRegion.flip(false, true);
-
-        SpriteBatch batch = new SpriteBatch();
-
-        blurTargetA.begin();
-        // before rendering, ensure we are using the default shader
-        batch.setShader(SpriteBatch.createDefaultShader());
-        // now we can start drawing...
-        batch.begin();
-        // draw our scene here
-        batch.draw(pauseTexture, 0, 0);
-        // finish rendering to the offscreen buffer
-        batch.flush();
-        // finish rendering to the offscreen buffer
-        blurTargetA.end();
-
-        // now let's start blurring the offscreen image
-        batch.setShader(blurShader);
-
-
-        blurTargetB.begin();
-        // we want to render FBO target A into target B
-        fboRegion.setTexture(blurTargetA.getColorBufferTexture());
-        // draw the scene to target B with a horizontal blur effect
-        batch.draw(fboRegion, 0, 0);
-        // flush the batch before ending the FBO
-        batch.flush();
-        // finish rendering target B
-        blurTargetB.end();
-
-
-        fboRegion.setTexture(blurTargetB.getColorBufferTexture());
-        gameScreen.setBackgroundTexture(fboRegion);
-        // reset to default shader without blurs
-        batch.setShader(SpriteBatch.createDefaultShader());
-        // finally, end the batch since we have reached the end of the frame
-        batch.end();
-    }*/
 
     public OrthogonalTiledMapRenderer getOrthogonalTiledMapRenderer() {
         return orthogonalTiledMapRenderer;

@@ -224,7 +224,7 @@ public class GameScreen extends MyAbstractScreen implements IScreen {
         // 1 world unit = 32 screen pixels
         camera = new MyOrthographicCamera();
         camera.setToOrtho(false, 32f, 18f);
-        camera.setWorldBounds(0, GameWorld.mapWidth / GameWorld.WORLD_UNIT, 0, GameWorld.mapHeight / GameWorld.WORLD_UNIT);
+        camera.setWorldBounds(0, GameWorld.mapWidth , 0, GameWorld.mapHeight );
         camera.update();
 
         Gdx.app.log("WORLD", "Width: " + GameWorld.mapWidth + "Height: " + GameWorld.mapHeight);
