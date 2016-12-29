@@ -60,7 +60,7 @@ public class MyOrthographicCamera extends OrthographicCamera {
     public void fixBounds() {
         float scaledViewportWidthHalfExtent = viewportWidth * zoom * 0.5f;
         float scaledViewportHeightHalfExtent = viewportHeight * zoom * 0.5f;
-        
+
         // Horizontal
         if (position.x < scaledViewportWidthHalfExtent)
             position.x = scaledViewportWidthHalfExtent;
@@ -92,12 +92,12 @@ public class MyOrthographicCamera extends OrthographicCamera {
         Timeline.createSequence()
                 .beginParallel()
                 .push(Tween.to(this, OrthographicCameraAccessor.POSITION, 3.5f).target(spanCord.x, spanCord.y, spanCord.z).ease(Elastic.OUT))
-                .push(Tween.to(this, OrthographicCameraAccessor.ZOOM, 3.5f).target(1.20f).ease(Elastic.OUT))
+                //.push(Tween.to(this, OrthographicCameraAccessor.ZOOM, 3.5f).target(1.20f).ease(Elastic.OUT))
                 .end()
 
                 .beginParallel()
                 .push(Tween.to(this, OrthographicCameraAccessor.POSITION, 2.8f).target(world.getYoyo().position.x, 0, 0).ease(Bounce.INOUT))
-                .push(Tween.to(this, OrthographicCameraAccessor.ZOOM, 3.0f).target(1).ease(Bounce.INOUT))
+                //.push(Tween.to(this, OrthographicCameraAccessor.ZOOM, 3.0f).target(1).ease(Bounce.INOUT))
                 .end()
                 .start(tweenManager);
         //world.isPanning = false;
