@@ -126,9 +126,9 @@ public class AssetLoader {
 	public static void loadImages() 
 	{
 		//TEXTURE REGIONS FROM THE SPRITE ATLAS
-		holder = getSpriteAtlas().findRegion("holder");
+		holder = getSpriteAtlas().findRegion("button_green");
 		bg = getSpriteAtlas().findRegion("background_nairobi_night");
-		background_menu_berge = getSpriteAtlas().findRegion("background_menu_berge");
+		background_menu_berge = getSpriteAtlas().findRegion("background_level");
 		background_home = getSpriteAtlas().findRegion("background_home");
 		logo = getSpriteAtlas().findRegion("logo");
 		

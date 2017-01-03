@@ -74,7 +74,7 @@ public class ShaderBlurTest implements ApplicationListener {
 		batch.setShader(null);
 		// now we can start drawing...
 		batch.begin();
-		// draw our scene here
+		// updateHUD our scene here
 		batch.draw(tex, 0, 0);
 		batch.draw(tex2, tex.getWidth() + 5, 30);
 		// finish rendering to the offscreen buffer
@@ -94,7 +94,7 @@ public class ShaderBlurTest implements ApplicationListener {
 		blurTargetB.begin();
 		// we want to render FBO target A into target B
 		fboRegion.setTexture(blurTargetA.getColorBufferTexture());
-		// draw the scene to target B with a horizontal blur effect
+		// updateHUD the scene to target B with a horizontal blur effect
 		batch.draw(fboRegion, 0, 0);
 		// flush the batch before ending the FBO
 		batch.flush();
@@ -106,12 +106,12 @@ public class ShaderBlurTest implements ApplicationListener {
 		// update the Y-axis blur radius
 		//float mouseYAmt = Gdx.input.getY() / (float) Gdx.graphics.getHeight();
 		//blurShader.setUniformf("radius", mouseYAmt * MAX_BLUR);
-		// draw target B to the screen with a vertical blur effect
+		// updateHUD target B to the screen with a vertical blur effect
 		fboRegion.setTexture(blurTargetB.getColorBufferTexture());
 		batch.draw(fboRegion, 0, 0);
 		// reset to default shader without blurs
 		batch.setShader(null);
-		// draw FPS
+		// updateHUD FPS
 		fps.draw(batch, String.valueOf(Gdx.graphics.getFramesPerSecond()), 5, Gdx.graphics.getHeight() - 5);
 		// finally, end the batch since we have reached the end of the frame
 		batch.end();

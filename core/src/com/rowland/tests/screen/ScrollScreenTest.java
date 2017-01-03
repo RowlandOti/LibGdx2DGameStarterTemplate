@@ -16,7 +16,6 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import com.magnetideas.helpers.MyAbstractScreen;
 import com.magnetideas.loaders.MeshObject;
 import com.magnetideas.loaders.ShaderLoader;
 import com.magnetideas.parallax.ParallaxBackground;
@@ -87,19 +86,19 @@ public class ScrollScreenTest extends AbstractScreen {
 		Array<AtlasRegion> regions = atlas.getRegions();
 
     	skyRegion = atlas.findRegion("sky");
-    	TextureRegionParallaxLayer skyLayer = new TextureRegionParallaxLayer(skyRegion, GameWorld.WORLD_WIDTH, new Vector2(.3f,.3f), WH.width);
+    	TextureRegionParallaxLayer skyLayer = new TextureRegionParallaxLayer(skyRegion, GameWorld.DEFAULT_VIEWPORT_WIDTH, new Vector2(.3f,.3f), WH.width);
     	skyRegion.getTexture().bind(3);
 
     	downtownNairobiRegion = atlas.findRegion("background_downtown");
-    	TextureRegionParallaxLayer downtownNairobiLayer = new TextureRegionParallaxLayer(downtownNairobiRegion, GameWorld.WORLD_WIDTH, new Vector2(.6f,.6f), WH.width);
+    	TextureRegionParallaxLayer downtownNairobiLayer = new TextureRegionParallaxLayer(downtownNairobiRegion, GameWorld.DEFAULT_VIEWPORT_WIDTH, new Vector2(.6f,.6f), WH.width);
     	//downtownNairobiRegion.getTexture().bind(2);
 
     	uptownNairobiRegion = atlas.findRegion("nairobi_city_uptown");
-    	TextureRegionParallaxLayer uptownNairobiLayer = new TextureRegionParallaxLayer(uptownNairobiRegion, GameWorld.WORLD_WIDTH, new Vector2(.75f,.75f), WH.width);
+    	TextureRegionParallaxLayer uptownNairobiLayer = new TextureRegionParallaxLayer(uptownNairobiRegion, GameWorld.DEFAULT_VIEWPORT_WIDTH, new Vector2(.75f,.75f), WH.width);
     	//uptownNairobiRegion.getTexture().bind(1);
 
     	ghettoFenceRegion = atlas.findRegion("ghettofence");
-    	TextureRegionParallaxLayer ghettofenceLayer = new TextureRegionParallaxLayer(ghettoFenceRegion, GameWorld.WORLD_WIDTH, new Vector2(1.3f,1.3f), WH.width);
+    	TextureRegionParallaxLayer ghettofenceLayer = new TextureRegionParallaxLayer(ghettoFenceRegion, GameWorld.DEFAULT_VIEWPORT_WIDTH, new Vector2(1.3f,1.3f), WH.width);
     	//ghettoFenceRegion.getTexture().bind(0);
 
 		parallaxBackground = new ParallaxBackground();

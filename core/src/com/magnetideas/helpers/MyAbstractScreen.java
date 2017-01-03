@@ -18,75 +18,60 @@ import com.rowland.madboy.MadBoyGame;
 
 /**
  * @author Rowland
- *
  */
-public abstract class MyAbstractScreen extends AbstractScreen
-{
-	private MadBoyGame myGame;
-	protected TextureAtlas   atlas;
-	protected TextureAtlas  atlas_base;
-	private Image imgbg;
+public abstract class MyAbstractScreen extends AbstractScreen {
 
-	public MyAbstractScreen(Game game, String screenName)
-	{
-		super(game, screenName);
-		this.myGame = (MadBoyGame) game;
-		//You can customise your clear color by calling this method in your Screen class, in the constructor
-		setOpenGLClearColor(72.0f/255f, 53.0f/255f, 83.0f/255f, 14.0f/255f);
-	}
+    private MadBoyGame myGame;
+    protected TextureAtlas atlas;
+    protected TextureAtlas atlas_base;
+    private Image imgbg;
 
-	/**
-	 * Set stage background. Sets the image (Adds to stage as image)
-	 *
-	 * @param textureBackground
-	 *
-	 * */
-	@Override
-	public void setBackgroundTexture(TextureRegion textureBackground)
-	{
-			Drawable tBg = new TextureRegionDrawable(textureBackground);
-			imgbg = new Image(tBg, Scaling.stretch);
-			imgbg.setFillParent(true);
-			getStage().addActor(imgbg);
+    public MyAbstractScreen(Game game, String screenName) {
+        super(game, screenName);
+        this.myGame = (MadBoyGame) game;
+        //You can customise your clear color by calling this method in your Screen class, in the constructor
+        setOpenGLClearColor(72.0f / 255f, 53.0f / 255f, 83.0f / 255f, 14.0f / 255f);
+    }
 
-			MtxLogger.log(logActive, true, logTag, "SCREEN BG IMAGE SET: " + getScreenName());
-	}
+    /**
+     * Set stage background. Sets the image (Adds to stage as image)
+     *
+     * @param textureBackground
+     */
+    @Override
+    public void setBackgroundTexture(TextureRegion textureBackground) {
+        Drawable tBg = new TextureRegionDrawable(textureBackground);
+        imgbg = new Image(tBg, Scaling.stretch);
+        imgbg.setFillParent(true);
+        getStage().addActor(imgbg);
 
-	/**
-	 * Remove the background texture
-	 * */
-	public void removeBackgroundTexture()
-	{
-		getStage().getRoot().removeActor(imgbg);
-		imgbg = null;
-	}
+        MtxLogger.log(logActive, true, logTag, "SCREEN BG IMAGE SET: " + getScreenName());
+    }
 
+    /**
+     * Remove the background texture
+     */
+    public void removeBackgroundTexture() {
+        getStage().getRoot().removeActor(imgbg);
+        imgbg = null;
+    }
 
-	/**
-	 * Blur the background texture before setBackground()
-	 * */
-	public TextureRegion getBlurredTextureRegion()
-	{
-		Pixmap bgPix = ScreenBlurUtils.blur(ScreenUtils.getFrameBufferPixmap(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight()), 2, 2, true);
+    public TextureRegion getScreenTexture() {
+        Pixmap bgPix = ScreenUtils.getFrameBufferPixmap(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-		TextureRegion backgroundBlur = new TextureRegion(new Texture(bgPix)) ;
-		backgroundBlur.flip(false, true);
+        TextureRegion backgroundBlur = new TextureRegion(new Texture(bgPix));
+        backgroundBlur.flip(false, true);
 
-		return backgroundBlur;
-	}
+        return backgroundBlur;
+    }
 
-	public TextureRegion getScreenTexture()
-	{
-		Pixmap bgPix = ScreenUtils.getFrameBufferPixmap(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+    public MadBoyGame getMyGame() {
+        return myGame;
+    }
 
-		TextureRegion backgroundBlur = new TextureRegion(new Texture(bgPix));
-		backgroundBlur.flip(false, true);
-
-		return backgroundBlur;
-	}
-
-	public MadBoyGame getMyGame() {
-		return myGame;
-	}
-
+    @Override
+    public void resize(int width, int height) {
+        super.resize(width, height);
+        resume();
+    }
 }

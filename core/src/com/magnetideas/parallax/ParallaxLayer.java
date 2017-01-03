@@ -79,7 +79,7 @@ public abstract class ParallaxLayer {
 
 
 	/**
-	 * draw this layer at specified position. Make sure that when you implement or extend this method you draw this layer within bounds returned by {@link #getWidth()} and {@link #getHeight()}. 
+	 * updateHUD this layer at specified position. Make sure that when you implement or extend this method you updateHUD this layer within bounds returned by {@link #getWidth()} and {@link #getHeight()}.
 	 * @param batch the batch used for rendering
 	 * @param pos the position of the lower left corner where rendering should be done
 	 */
@@ -88,7 +88,7 @@ public abstract class ParallaxLayer {
 	}
 	
 	/**
-	 * draw this layer at specified position. Make sure that when you implement or extend this method you draw this layer within bounds returned by {@link #getWidth()} and {@link #getHeight()}. 
+	 * updateHUD this layer at specified position. Make sure that when you implement or extend this method you updateHUD this layer within bounds returned by {@link #getWidth()} and {@link #getHeight()}.
 	 * @param batch the batch used for rendering
 	 * @param x the x position of the lower left corner where rendering should be done
 	 * @param y the y position of the lower left corner where rendering should be done

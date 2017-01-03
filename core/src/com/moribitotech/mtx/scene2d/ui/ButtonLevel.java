@@ -67,7 +67,7 @@ public class ButtonLevel extends AbstractButton {
 			float currentPosX = getX();
 
 			for(int i = 0; i < numberOfTotalStars; i++){
-				// Update new star holder positions (for multiple stars)
+				// Update new star button_green positions (for multiple stars)
 				currentPosX = activePosXStart + (starSizeWidth * i);
 				batch.draw(textureStarHolder, currentPosX + starPosXStart, activePoxYStart + starPosYStart,starSizeWidth, starSizeHeight);
 			}
@@ -120,7 +120,7 @@ public class ButtonLevel extends AbstractButton {
 	 * button sizes. However further adjustment can be done (optinal) with "setLevelStarSizeRatio", "setLevelStarPosXStart" and "setLevelStarPosYStart".
 	 * !!starHolderTexture and starTexture should be in same sizes!!
 	 *
-	 * @param starHolderTexture the holder texture for star or other achievement object.
+	 * @param starHolderTexture the button_green texture for star or other achievement object.
 	 * @param starTexture the texture for star or other achievement object.
 	 * @param numberOfTotalStars number of total stars
 	 * @param numberOfEarnedStars number of earned/achieved stars
@@ -196,7 +196,7 @@ public class ButtonLevel extends AbstractButton {
 	}
 
 	/**
-	 * Set level number and the font to draw that number
+	 * Set level number and the font to updateHUD that number
 	 * */
 	public void setLevelNumber(int levelNumber, BitmapFont font) {
 		this.levelNumber = levelNumber;
@@ -211,14 +211,14 @@ public class ButtonLevel extends AbstractButton {
 	}
 
 	/**
-	 * Get achievement object holder texture
+	 * Get achievement object button_green texture
 	 * */
 	public TextureRegion getTextureStarHolder() {
 		return textureStarHolder;
 	}
 
 	/**
-	 * Set achievement object holder texture
+	 * Set achievement object button_green texture
 	 * */
 	public void setTextureStarHolder(TextureRegion textureStarHolder) {
 		this.textureStarHolder = textureStarHolder;

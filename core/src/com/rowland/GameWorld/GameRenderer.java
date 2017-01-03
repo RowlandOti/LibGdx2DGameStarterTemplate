@@ -60,7 +60,7 @@ public class GameRenderer {
                         break;
                 }
 
-                // On the x-axis, draw the Player facing either right or left
+                // On the x-axis, updateHUD the Player facing either right or left
                 batch.begin();
                 if (world.getYoyo().facesRight) {
                     batch.draw(frame, world.getYoyo().position.x, world.getYoyo().position.y, Yoyo.width, Yoyo.height);
@@ -118,7 +118,7 @@ public class GameRenderer {
         batchPause.setShader(SpriteBatch.createDefaultShader());
         // now we can start drawing...
         batchPause.begin();
-        // draw our scene here
+        // updateHUD our scene here
         batchPause.draw(pauseTextureRegion, 0, 0);
         // finish rendering to the offscreen buffer
         batchPause.flush();
@@ -131,7 +131,7 @@ public class GameRenderer {
         blurTargetB.begin();
         // we want to render FBO target A into target B
         fboRegion.setTexture(blurTargetA.getColorBufferTexture());
-        // draw the scene to target B with a horizontal blur effect
+        // updateHUD the scene to target B with a shader effect
         batchPause.draw(fboRegion, 0, 0);
         // flush the batch before ending the FBO
         batchPause.flush();
@@ -141,7 +141,7 @@ public class GameRenderer {
 
         fboRegion.setTexture(blurTargetB.getColorBufferTexture());
         gameScreen.setBackgroundTexture(fboRegion);
-        // reset to default shader without blurs
+        // reset to default shader without effects
         batchPause.setShader(SpriteBatch.createDefaultShader());
         // finally, end the batch since we have reached the end of the frame
         batchPause.end();

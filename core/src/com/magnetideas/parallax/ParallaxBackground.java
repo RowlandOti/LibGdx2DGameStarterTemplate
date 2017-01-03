@@ -13,7 +13,7 @@ import com.rowland.Helpers.MyOrthographicCamera;
  * A ParallaxBacground encapsulates the logic to Render ParallaxLayers.
  * It owns a collection of ParallaxLayers.
  * These Layers a rendered on screen showing parallax effect based on scrolling characteristics of individual layers.
- * This rendering module does not owns any Batch ,you need to provide one in the draw method.
+ * This rendering module does not owns any Batch ,you need to provide one in the updateHUD method.
  * <p>
  * Also see {@link ParallaxLayer}.
  *

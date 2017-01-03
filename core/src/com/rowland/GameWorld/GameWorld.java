@@ -22,8 +22,8 @@ public class GameWorld extends SmoothCamWorld
 
     }
 
-    public static final float WORLD_WIDTH = 32;
-    public static final float WORLD_HEIGHT = 18;
+    public static final float DEFAULT_VIEWPORT_WIDTH = 32;
+    public static final float DEFAULT_VIEWPORT_HEIGHT = 18;
     public static final float GRAVITY = -2.5f;
     public static final float WORLD_UNIT = 1 / 32f;
 
@@ -79,23 +79,20 @@ public class GameWorld extends SmoothCamWorld
 
         //score = 0;
 
-        //CREATE THE Yoyo
+        //create player
         this.yoyo = new Yoyo(0, 0);
         yoyo.setPosition(PlayerData.getPlayerPosition(levelID)[0][0], PlayerData.getPlayerPosition(levelID)[0][1]);
     }
 
     private void generateLevelMap(int levelID, MadBoyGame game) {
-
         // Load the map
-        //map = new TmxMapLoader().load("data/level/level"+levelID+".tmx");
-
         game.getManager().loadTiledMap(levelID);
         game.getManager().finishLoading();
 
         map = game.getManager().get("data/level/level" + levelID + ".tmx");
 
         prop = map.getProperties();
-        //Get the properties
+        // Get the properties
         mapWidth = prop.get("width", Integer.class);
         mapHeight = prop.get("height", Integer.class);
     }
@@ -112,7 +109,6 @@ public class GameWorld extends SmoothCamWorld
         if (deltaTime == 0) return;
 
         updateYoyo(deltaTime);
-
         checkCollisions(deltaTime);
         checkGameOver();
 
@@ -121,8 +117,8 @@ public class GameWorld extends SmoothCamWorld
             startTime = System.nanoTime();
         }
 
-        if (SECONDS_TIME % 5 == 0)
-            yoyo.health--;
+        //if (SECONDS_TIME % 5 == 0)
+             //yoyo.health--;
     }
 
 
@@ -137,7 +133,6 @@ public class GameWorld extends SmoothCamWorld
             state = WORLD_STATE_GAME_OVER;
             GameScreen.gameoverinfo = "Yoyo lost Health";
         }
-
     }
 
     //UPDATES NECESSARY FOR THE PLAYER LIKE APPLYING GRAVITY, DAMPING ETC
@@ -176,9 +171,8 @@ public class GameWorld extends SmoothCamWorld
 
     //CHECK FOR COLLISION REGULARLY IN GAMES
     private void checkCollisions(float deltaTime) {
-
+        // Check for collision regularly in games
         checkCollisionsPlayervsMap(deltaTime);
-
     }
 
     private void checkCollisionsPlayervsMap(float deltaTime) {

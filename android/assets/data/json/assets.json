@@ -70,7 +70,7 @@
 "ui_game" : [
 {
 "type" : "com.badlogic.gdx.graphics.g2d.TextureAtlas",
-"path" : "data/game_screen/game_atlas.pack"
+"path" : "data/game_screen/game_screen_atlas.pack"
 }
 ]
 }

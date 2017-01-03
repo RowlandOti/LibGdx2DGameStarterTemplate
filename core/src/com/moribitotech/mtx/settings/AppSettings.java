@@ -49,7 +49,7 @@ public class AppSettings {
 	 * @param screenHeight
 	 *            sets SCREEN_H for AbstractScreen Stage height
 	 * @param worldWidth
-	 *            sets WORLD_WIDTH
+	 *            sets DEFAULT_VIEWPORT_WIDTH
 	 * @param worldHeight
 	 *            sets WORLD_HEIGHT
 	 * 
@@ -81,7 +81,7 @@ public class AppSettings {
 	 * @param screenHeight
 	 *            sets SCREEN_H for AbstractScreen Stage height
 	 * @param worldWidth
-	 *            sets WORLD_WIDTH
+	 *            sets DEFAULT_VIEWPORT_WIDTH
 	 * @param worldHeight
 	 *            sets WORLD_HEIGHT
 	 * @param worldTargetWidth
@@ -115,7 +115,7 @@ public class AppSettings {
 	 * <p>
 	 * SCREEN_W = Gdx.graphics.getWidth(); <br>
 	 * SCREEN_H = Gdx.graphics.getHeight(); <br>
-	 * WORLD_WIDTH = Gdx.graphics.getWidth(); <br>
+	 * DEFAULT_VIEWPORT_WIDTH = Gdx.graphics.getWidth(); <br>
 	 * WORLD_HEIGHT = Gdx.graphics.getHeight(); <br>
 	 * WORLD_TARGET_WIDTH = 960; <br>
 	 * WORLD_TARGET_HEIGHT = 540; <br>
@@ -234,8 +234,8 @@ public class AppSettings {
 	 * Get size ratio to scale actors (only for DIPactive true)
 	 * <p>
 	 * EXAMPLE: <br>
-	 * if WORLD_TARGET_WIDTH = 480, and WORLD_WIDTH = 480, there wont be scaling
-	 * for DIPactive actors, but if WORLD_WIDTH = 960, so actors will be scaled
+	 * if WORLD_TARGET_WIDTH = 480, and DEFAULT_VIEWPORT_WIDTH = 480, there wont be scaling
+	 * for DIPactive actors, but if DEFAULT_VIEWPORT_WIDTH = 960, so actors will be scaled
 	 * by 2.0f to get best fitting for different resolution devices
 	 * */
 	public static float getWorldSizeRatio() {
@@ -250,13 +250,13 @@ public class AppSettings {
 		
 		//Deliberations
 		// Always use width maybe ??
-		//ratioSize = WORLD_WIDTH / WORLD_TARGET_WIDTH;
+		//ratioSize = DEFAULT_VIEWPORT_WIDTH / WORLD_TARGET_WIDTH;
 
 		// FIXME
 		// Unknown ??
-		// if (WORLD_WIDTH <= WORLD_HEIGHT) {
+		// if (DEFAULT_VIEWPORT_WIDTH <= WORLD_HEIGHT) {
 		// // Portrait
-		// ratioSize = WORLD_WIDTH / WORLD_TARGET_WIDTH;
+		// ratioSize = DEFAULT_VIEWPORT_WIDTH / WORLD_TARGET_WIDTH;
 		// } else {
 		// // Landscape
 		// // FIXME previously (ratioSize = WORLD_HEIGHT / WORLD_TARGET_WIDTH;)
@@ -271,8 +271,8 @@ public class AppSettings {
 	 * <p>
 	 * EXAMPLE: <br>
 	 * if WORLD_TARGET_WIDTH = 480, and we set x position 20 for actor. We
-	 * designed this for 480 WORLD_WIDTH, but a device with 960 width,
-	 * WORLD_WIDTH will be 960, so new position should be 40 in this world, so
+	 * designed this for 480 DEFAULT_VIEWPORT_WIDTH, but a device with 960 width,
+	 * DEFAULT_VIEWPORT_WIDTH will be 960, so new position should be 40 in this world, so
 	 * position ratio is 2.0f
 	 * */
 	public static float getWorldPositionXRatio() {

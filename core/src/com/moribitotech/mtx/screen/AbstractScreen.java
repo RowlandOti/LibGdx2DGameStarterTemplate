@@ -130,7 +130,7 @@ public abstract class AbstractScreen implements Screen {
 		// ############################################################
 		stage.act(delta);
 
-		// Render drawings (draw()/render() methods in previous games)
+		// Render drawings (updateHUD()/render() methods in previous games)
 		// ############################################################
 		stage.draw();
 	}

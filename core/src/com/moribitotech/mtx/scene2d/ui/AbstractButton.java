@@ -107,7 +107,7 @@ public abstract class AbstractButton extends Button {
 	 * Set lock texture
 	 * 
 	 * @param textureLocked
-	 *            the lock texture to draw
+	 *            the lock texture to updateHUD
 	 * @param isLockActive
 	 *            to enable lock or not
 	 * */
@@ -144,7 +144,7 @@ public abstract class AbstractButton extends Button {
 	 * @param text
 	 *            the text to be written
 	 * @param isTextActive
-	 *            to write/draw the text or not
+	 *            to write/updateHUD the text or not
 	 * @see setTextChange
 	 */
 	public void setText(String text, boolean isTextActive) {

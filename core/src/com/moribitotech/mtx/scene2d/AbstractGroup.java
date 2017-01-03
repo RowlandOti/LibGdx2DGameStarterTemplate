@@ -464,7 +464,7 @@ public abstract class AbstractGroup extends Group {
 	}
 
 	/**
-	 * Set particle active to draw or not
+	 * Set particle active to updateHUD or not
 	 * */
 	public void setParticleEffectActive(boolean isParticleEffectActive) {
 		this.isParticleEffectActive = isParticleEffectActive;

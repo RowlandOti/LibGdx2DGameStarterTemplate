@@ -3,11 +3,9 @@ package com.rowland.Screens;
 import aurelienribon.tweenengine.Tween;
 import aurelienribon.tweenengine.TweenManager;
 
-import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -24,17 +22,12 @@ import com.moribitotech.mtx.interfaces.IScreen;
 import com.moribitotech.mtx.scene2d.models.EmptyActorLight;
 import com.moribitotech.mtx.settings.AppSettings;
 import com.rowland.GameData.GameData;
-import com.rowland.GameObjects.Yoyo;
 import com.rowland.GameWorld.GameRenderer;
 import com.rowland.GameWorld.GameWorld;
 import com.rowland.GameWorld.GameWorld.WorldListener;
 import com.rowland.Helpers.InputHandler;
 import com.rowland.Helpers.MyOrthographicCamera;
-import com.rowland.ScreenHelpers.GameScreenGameOverMenu;
-import com.rowland.ScreenHelpers.GameScreenGamePauseMenu;
-import com.rowland.ScreenHelpers.GameScreenGameReadyMenu;
-import com.rowland.ScreenHelpers.GameScreenInstructions;
-import com.rowland.ScreenHelpers.GameScreenLevelEndMenu;
+import com.rowland.ScreenHelpers.*;
 import com.rowland.TweenAccessors.OrthographicCameraAccessor;
 
 public class GameScreen extends MyAbstractScreen implements IScreen {
@@ -44,13 +37,16 @@ public class GameScreen extends MyAbstractScreen implements IScreen {
     public static int gameOverCounterForAds = 0;
 
     //Here is a declaration of the screen helpers that will help create menu for various game states
-    public GameScreenGameReadyMenu gameScreenGameReadyMenu;
-    public GameScreenGamePauseMenu gameScreenGamePauseMenu;
-    public GameScreenGameOverMenu gameScreenGameOverMenu;
-    public GameScreenLevelEndMenu gameScreenLevelEndMenu;
+    public GameIScreenGameReadyMenu gameScreenGameReadyMenu;
+    public GameIScreenGamePauseMenu gameScreenGamePauseMenu;
+    public GameIScreenGameOverMenu gameScreenGameOverMenu;
+    public GameIScreenLevelEndMenu gameScreenLevelEndMenu;
     public GameScreenInstructions gameScreenGameInstruction;
 
-    private EmptyActorLight healthBar;
+    // HUD
+    public HUDScreen hudScreen;
+
+    private EmptyActorLight healthBar, healthBarDrawable;
     private EmptyActorLight instructions;
     private float buttonSize = 100 * AppSettings.getWorldSizeRatio();
     private MyOrthographicCamera camera;
@@ -70,6 +66,11 @@ public class GameScreen extends MyAbstractScreen implements IScreen {
     public static String gameoverinfo;
     public static String scoreString;
     public static int currentlevel = 1;
+
+    public GameWorld getWorld() {
+        return world;
+    }
+
     //GameWorld and WorldRenderer instance
     GameWorld world;
     WorldListener worldListener;
@@ -81,7 +82,7 @@ public class GameScreen extends MyAbstractScreen implements IScreen {
 
     public static int creditsPoint;
 
-    public static TextureRegion button_overlay_pause, button_overlay_left, button_overlay_right, holder, background_menu_berge, button_menu_up, button_menu_down, button_resume_up, button_resume_down, button_quit_up, button_quit_down, img_obj_swipe_down_menu, img_obj_swipe_up_instructions;
+    public static TextureRegion button_overlay_pause, button_overlay_left, button_overlay_right, button_green, background_game_over, background_game_pause, button_menu_up, button_menu_down, button_resume_up, button_resume_down, button_quit_up, button_quit_down, img_obj_swipe_down_menu, img_obj_swipe_up_instructions;
     public static TextureRegion firstFrame, secondFrame, thirdFrame, fourthFrame, fifthFrame, sixthFrame, seventhFrame, eighthFrame, ninethFrame, tenthFrame, eleventhFrame, twelvethFrame, thirteenthFrame, fourteenthFrame, fifteenthFrame;
     public static Animation pummaStill, pummaWalk, pummaJump;
     private ParallaxBackground parallaxBackground, parallaxForeground;
@@ -97,6 +98,8 @@ public class GameScreen extends MyAbstractScreen implements IScreen {
 
     public GameScreen(Game game, String screenName) {
         super(game, screenName);
+
+        getStage().setDebugAll(true);
 
         initScreenAssets();
         gameFont = new BitmapFont(Gdx.files.internal("data/maroonFont.fnt"), Gdx.files.internal("data/maroonFont.png"), false);
@@ -121,9 +124,6 @@ public class GameScreen extends MyAbstractScreen implements IScreen {
         atlas = getMyGame().getManager().get(LoadingScreen.GAME_ATLAS, TextureAtlas.class);
         atlas_base = getMyGame().getManager().get(LoadingScreen.BASE_ATLAS, TextureAtlas.class);
 
-        button_overlay_pause = atlas.findRegion("button_overlay_pause");
-        button_overlay_left = atlas.findRegion("button_overlay_left");
-        button_overlay_right = atlas.findRegion("button_overlay_right");
         button_menu_up = atlas.findRegion("button_menu_up");
         button_menu_down = atlas.findRegion("button_menu_down");
         button_resume_up = atlas.findRegion("button_resume_up");
@@ -131,8 +131,13 @@ public class GameScreen extends MyAbstractScreen implements IScreen {
         button_quit_up = atlas.findRegion("button_quit_up");
         button_quit_down = atlas.findRegion("button_quit_down");
 
-        holder = atlas_base.findRegion("holder");
-        background_menu_berge = atlas_base.findRegion("background_menu_berge");
+        button_overlay_left = atlas.findRegion("button_overlay_left");
+        button_overlay_right = atlas.findRegion("button_overlay_right");
+        button_overlay_pause = atlas.findRegion("button_overlay_pause");
+
+        button_green = atlas_base.findRegion("green");
+        background_game_over = atlas_base.findRegion("game_over_window");
+        background_game_pause = atlas_base.findRegion("pause");
         img_obj_swipe_down_menu = atlas.findRegion("img_obj_swipe_down_menu");
         img_obj_swipe_up_instructions = atlas.findRegion("img_obj_swipe_up_instructions");
 
@@ -168,19 +173,19 @@ public class GameScreen extends MyAbstractScreen implements IScreen {
 
         skyRegion = atlas.findRegion("sky");
         skyRegion.getTexture().setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
-        TextureRegionParallaxLayer skyLayer = new TextureRegionParallaxLayer(skyRegion, GameWorld.WORLD_WIDTH, new Vector2(.3f, .3f), WH.width);
+        TextureRegionParallaxLayer skyLayer = new TextureRegionParallaxLayer(skyRegion, GameWorld.DEFAULT_VIEWPORT_WIDTH, new Vector2(.3f, .3f), WH.width);
 
         downtownNairobiRegion = atlas.findRegion("background_downtown");
         downtownNairobiRegion.getTexture().setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
-        TextureRegionParallaxLayer downtownNairobiLayer = new TextureRegionParallaxLayer(downtownNairobiRegion, GameWorld.WORLD_WIDTH, new Vector2(.6f, .6f), WH.width);
+        TextureRegionParallaxLayer downtownNairobiLayer = new TextureRegionParallaxLayer(downtownNairobiRegion, GameWorld.DEFAULT_VIEWPORT_WIDTH, new Vector2(.75f, .75f), WH.width);
 
         uptownNairobiRegion = atlas.findRegion("nairobi_city_uptown");
         uptownNairobiRegion.getTexture().setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
-        TextureRegionParallaxLayer uptownNairobiLayer = new TextureRegionParallaxLayer(uptownNairobiRegion, GameWorld.WORLD_WIDTH, new Vector2(.75f, .75f), WH.width);
+        TextureRegionParallaxLayer uptownNairobiLayer = new TextureRegionParallaxLayer(uptownNairobiRegion, GameWorld.DEFAULT_VIEWPORT_WIDTH, new Vector2(.6f, .6f), WH.width);
 
         ghettoFenceRegion = atlas.findRegion("ghettofence");
         ghettoFenceRegion.getTexture().setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
-        TextureRegionParallaxLayer ghettofenceLayer = new TextureRegionParallaxLayer(ghettoFenceRegion, GameWorld.WORLD_WIDTH, new Vector2(1.3f, 1.3f), WH.width);
+        TextureRegionParallaxLayer ghettofenceLayer = new TextureRegionParallaxLayer(ghettoFenceRegion, GameWorld.DEFAULT_VIEWPORT_WIDTH, new Vector2(1.3f, 1.3f), WH.width);
 
         parallaxBackground = new ParallaxBackground();
         parallaxForeground = new ParallaxBackground();
@@ -224,11 +229,11 @@ public class GameScreen extends MyAbstractScreen implements IScreen {
         // 1 world unit = 32 screen pixels
         camera = new MyOrthographicCamera();
         camera.setToOrtho(false, 32f, 18f);
-        camera.setWorldBounds(0, GameWorld.mapWidth , 0, GameWorld.mapHeight );
+        camera.setWorldBounds(0, GameWorld.mapWidth, 0, GameWorld.mapHeight);
         camera.update();
 
-        Gdx.app.log("WORLD", "Width: " + GameWorld.mapWidth + "Height: " + GameWorld.mapHeight);
-        Gdx.app.log("SCREEN", "Width: " + AppSettings.SCREEN_W + "Height: " + AppSettings.SCREEN_H);
+        Gdx.app.log("WORLD", "Width: " + GameWorld.mapWidth + " Height: " + GameWorld.mapHeight);
+        Gdx.app.log("SCREEN", "Width: " + AppSettings.SCREEN_W + " Height: " + AppSettings.SCREEN_H);
     }
 
     private void setUpInputProcessor() {
@@ -247,14 +252,13 @@ public class GameScreen extends MyAbstractScreen implements IScreen {
 
     @Override
     public void setUpScreenElements() {
-        gameScreenGameReadyMenu = new GameScreenGameReadyMenu(this);
-        gameScreenGamePauseMenu = new GameScreenGamePauseMenu(this);
-        gameScreenGameOverMenu = new GameScreenGameOverMenu(this);
-        gameScreenLevelEndMenu = new GameScreenLevelEndMenu(this);
+        gameScreenGameReadyMenu = new GameIScreenGameReadyMenu(this);
+        gameScreenGamePauseMenu = new GameIScreenGamePauseMenu(this);
+        gameScreenGameOverMenu = new GameIScreenGameOverMenu(this);
+        gameScreenLevelEndMenu = new GameIScreenLevelEndMenu(this);
 
-        healthBar = new EmptyActorLight(500 * AppSettings.getWorldPositionXRatio(), 18, true);
-        healthBar.setPosition(140 * AppSettings.getWorldPositionXRatio(), AppSettings.SCREEN_H - 25 * AppSettings.getWorldPositionYRatio());
-        //healthBar.setTextureRegion(AssetLoader.transparent, true);
+        // HUD
+        hudScreen = new HUDScreen(this);
     }
 
     @Override
@@ -264,7 +268,7 @@ public class GameScreen extends MyAbstractScreen implements IScreen {
 
     @Override
     public void setUpMenu() {
-        //Set up all the screen helpers here
+        // Set up all the screen helpers here
         gameScreenGameReadyMenu.setUpMenu();
         gameScreenGameOverMenu.setUpMenu();
         gameScreenGamePauseMenu.setUpMenu();
@@ -280,7 +284,7 @@ public class GameScreen extends MyAbstractScreen implements IScreen {
         renderer.getOrthogonalTiledMapRenderer().setView(camera);
 
 		/*Method called in render loop so that it can continuosly check the game states and call a particular
-        render state to draw things accordingly for various game states*/
+        render state to updateHUD things accordingly for various game states*/
         getStage().getBatch().begin();
         switch (state) {
             case GAME_READY:
@@ -368,86 +372,12 @@ public class GameScreen extends MyAbstractScreen implements IScreen {
             state = State.GAME_LEVEL_END;
         }
 
-        updatePlayerForUserInput(delta);
         updateScreenElements();
         world.update(delta);
     }
 
     private void updateScreenElements() {
-        Batch batch = getStage().getBatch();
-        gameFont.setScale(1.0f);
-        batch.begin();
-        gameFont.draw(getStage().getBatch(), "Score :" + GameWorld.score, 140 * AppSettings.getWorldPositionXRatio(), AppSettings.SCREEN_H - 30 * AppSettings.getWorldPositionYRatio());
-        //Display the Health Bar here using Scene2D Actor
-        healthBar.setWidth((Math.min(460, world.getYoyo().health / 2.2f)) * AppSettings.getWorldPositionXRatio());
-        healthBar.draw(batch, 1.0f);
-        gameFont.draw(batch, Math.min(100, world.getYoyo().health / 10) + " %", healthBar.getX() + 1.05f * healthBar.getWidth(), AppSettings.SCREEN_H - 8 * AppSettings.getWorldPositionYRatio());
-
-        //Draw the game control UI only on Android and iOs devices if the game is running
-        if ((Gdx.app.getType() == ApplicationType.Android) || (Gdx.app.getType() == ApplicationType.iOS)) {
-            batch.draw(button_overlay_left, 0f, 0f, 0f, 0f, buttonSize, buttonSize, 1f, 1f, 0f);
-            batch.draw(button_overlay_right, 1.2f * buttonSize, 0f, 0f, 0f, buttonSize, buttonSize, 1f, 1f, 0f);
-            batch.draw(button_overlay_right, AppSettings.SCREEN_W - 0.03f * buttonSize, 0f, 0f, 0f, buttonSize, buttonSize, 1f, 1f, 90);
-            batch.draw(button_overlay_pause, AppSettings.SCREEN_W - buttonSize, AppSettings.SCREEN_H - buttonSize, 0f, 0f, buttonSize, buttonSize, 1f, 1f, 0);
-        }
-        batch.end();
-    }
-
-    private void updatePlayerForUserInput(float delta) {
-        boolean left = false;
-        boolean right = false;
-        boolean jump = false;
-        boolean pause = false;
-
-        if (Gdx.app.getType() == ApplicationType.Android || Gdx.app.getType() == ApplicationType.iOS) {
-            for (int i = 0; i < 2; i++) {
-                int x = (int) (Gdx.input.getX(i) / (float) Gdx.graphics.getWidth() * AppSettings.SCREEN_W);
-                int y = (int) (Gdx.input.getY(i) / (float) Gdx.graphics.getHeight() * AppSettings.SCREEN_H);
-                if (!Gdx.input.isTouched(i)) continue;
-
-                if (y <= AppSettings.SCREEN_H && y >= AppSettings.SCREEN_H - buttonSize) {
-                    if (x <= buttonSize) {
-                        left |= true;
-                    }
-                    if (x > 1.2f * buttonSize && x <= 2.2f * buttonSize) {
-                        right |= true;
-                    }
-                    if (x >= AppSettings.SCREEN_W - buttonSize && x < AppSettings.SCREEN_W) {
-                        jump |= true;
-                    }
-                }
-                if (x <= AppSettings.SCREEN_W && y <= buttonSize) {
-                    if (x >= AppSettings.SCREEN_W - buttonSize)
-                        pause |= true;
-                }
-            }
-        }
-
-        //CheckUser input and apply to velocity and states of the main player
-        if ((Gdx.input.isKeyPressed(Keys.SPACE) && world.getYoyo().grounded) || (jump && world.getYoyo().grounded)) {
-            world.getYoyo().velocity.y += world.getYoyo().JUMP_VELOCITY;
-            world.getYoyo().setState(Yoyo.JUMP);
-            world.getYoyo().grounded = false;
-        }
-
-        if (Gdx.input.isKeyPressed(Keys.LEFT) || left) {
-            world.getYoyo().velocity.x = -world.getYoyo().MAX_VELOCITY;
-            if (world.getYoyo().grounded)
-                world.getYoyo().setState(Yoyo.WALK);
-            world.getYoyo().facesRight = false;
-        }
-
-        if (Gdx.input.isKeyPressed(Keys.RIGHT) || right) {
-            world.getYoyo().velocity.x = world.getYoyo().MAX_VELOCITY;
-            if (world.getYoyo().grounded)
-                world.getYoyo().setState(Yoyo.WALK);
-            world.getYoyo().facesRight = true;
-
-        }
-
-        if (Gdx.input.isKeyPressed(Keys.P) || pause) {
-            pause();
-        }
+        hudScreen.updateHUD();
     }
 
     public void toggleGestureProcessor(boolean isKeepGestures) {
@@ -505,10 +435,12 @@ public class GameScreen extends MyAbstractScreen implements IScreen {
     @Override
     public void pause() {
         super.pause();
-        GameScreen.state = State.GAME_PAUSED;
-        renderer.renderPauseBackground(this);
-        toggleGestureProcessor(false);
-        gameScreenGamePauseMenu.sendInMenu();
+        if (GameScreen.state == State.GAME_RUNNING) {
+            GameScreen.state = State.GAME_PAUSED;
+            renderer.renderPauseBackground(this);
+            toggleGestureProcessor(false);
+            gameScreenGamePauseMenu.sendInMenu();
+        }
     }
 
     @Override

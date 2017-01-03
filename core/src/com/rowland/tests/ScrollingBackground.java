@@ -1,41 +1,27 @@
 package com.rowland.tests;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Mesh;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.VertexAttribute;
-import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
-import com.badlogic.gdx.graphics.VertexAttributes.Usage;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.magnetideas.loaders.MeshObject;
 import com.magnetideas.loaders.ShaderLoader;
-import com.magnetideas.loaders.ShaderType;
 import com.magnetideas.parallax.ParallaxBackground;
 import com.magnetideas.parallax.TextureRegionParallaxLayer;
 import com.magnetideas.parallax.Utils;
 import com.magnetideas.parallax.Utils.WH;
-import com.moribitotech.mtx.game.AbstractGame;
 import com.rowland.GameWorld.GameWorld;
-import com.rowland.Screens.LoadingScreen;
-import com.rowland.tests.screen.ScrollScreenTest;
 
 
 /**
@@ -98,21 +84,21 @@ public class ScrollingBackground extends ApplicationAdapter  {
 		Array<AtlasRegion> regions = atlas.getRegions();
 
     	skyRegion = atlas.findRegion("sky");
-    	TextureRegionParallaxLayer skyLayer = new TextureRegionParallaxLayer(skyRegion, GameWorld.WORLD_WIDTH, new Vector2(.3f,.3f), WH.width);
+    	TextureRegionParallaxLayer skyLayer = new TextureRegionParallaxLayer(skyRegion, GameWorld.DEFAULT_VIEWPORT_WIDTH, new Vector2(.3f,.3f), WH.width);
     	skyRegion.getTexture().setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
     	skyRegion.getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
     	skyRegion.getTexture().bind(3);
 
     	downtownNairobiRegion = atlas.findRegion("background_downtown");
-    	TextureRegionParallaxLayer downtownNairobiLayer = new TextureRegionParallaxLayer(downtownNairobiRegion, GameWorld.WORLD_WIDTH, new Vector2(.6f,.6f), WH.width);
+    	TextureRegionParallaxLayer downtownNairobiLayer = new TextureRegionParallaxLayer(downtownNairobiRegion, GameWorld.DEFAULT_VIEWPORT_WIDTH, new Vector2(.6f,.6f), WH.width);
     	downtownNairobiRegion.getTexture().bind(2);
 
     	uptownNairobiRegion = atlas.findRegion("nairobi_city_uptown");
-    	TextureRegionParallaxLayer uptownNairobiLayer = new TextureRegionParallaxLayer(uptownNairobiRegion, GameWorld.WORLD_WIDTH, new Vector2(.75f,.75f), WH.width);
+    	TextureRegionParallaxLayer uptownNairobiLayer = new TextureRegionParallaxLayer(uptownNairobiRegion, GameWorld.DEFAULT_VIEWPORT_WIDTH, new Vector2(.75f,.75f), WH.width);
     	uptownNairobiRegion.getTexture().bind(1);
 
     	ghettoFenceRegion = atlas.findRegion("ghettofence");
-    	TextureRegionParallaxLayer ghettofenceLayer = new TextureRegionParallaxLayer(ghettoFenceRegion, GameWorld.WORLD_WIDTH, new Vector2(1.3f,1.3f), WH.width);
+    	TextureRegionParallaxLayer ghettofenceLayer = new TextureRegionParallaxLayer(ghettoFenceRegion, GameWorld.DEFAULT_VIEWPORT_WIDTH, new Vector2(1.3f,1.3f), WH.width);
     	ghettoFenceRegion.getTexture().bind(0);
 
 		parallaxBackground = new ParallaxBackground();

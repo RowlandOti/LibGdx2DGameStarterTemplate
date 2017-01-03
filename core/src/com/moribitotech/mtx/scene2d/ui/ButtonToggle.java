@@ -59,7 +59,7 @@ public class ButtonToggle extends AbstractButton {
 		// If text set and intented to be used
 		// ##################################################################
 		else if (text != "" && bitMapFont != null && isTextActive) {
-			// super.draw(batch, parentAlpha);
+			// super.updateHUD(batch, parentAlpha);
 			drawToggle(batch);
 			drawText(batch);
 			drawExternalTexture(batch);
@@ -68,7 +68,7 @@ public class ButtonToggle extends AbstractButton {
 		// Draw default
 		// ##################################################################
 		else {
-			// super.draw(batch, parentAlpha);
+			// super.updateHUD(batch, parentAlpha);
 			drawToggle(batch);
 			drawExternalTexture(batch);
 		}

@@ -38,7 +38,7 @@ public class MaskTest implements ApplicationListener {
 	private void drawBackground(SpriteBatch batch) {
 		// regular blending mode
 		batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-		// ... draw background entities/tiles here ...
+		// ... updateHUD background entities/tiles here ...
 		// flush the batch to the GPU
 		batch.flush();
 	}
@@ -49,7 +49,7 @@ public class MaskTest implements ApplicationListener {
 		Gdx.gl.glColorMask(false, false, false, true);
 		// change the blending function for our alpha map
 		batch.setBlendFunction(GL20.GL_ONE, GL20.GL_ZERO);
-		// draw alpha mask sprite(s)
+		// updateHUD alpha mask sprite(s)
 		batch.draw(alphaMask, x, y, width, height);
 		// flush the batch to the GPU
 		batch.flush();
@@ -57,14 +57,14 @@ public class MaskTest implements ApplicationListener {
 
 	private void drawForeground(SpriteBatch batch, int clipX, int clipY,
 			int clipWidth, int clipHeight) {
-		// now that the buffer has our alpha, we simply draw the sprite with the
+		// now that the buffer has our alpha, we simply updateHUD the sprite with the
 		// mask applied
 		Gdx.gl.glColorMask(true, true, true, true);
 		batch.setBlendFunction(GL20.GL_DST_ALPHA, GL20.GL_ONE_MINUS_DST_ALPHA);
 		// The scissor test is optional, but it depends
 		Gdx.gl.glEnable(GL20.GL_SCISSOR_TEST);
 		Gdx.gl.glScissor(clipX, clipY, clipWidth, clipHeight);
-		// draw our sprite to be masked
+		// updateHUD our sprite to be masked
 		batch.draw(sprite, 0, 0, 250, 250);
 		// remember to flush before changing GL states again
 		batch.flush();
@@ -80,16 +80,16 @@ public class MaskTest implements ApplicationListener {
 		int h = Gdx.graphics.getHeight();
 		// start the batch
 		batch.begin();
-		// draw background
+		// updateHUD background
 		drawBackground(batch);
 		// the sprite we want the circle mask applied to
 		int x = 25;
 		int y = 50;
 		int spriteWidth = 200;
 		int spriteHeight = 200;
-		// draw the alpha mask
+		// updateHUD the alpha mask
 		drawAlphaMask(batch, x, y, spriteWidth, spriteHeight);
-		// draw our foreground elements
+		// updateHUD our foreground elements
 		drawForeground(batch, x, y, spriteWidth, spriteHeight);
 		batch.end();
 	}

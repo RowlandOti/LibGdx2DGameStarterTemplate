@@ -5,8 +5,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.magnetideas.helpers.MyAbstractScreen;
 import com.moribitotech.mtx.interfaces.IScreen;
-import com.moribitotech.mtx.scene2d.ui.TableModel;
-import com.rowland.ScreenHelpers.LevelScreenButtons;
+import com.rowland.ScreenHelpers.LevelIScreenButtons;
 import com.rowland.ScreenHelpers.LevelScreenEnvironment;
 
 /**
@@ -14,12 +13,9 @@ import com.rowland.ScreenHelpers.LevelScreenEnvironment;
  */
 public class LevelSelectScreen extends MyAbstractScreen implements IScreen {
 
-    public TableModel container;
+    public static TextureRegion background_level, star_empty, star_normal, button_level_grey, button_level_green, nav_left, nav_right;
 
-
-    public static TextureRegion background_menu_berge, star_empty, star_normal, lock_closed, button_level_grey, button_level_green;
-
-    LevelScreenButtons levelScreenButtons;
+    LevelIScreenButtons levelScreenButtons;
     LevelScreenEnvironment levelScreenEnvironment;
 
     public LevelSelectScreen(Game game, String screenName) {
@@ -37,33 +33,34 @@ public class LevelSelectScreen extends MyAbstractScreen implements IScreen {
         atlas_base = getMyGame().getManager().get(LoadingScreen.BASE_ATLAS, TextureAtlas.class);
 
         //Allocate Texture regions from the atlas
-        background_menu_berge = atlas_base.findRegion("background_menu_berge");
+        background_level = atlas_base.findRegion("level");
+        // Knob
+        nav_left = atlas_base.findRegion("nav_left");
+        nav_right = atlas_base.findRegion("nav_right");
+        //
+        button_level_green = atlas_base.findRegion("button_level_green");
+        button_level_grey = atlas_base.findRegion("button_level_locked");
+
         star_empty = atlas.findRegion("star_empty");
         star_normal = atlas.findRegion("star_normal");
-        lock_closed = atlas.findRegion("lock_closed");
-        button_level_grey = atlas.findRegion("button_level_grey");
-        button_level_green = atlas.findRegion("button_level_green");
     }
 
     @Override
     public void setUpScreenElements() {
         setBackButtonActive(true);
-        levelScreenButtons = new LevelScreenButtons(this);
+        levelScreenButtons = new LevelIScreenButtons(this);
         levelScreenEnvironment = new LevelScreenEnvironment(this);
     }
 
     @Override
     public void setUpMenu() {
-        // Main menu (Order is important)
-        // #################################################################
-        // They can be animated hence the importance of order
+        // Main menu (Order is important) - They can be animated hence the importance of order
         levelScreenEnvironment.setUpLevelScreenEnvironment();
-        levelScreenButtons.setUpLevelScreenButtons();
+        levelScreenButtons.setUpMenu();
     }
 
     @Override
     public void setUpInfoPanel() {
-
 
     }
 
@@ -76,6 +73,11 @@ public class LevelSelectScreen extends MyAbstractScreen implements IScreen {
     @Override
     public void render(float delta) {
         super.render(delta);
+    }
 
+    @Override
+    public void resume() {
+        super.resume();
+        levelScreenButtons.sendInMenu();
     }
 }

@@ -50,7 +50,7 @@ public class Yoyo extends Sprite
 		facesRight = true;
 		grounded = false;
 	    visible = true;
-	    health =1000;
+	    health = 88;
 	    hasKey = false;
 	}
 

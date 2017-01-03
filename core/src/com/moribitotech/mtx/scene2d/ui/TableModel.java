@@ -105,10 +105,10 @@ public class TableModel extends Table {
 
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
-		// Then draw child actors over bg
+		// Then updateHUD child actors over bg
 		super.draw(batch, parentAlpha);
 
-		// First draw bg
+		// First updateHUD bg
 		if (textureBackground != null && isBackgroundTextureActive) {
 			batch.draw(textureBackground, getX(), getY(), getOriginX(),
 					getOriginY(), getWidth(), getHeight(), getScaleX(),
