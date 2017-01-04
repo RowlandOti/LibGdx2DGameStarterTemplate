@@ -1,20 +1,11 @@
 package com.rowland.ScreenHelpers;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Cell;
-import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
-import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.moribitotech.mtx.scene2d.effects.EffectCreator;
-import com.moribitotech.mtx.scene2d.ui.ButtonGame;
 import com.moribitotech.mtx.scene2d.ui.ButtonLevel;
 import com.moribitotech.mtx.scene2d.ui.MenuCreator;
 import com.moribitotech.mtx.scene2d.ui.TableModel;
@@ -24,11 +15,7 @@ import com.rowland.Helpers.AssetLoader;
 import com.rowland.Screens.GameScreen;
 import com.rowland.Screens.LevelSelectScreen;
 import com.rowland.Screens.LoadingScreen;
-import com.rowland.Screens.PreGameScreen;
 import com.rowland.UI.PagedScrollPane;
-import com.rowland.UI.SmartButton;
-
-import java.util.Random;
 
 /**
  * @author Rowland
@@ -36,7 +23,7 @@ import java.util.Random;
 public class LevelScreenButtons implements IScreenAbstractMenu {
 
     private LevelSelectScreen levelSelectScreen;
-    private Table levelSelectMenuTable;
+    private Table levelSelectScrollTable;
     private PagedScrollPane scrollPane;
 
     private int selectedLevel;
@@ -66,27 +53,26 @@ public class LevelScreenButtons implements IScreenAbstractMenu {
 
         float padLevels = 20 * AppSettings.getWorldSizeRatio();
         float padScrollPane = 40 * AppSettings.getWorldSizeRatio();
-//        float getButtonSize() = 75f * AppSettings.getWorldSizeRatio();
 
         for (int l = 0; l < 2; l++) {
 
-            Table levels = new TableModel();
-            levels.padTop(padLevels).padBottom(padLevels);
+            Table levelButtonTable = new TableModel();
+            levelButtonTable.padTop(padLevels).padBottom(padLevels);
 
             if (l == 0) {
-                levels.padLeft(padLevels).padRight(padLevels);
+                levelButtonTable.padLeft(padLevels).padRight(padLevels);
             } else {
-                levels.padRight(padLevels);
+                levelButtonTable.padRight(padLevels);
             }
 
             for (int rows = 0; rows < 3; rows++) {
-                levels.row();
+                levelButtonTable.row();
 
                 for (int columns = 0; columns < 4; columns++) {
                     c = c++;
 
                     if (numberOfLevels + 1 != c) {
-                        Cell cell = levels.add(getLevelButton(c++)).size(levelSelectScreen.getButtonSize(), levelSelectScreen.getButtonSize()).padTop(padLevels);
+                        Cell cell = levelButtonTable.add(getLevelButton(c++)).size(levelSelectScreen.getButtonSize(), levelSelectScreen.getButtonSize()).padTop(padLevels);
 
                         if (columns % 4 == 0) {
                             cell.padLeft(padLevels * 3);
@@ -104,16 +90,16 @@ public class LevelScreenButtons implements IScreenAbstractMenu {
                     }
                 }
             }
-            scrollPane.addPage(levels);
+            scrollPane.addPage(levelButtonTable);
         }
 
-        levelSelectMenuTable = new Table();
+        levelSelectScrollTable = new Table();
         // Change in size will affect the dimensions of the Table
-        levelSelectMenuTable.setSize(AppSettings.SCREEN_W - 260f, AppSettings.SCREEN_H - 90f);
-        levelSelectMenuTable.setPosition(AppSettings.SCREEN_W / 2 - levelSelectMenuTable.getWidth() / 2, AppSettings.SCREEN_H + levelSelectMenuTable.getHeight() / 2);
-        levelSelectMenuTable.setBackground(new TextureRegionDrawable(levelSelectScreen.background_level));
+        levelSelectScrollTable.setSize(AppSettings.SCREEN_W - 260f, AppSettings.SCREEN_H - 90f);
+        levelSelectScrollTable.setPosition(AppSettings.SCREEN_W / 2 - levelSelectScrollTable.getWidth() / 2, AppSettings.SCREEN_H + levelSelectScrollTable.getHeight() / 2);
+        levelSelectScrollTable.setBackground(new TextureRegionDrawable(levelSelectScreen.background_level));
         // Needed to contain the ScrollPane within left/right bounds of Table
-        levelSelectMenuTable.add(scrollPane).padLeft(padScrollPane).padRight(padScrollPane);
+        levelSelectScrollTable.add(scrollPane).padLeft(padScrollPane).padRight(padScrollPane);
 
 
     }
@@ -121,15 +107,15 @@ public class LevelScreenButtons implements IScreenAbstractMenu {
     @Override
     public void sendInMenu() {
         //1. Add Tables to Stage
-        levelSelectScreen.getStage().addActor(levelSelectMenuTable);
+        levelSelectScreen.getStage().addActor(levelSelectScrollTable);
         //2. Send the screen in with some effects
-        levelSelectMenuTable.addAction(Actions.moveTo(AppSettings.SCREEN_W / 2 - levelSelectMenuTable.getWidth() / 2, AppSettings.SCREEN_H / 2 - levelSelectMenuTable.getHeight() / 2, 0.3f));
+        levelSelectScrollTable.addAction(Actions.moveTo(AppSettings.SCREEN_W / 2 - levelSelectScrollTable.getWidth() / 2, AppSettings.SCREEN_H / 2 - levelSelectScrollTable.getHeight() / 2, 0.3f));
     }
 
     @Override
     public void sendAwayMenu() {
         //1. Send the screen away with some effects
-        levelSelectMenuTable.addAction(Actions.moveTo(AppSettings.SCREEN_W / 2 - levelSelectMenuTable.getWidth() / 2, AppSettings.SCREEN_H + levelSelectMenuTable.getHeight() / 2, 0.2f));
+        levelSelectScrollTable.addAction(Actions.moveTo(AppSettings.SCREEN_W / 2 - levelSelectScrollTable.getWidth() / 2, AppSettings.SCREEN_H + levelSelectScrollTable.getHeight() / 2, 0.2f));
     }
 
     /**

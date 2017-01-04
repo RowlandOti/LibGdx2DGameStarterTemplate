@@ -3,23 +3,58 @@ base_atlas.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-button_level_green
+button_cart_green
   rotate: false
   xy: 252, 52
   size: 40, 43
   orig: 40, 43
   offset: 0, 0
   index: -1
-button_level_locked
+button_controller_green
   rotate: false
   xy: 564, 203
   size: 40, 43
   orig: 40, 43
   offset: 0, 0
   index: -1
-control_pause
+button_home_green
   rotate: false
   xy: 292, 52
+  size: 40, 43
+  orig: 40, 43
+  offset: 0, 0
+  index: -1
+button_level_green
+  rotate: false
+  xy: 564, 160
+  size: 40, 43
+  orig: 40, 43
+  offset: 0, 0
+  index: -1
+button_level_locked
+  rotate: false
+  xy: 604, 203
+  size: 40, 43
+  orig: 40, 43
+  offset: 0, 0
+  index: -1
+button_play_orange
+  rotate: false
+  xy: 332, 52
+  size: 40, 43
+  orig: 40, 43
+  offset: 0, 0
+  index: -1
+button_update_green
+  rotate: false
+  xy: 564, 117
+  size: 40, 43
+  orig: 40, 43
+  offset: 0, 0
+  index: -1
+control_pause
+  rotate: false
+  xy: 604, 160
   size: 40, 43
   orig: 40, 43
   offset: 0, 0
@@ -47,14 +82,14 @@ level
   index: -1
 nav_left
   rotate: false
-  xy: 564, 160
+  xy: 644, 203
   size: 40, 43
   orig: 40, 43
   offset: 0, 0
   index: -1
 nav_right
   rotate: false
-  xy: 604, 203
+  xy: 372, 52
   size: 40, 43
   orig: 40, 43
   offset: 0, 0

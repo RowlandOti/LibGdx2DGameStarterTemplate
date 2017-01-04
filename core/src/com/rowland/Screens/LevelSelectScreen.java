@@ -15,6 +15,7 @@ import com.rowland.ScreenHelpers.LevelScreenEnvironment;
 public class LevelSelectScreen extends MyAbstractScreen implements IScreen {
 
     public TextureRegion background_level, star_empty, star_normal, star_golden, button_level_grey, button_level_green, nav_left, nav_right;
+    public TextureRegion ctrl_home, ctrl_controller, ctrl_update, ctrl_cart, ctrl_play;
 
     private LevelScreenButtons levelScreenButtons;
     private LevelScreenEnvironment levelScreenEnvironment;
@@ -40,14 +41,19 @@ public class LevelSelectScreen extends MyAbstractScreen implements IScreen {
         // Knob
         nav_left = atlas_base.findRegion("nav_left");
         nav_right = atlas_base.findRegion("nav_right");
-        //
+        // Level Button
         button_level_green = atlas_base.findRegion("button_level_green");
         button_level_grey = atlas_base.findRegion("button_level_locked");
-
+        // Level decoration elements
         star_golden = atlas_base.findRegion("star_golden");
-
         star_empty = atlas.findRegion("star_empty");
         star_normal = atlas.findRegion("star_normal");
+        // Control Buttons
+        ctrl_home = atlas_base.findRegion("button_home_green");
+        ctrl_controller = atlas_base.findRegion("button_controller_green");
+        ctrl_update = atlas_base.findRegion("button_update_green");
+        ctrl_cart = atlas_base.findRegion("button_cart_green");
+        ctrl_play = atlas_base.findRegion("button_play_orange");
 
         levelScreenButtons.initScreenAssets();
         levelScreenEnvironment.initScreenAssets();
@@ -86,7 +92,6 @@ public class LevelSelectScreen extends MyAbstractScreen implements IScreen {
     @Override
     public void resume() {
         super.resume();
-
         levelScreenButtons.sendInMenu();
         levelScreenEnvironment.sendInEnvironment();
     }
