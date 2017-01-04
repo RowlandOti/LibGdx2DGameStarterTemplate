@@ -42,7 +42,7 @@ public class PreGameScreen extends MyAbstractScreen implements IScreen {
 	{
 		super(game, screenName);
 		initScreenAssets();
-		setUpScreenElements();
+		setUpScreens();
 		setUpMenu();
 		setUpSwipeListener();
 		preGameScreenButtons.sendInSwipeForInstruction();
@@ -61,7 +61,7 @@ public class PreGameScreen extends MyAbstractScreen implements IScreen {
 		button_overlay_right = atlas.findRegion("button_overlay_right");
 	}
 	@Override
-	public void setUpScreenElements()
+	public void setUpScreens()
 	{
 
 		isMenuActive = true;

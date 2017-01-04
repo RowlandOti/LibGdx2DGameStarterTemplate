@@ -17,20 +17,20 @@
 package com.moribitotech.mtx.interfaces;
 
 public interface IScreen {
-	/**
-	 * Set up screen elements. Call this method in constructor first
-	 * <p>
-	 * SUCH AS:<br>
-	 * - Load assets<br>
-	 * - Set back button active<br>
-	 * - Set background texture<br>
-	 * */
-	public void setUpScreenElements();
+    /**
+     * Set up screen elements. Call this method in constructor first
+     * <p>
+     * SUCH AS:<br>
+     * - Load assets<br>
+     * - Set back button active<br>
+     * - Set background texture<br>
+     */
+    void setUpScreens();
 
-	/**
-	 * Set up screen menu
-	 * */
-	public void setUpMenu();
+    /**
+     * Set up screen menu
+     */
+    void setUpMenu();
 
-	public void setUpInfoPanel();
+    void setUpInfoPanel();
 }

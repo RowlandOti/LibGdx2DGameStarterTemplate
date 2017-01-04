@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.magnetideas.helpers.MyAbstractScreen;
 import com.moribitotech.mtx.interfaces.IScreen;
+import com.moribitotech.mtx.settings.AppSettings;
 import com.rowland.ScreenHelpers.LevelScreenButtons;
 import com.rowland.ScreenHelpers.LevelScreenEnvironment;
 
@@ -13,16 +14,18 @@ import com.rowland.ScreenHelpers.LevelScreenEnvironment;
  */
 public class LevelSelectScreen extends MyAbstractScreen implements IScreen {
 
-    public static TextureRegion background_level, star_empty, star_normal,star_golden, button_level_grey, button_level_green, nav_left, nav_right;
+    public TextureRegion background_level, star_empty, star_normal, star_golden, button_level_grey, button_level_green, nav_left, nav_right;
 
-    LevelScreenButtons levelScreenButtons;
-    LevelScreenEnvironment levelScreenEnvironment;
+    private LevelScreenButtons levelScreenButtons;
+    private LevelScreenEnvironment levelScreenEnvironment;
+
+    private float button_size = 75f * AppSettings.getWorldSizeRatio();
 
     public LevelSelectScreen(Game game, String screenName) {
         super(game, screenName);
-
+        getStage().setDebugAll(true);
+        setUpScreens();
         initScreenAssets();
-        setUpScreenElements();
         setUpMenu();
     }
 
@@ -45,10 +48,13 @@ public class LevelSelectScreen extends MyAbstractScreen implements IScreen {
 
         star_empty = atlas.findRegion("star_empty");
         star_normal = atlas.findRegion("star_normal");
+
+        levelScreenButtons.initScreenAssets();
+        levelScreenEnvironment.initScreenAssets();
     }
 
     @Override
-    public void setUpScreenElements() {
+    public void setUpScreens() {
         setBackButtonActive(true);
         levelScreenButtons = new LevelScreenButtons(this);
         levelScreenEnvironment = new LevelScreenEnvironment(this);
@@ -57,7 +63,7 @@ public class LevelSelectScreen extends MyAbstractScreen implements IScreen {
     @Override
     public void setUpMenu() {
         // Main menu (Order is important) - They can be animated hence the importance of order
-        levelScreenEnvironment.setUpLevelScreenEnvironment();
+        levelScreenEnvironment.setUpEnvironment();
         levelScreenButtons.setUpMenu();
     }
 
@@ -80,6 +86,20 @@ public class LevelSelectScreen extends MyAbstractScreen implements IScreen {
     @Override
     public void resume() {
         super.resume();
+
         levelScreenButtons.sendInMenu();
+        levelScreenEnvironment.sendInEnvironment();
+    }
+
+    public LevelScreenButtons getLevelScreenButtons() {
+        return levelScreenButtons;
+    }
+
+    public LevelScreenEnvironment getLevelScreenEnvironment() {
+        return levelScreenEnvironment;
+    }
+
+    public float getButtonSize() {
+        return button_size;
     }
 }

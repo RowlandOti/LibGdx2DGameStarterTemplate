@@ -26,14 +26,14 @@ public class CongratsScreen extends AbstractScreen implements IScreen{
 	public CongratsScreen(Game game, String screenName) {
 		super(game, screenName);
 		//
-		setUpScreenElements();
+		setUpScreens();
 		setUpInfoPanel();
 		setUpActors();
 		setUpMenu();
 	}
 
 	@Override
-	public void setUpScreenElements()
+	public void setUpScreens()
 	{
 		setBackgroundTexture(AssetLoader.bg);
 		setBackButtonActive(true);

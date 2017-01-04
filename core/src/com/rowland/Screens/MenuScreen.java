@@ -18,7 +18,6 @@ import com.moribitotech.mtx.settings.AppSettings;
 import com.rowland.ScreenHelpers.MainMenuScreenButtons;
 import com.rowland.ScreenHelpers.MainMenuScreenEnvironment;
 import com.rowland.ScreenHelpers.MainMenuScreenInstructions;
-import com.rowland.Screens.LoadingScreen;
 
 import java.util.ArrayList;
 
@@ -60,7 +59,7 @@ public class MenuScreen extends MyAbstractScreen implements IScreen {
 		super(game, screenName);
 
 		initScreenAssets();
-		setUpScreenElements();
+		setUpScreens();
 		setUpMenu();
 		setUpSwipeListener();
 	}
@@ -92,7 +91,7 @@ public class MenuScreen extends MyAbstractScreen implements IScreen {
 	}
 
 	@Override
-	public void setUpScreenElements() {
+	public void setUpScreens() {
 		//
 		// Reset system
 		// #################################################################

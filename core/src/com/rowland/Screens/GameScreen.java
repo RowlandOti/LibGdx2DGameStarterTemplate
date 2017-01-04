@@ -107,7 +107,7 @@ public class GameScreen extends MyAbstractScreen implements IScreen {
         state = State.GAME_RUNNING;
 
         setUpTheWorld();
-        setUpScreenElements();
+        setUpScreens();
         setUpInfoPanel();
         setUpMenu();
         setupTween();
@@ -251,7 +251,7 @@ public class GameScreen extends MyAbstractScreen implements IScreen {
     }
 
     @Override
-    public void setUpScreenElements() {
+    public void setUpScreens() {
         gameScreenGameReadyMenu = new GameIScreenGameReadyMenu(this);
         gameScreenGamePauseMenu = new GameIScreenGamePauseMenu(this);
         gameScreenGameOverMenu = new GameIScreenGameOverMenu(this);

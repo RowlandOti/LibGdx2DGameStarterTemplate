@@ -26,14 +26,14 @@ public class HighScoresScreen extends AbstractScreen implements IScreen{
 
 	public HighScoresScreen(Game game, String screenName) {
 		super(game, screenName);
-		setUpScreenElements();
+		setUpScreens();
 		setUpInfoPanel();
 		setUpActors();
 		setUpMenu();
 	}
 
 	@Override
-	public void setUpScreenElements() {
+	public void setUpScreens() {
 		setBackgroundTexture(AssetLoader.background_home);
 		setBackButtonActive(true);
 	}

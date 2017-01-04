@@ -72,7 +72,7 @@ public abstract class AbstractScreen implements Screen {
 	 * -Creates stage<br>
 	 * -Centers camera of stage<br>
 	 * -Sets Input processor for stage (Gdx.input.setInputProcessor(stage))<br>
-	 * -Calls setUpScreenElements (Good place the set views and iniatial
+	 * -Calls setUpScreens (Good place the set views and iniatial
 	 * elements)
 	 *
 	 * @param game
