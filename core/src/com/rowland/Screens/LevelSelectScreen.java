@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.magnetideas.helpers.MyAbstractScreen;
 import com.moribitotech.mtx.interfaces.IScreen;
-import com.rowland.ScreenHelpers.LevelIScreenButtons;
+import com.rowland.ScreenHelpers.LevelScreenButtons;
 import com.rowland.ScreenHelpers.LevelScreenEnvironment;
 
 /**
@@ -13,9 +13,9 @@ import com.rowland.ScreenHelpers.LevelScreenEnvironment;
  */
 public class LevelSelectScreen extends MyAbstractScreen implements IScreen {
 
-    public static TextureRegion background_level, star_empty, star_normal, button_level_grey, button_level_green, nav_left, nav_right;
+    public static TextureRegion background_level, star_empty, star_normal,star_golden, button_level_grey, button_level_green, nav_left, nav_right;
 
-    LevelIScreenButtons levelScreenButtons;
+    LevelScreenButtons levelScreenButtons;
     LevelScreenEnvironment levelScreenEnvironment;
 
     public LevelSelectScreen(Game game, String screenName) {
@@ -41,6 +41,8 @@ public class LevelSelectScreen extends MyAbstractScreen implements IScreen {
         button_level_green = atlas_base.findRegion("button_level_green");
         button_level_grey = atlas_base.findRegion("button_level_locked");
 
+        star_golden = atlas_base.findRegion("star_golden");
+
         star_empty = atlas.findRegion("star_empty");
         star_normal = atlas.findRegion("star_normal");
     }
@@ -48,7 +50,7 @@ public class LevelSelectScreen extends MyAbstractScreen implements IScreen {
     @Override
     public void setUpScreenElements() {
         setBackButtonActive(true);
-        levelScreenButtons = new LevelIScreenButtons(this);
+        levelScreenButtons = new LevelScreenButtons(this);
         levelScreenEnvironment = new LevelScreenEnvironment(this);
     }
 

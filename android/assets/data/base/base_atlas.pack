@@ -66,3 +66,10 @@ pause
   orig: 123, 197
   offset: 0, 0
   index: -1
+star_golden
+  rotate: false
+  xy: 79, 14
+  size: 30, 28
+  orig: 30, 28
+  offset: 0, 0
+  index: -1

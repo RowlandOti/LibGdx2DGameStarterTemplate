@@ -1,24 +1,15 @@
 package com.rowland.Screens;
 
-import java.util.Random;
-
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.magnetideas.helpers.MyAbstractScreen;
-import com.moribitotech.madboy.buttons.JungleGameButton;
-import com.moribitotech.mtx.interfaces.IScreen;
-import com.moribitotech.mtx.scene2d.effects.EffectCreator;
 import com.moribitotech.mtx.scene2d.models.EmptyActorLight;
-import com.moribitotech.mtx.scene2d.models.SmartActor;
 import com.moribitotech.mtx.scene2d.ui.TableModel;
-import com.moribitotech.mtx.settings.AppSettings;
-import com.rowland.UI.MadBoyGameButton;
 
 /**
  * @author Rowland

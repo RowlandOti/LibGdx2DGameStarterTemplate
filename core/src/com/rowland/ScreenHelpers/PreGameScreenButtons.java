@@ -13,7 +13,7 @@ import com.moribitotech.mtx.settings.AppSettings;
 import com.rowland.Screens.LevelSelectScreen;
 import com.rowland.Screens.LoadingScreen;
 import com.rowland.Screens.PreGameScreen;
-import com.rowland.UI.MadBoyGameButton;
+import com.rowland.UI.SmartButton;
 
 /**
  * @author Rowland
@@ -30,7 +30,7 @@ public class PreGameScreenButtons {
 
 	public void setUpMenuButtons()
 	{
-
+		preGameScreen.getStage().setDebugAll(true);
 		// Menu Table (Play, Scores, Settings)
 		// #################################################################
 		preGameScreen.menuTable = new TableModel(null, AppSettings.SCREEN_W/1.3f , AppSettings.WORLD_HEIGHT/1.3f);
@@ -46,7 +46,7 @@ public class PreGameScreenButtons {
 		//
 		// Btn Okay
 		// #################################################################
-		preGameScreen.btnOk = new MadBoyGameButton(btnWidth,btnHeight, rnd, true);
+		preGameScreen.btnOk = new SmartButton(btnWidth,btnHeight, rnd, true);
 		preGameScreen.btnOk.setTextureRegion(PreGameScreen.button_overlay_right,true);
 		preGameScreen.btnOk.setOrigin(preGameScreen.btnOk.getWidth() / 2.0f,preGameScreen.btnOk.getHeight() / 2.0f);
 		preGameScreen.btnOk.addListener(new ActorGestureListener() {
@@ -66,7 +66,7 @@ public class PreGameScreenButtons {
 		//
 		// Btn Cancel
 		// #################################################################
-		preGameScreen.btnCancel = new MadBoyGameButton(btnWidth,btnHeight, rnd, true);
+		preGameScreen.btnCancel = new SmartButton(btnWidth,btnHeight, rnd, true);
 		preGameScreen.btnCancel.setTextureRegion(PreGameScreen.button_overlay_left,true);
 		preGameScreen.btnCancel.setOrigin(preGameScreen.btnCancel.getWidth() / 2.0f,preGameScreen.btnCancel.getHeight() / 2.0f);
 		preGameScreen.btnCancel.addListener(new ActorGestureListener() {
@@ -114,14 +114,14 @@ public class PreGameScreenButtons {
 
 		// Btn Swipe Down Menu
 		// #################################################################
-		preGameScreen.btnSwipeForMenu = new MadBoyGameButton(btnWidth,btnHeight, rnd, true);
+		preGameScreen.btnSwipeForMenu = new SmartButton(btnWidth,btnHeight, rnd, true);
 		preGameScreen.btnSwipeForMenu.setTextureRegion(PreGameScreen.img_obj_swipe_down_menu, true);
 		preGameScreen.btnSwipeForMenu.setOrigin(preGameScreen.btnSwipeForMenu.getWidth(), 0);
 		preGameScreen.btnSwipeForMenu.setPosition(AppSettings.SCREEN_W - preGameScreen.btnSwipeForMenu.getWidth(), 0);
 
 		// Btn Swipe Up menu
 		// #################################################################
-		preGameScreen.btnSwipeForInstructions = new MadBoyGameButton(btnWidth, btnHeight, rnd, true);
+		preGameScreen.btnSwipeForInstructions = new SmartButton(btnWidth, btnHeight, rnd, true);
 		preGameScreen.btnSwipeForInstructions.setTextureRegion(PreGameScreen.img_obj_swipe_up_instructions, true);
 		preGameScreen.btnSwipeForInstructions.setOrigin(preGameScreen.btnSwipeForInstructions.getWidth(), 0);
 		preGameScreen.btnSwipeForInstructions.setPosition(AppSettings.SCREEN_W- preGameScreen.btnSwipeForInstructions.getWidth(), 0);

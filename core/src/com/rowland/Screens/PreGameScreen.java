@@ -13,7 +13,7 @@ import com.moribitotech.mtx.scene2d.ui.TableModel;
 import com.moribitotech.mtx.settings.AppSettings;
 import com.rowland.ScreenHelpers.GameScreenInstructions;
 import com.rowland.ScreenHelpers.PreGameScreenButtons;
-import com.rowland.UI.MadBoyGameButton;
+import com.rowland.UI.SmartButton;
 
 /**
  * @author Rowland
@@ -22,7 +22,7 @@ import com.rowland.UI.MadBoyGameButton;
 public class PreGameScreen extends MyAbstractScreen implements IScreen {
 
 	public EmptyActorLight instructions;
-	public MadBoyGameButton btnOk, btnCancel, btnSwipeForMenu, btnSwipeForInstructions;
+	public SmartButton btnOk, btnCancel, btnSwipeForMenu, btnSwipeForInstructions;
 	public static TextureRegion button_overlay_left, button_overlay_right, img_obj_rectangle, img_obj_swipe_down_menu, img_obj_swipe_up_instructions;
 	public TableModel menuTable;
 
