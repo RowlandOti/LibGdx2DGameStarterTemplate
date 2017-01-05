@@ -5,105 +5,119 @@ filter: Nearest,Nearest
 repeat: none
 button_cart_green
   rotate: false
-  xy: 252, 52
+  xy: 564, 167
   size: 40, 43
   orig: 40, 43
   offset: 0, 0
   index: -1
 button_controller_green
   rotate: false
-  xy: 564, 203
+  xy: 564, 124
   size: 40, 43
   orig: 40, 43
   offset: 0, 0
   index: -1
 button_home_green
   rotate: false
-  xy: 292, 52
+  xy: 564, 81
   size: 40, 43
   orig: 40, 43
   offset: 0, 0
   index: -1
 button_level_green
   rotate: false
-  xy: 564, 160
+  xy: 79, 0
   size: 40, 43
   orig: 40, 43
   offset: 0, 0
   index: -1
 button_level_locked
   rotate: false
-  xy: 604, 203
+  xy: 119, 0
   size: 40, 43
   orig: 40, 43
   offset: 0, 0
   index: -1
 button_play_orange
   rotate: false
-  xy: 332, 52
+  xy: 159, 0
   size: 40, 43
   orig: 40, 43
   offset: 0, 0
   index: -1
 button_update_green
   rotate: false
-  xy: 564, 117
+  xy: 199, 0
   size: 40, 43
   orig: 40, 43
   offset: 0, 0
   index: -1
 control_pause
   rotate: false
-  xy: 604, 160
+  xy: 604, 167
   size: 40, 43
   orig: 40, 43
   offset: 0, 0
   index: -1
 game_over_window
   rotate: false
-  xy: 252, 95
+  xy: 252, 96
   size: 189, 151
   orig: 189, 151
   offset: 0, 0
   index: -1
 green
   rotate: false
-  xy: 0, 0
+  xy: 0, 1
   size: 79, 42
   orig: 79, 42
   offset: 0, 0
   index: -1
 level
   rotate: false
-  xy: 0, 42
+  xy: 0, 43
   size: 252, 204
   orig: 252, 204
   offset: 0, 0
   index: -1
 nav_left
   rotate: false
-  xy: 644, 203
+  xy: 604, 124
   size: 40, 43
   orig: 40, 43
   offset: 0, 0
   index: -1
 nav_right
   rotate: false
-  xy: 372, 52
+  xy: 604, 81
   size: 40, 43
   orig: 40, 43
   offset: 0, 0
   index: -1
+orange
+  rotate: false
+  xy: 252, 59
+  size: 78, 37
+  orig: 78, 37
+  offset: 0, 0
+  index: -1
 pause
   rotate: false
-  xy: 441, 49
+  xy: 441, 50
   size: 123, 197
   orig: 123, 197
   offset: 0, 0
   index: -1
+red
+  rotate: false
+  xy: 564, 210
+  size: 78, 37
+  orig: 78, 37
+  offset: 0, 0
+  index: -1
 star_golden
   rotate: false
-  xy: 79, 14
+  xy: 330, 68
   size: 30, 28
   orig: 30, 28
   offset: 0, 0

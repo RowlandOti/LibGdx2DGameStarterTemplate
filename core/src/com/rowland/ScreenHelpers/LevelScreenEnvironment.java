@@ -61,7 +61,7 @@ public class LevelScreenEnvironment {
             }
         });
 
-        navTable.add(navLeftButton).expandX().left().width(levelSelectScreen.getButtonSize()).height(levelSelectScreen.getButtonSize());
+        navTable.add(navLeftButton).expandX().left().size(levelSelectScreen.getButtonSize(), levelSelectScreen.getButtonSize());
 
         //navRightButton = MenuCreator.createCustomGameButton(null, LevelSelectScreen.nav_right, LevelSelectScreen.nav_right);
         navRightButton = new SmartButton(levelSelectScreen.getButtonSize(), levelSelectScreen.getButtonSize(), rnd, true);
@@ -82,7 +82,7 @@ public class LevelScreenEnvironment {
             }
         });
 
-        navTable.add(navRightButton).expandX().right().width(levelSelectScreen.getButtonSize()).height(levelSelectScreen.getButtonSize()).expandY();
+        navTable.add(navRightButton).expandX().right().size(levelSelectScreen.getButtonSize(), levelSelectScreen.getButtonSize()).expandY();
 
         // Scale them to "0", we will send them in with ScrollPane
         // #################################################################
@@ -175,11 +175,11 @@ public class LevelScreenEnvironment {
         });
 
         controlTable.bottom();
-        controlTable.add(ctrlHomeButton).bottom().expandX().width(levelSelectScreen.getButtonSize() * 1.2f).height(levelSelectScreen.getButtonSize() * 1.2f);
-        controlTable.add(ctrlControllerButton).bottom().expandX().width(levelSelectScreen.getButtonSize() * 1.2f).height(levelSelectScreen.getButtonSize() * 1.2f);
-        controlTable.add(ctrlUpdateButton).bottom().expandX().width(levelSelectScreen.getButtonSize() * 1.2f).height(levelSelectScreen.getButtonSize() * 1.2f);
-        controlTable.add(ctrlCartButton).bottom().expandX().width(levelSelectScreen.getButtonSize() * 1.2f).height(levelSelectScreen.getButtonSize() * 1.2f);
-        controlTable.add(ctrlPlayButton).bottom().expandX().width(levelSelectScreen.getButtonSize() * 1.2f).height(levelSelectScreen.getButtonSize() * 1.2f);
+        controlTable.add(ctrlHomeButton).expandX().size(levelSelectScreen.getButtonSize() * 1.2f, levelSelectScreen.getButtonSize() * 1.2f);
+        controlTable.add(ctrlControllerButton).expandX().size(levelSelectScreen.getButtonSize() * 1.2f, levelSelectScreen.getButtonSize() * 1.2f);
+        controlTable.add(ctrlUpdateButton).expandX().size(levelSelectScreen.getButtonSize() * 1.2f, levelSelectScreen.getButtonSize() * 1.2f);
+        controlTable.add(ctrlCartButton).expandX().size(levelSelectScreen.getButtonSize() * 1.2f, levelSelectScreen.getButtonSize() * 1.2f);
+        controlTable.add(ctrlPlayButton).expandX().size(levelSelectScreen.getButtonSize() * 1.2f, levelSelectScreen.getButtonSize() * 1.2f);
     }
 
     public void sendInEnvironment() {

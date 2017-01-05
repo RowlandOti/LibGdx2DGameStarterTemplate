@@ -24,7 +24,7 @@ public class LevelSelectScreen extends MyAbstractScreen implements IScreen {
 
     public LevelSelectScreen(Game game, String screenName) {
         super(game, screenName);
-        getStage().setDebugAll(true);
+        //getStage().setDebugAll(true);
         setUpScreens();
         initScreenAssets();
         setUpMenu();

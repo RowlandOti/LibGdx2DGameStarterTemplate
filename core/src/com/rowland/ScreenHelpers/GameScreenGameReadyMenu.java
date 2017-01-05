@@ -12,13 +12,13 @@ import com.rowland.Screens.LevelSelectScreen;
 import com.rowland.Screens.GameScreen;
 
 
-public class GameIScreenGameReadyMenu implements IScreenAbstractMenu {
+public class GameScreenGameReadyMenu implements IScreenAbstractMenu {
 
     private TableModel gameReadyMenuTable;
     private ButtonGame okButton, cancelButton;
     private GameScreen gameScreen;
 
-    public GameIScreenGameReadyMenu(final GameScreen gameScreen) {
+    public GameScreenGameReadyMenu(final GameScreen gameScreen) {
         this.gameScreen = gameScreen;
     }
 

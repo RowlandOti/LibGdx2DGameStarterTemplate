@@ -33,11 +33,12 @@ import com.rowland.TweenAccessors.OrthographicCameraAccessor;
 public class GameScreen extends MyAbstractScreen implements IScreen {
 
     private TweenManager tweenManager;
+
     private BitmapFont gameFont;
     public static int gameOverCounterForAds = 0;
 
     //Here is a declaration of the screen helpers that will help create menu for various game states
-    public GameIScreenGameReadyMenu gameScreenGameReadyMenu;
+    public GameScreenGameReadyMenu gameScreenGameReadyMenu;
     public GameIScreenGamePauseMenu gameScreenGamePauseMenu;
     public GameIScreenGameOverMenu gameScreenGameOverMenu;
     public GameIScreenLevelEndMenu gameScreenLevelEndMenu;
@@ -82,7 +83,7 @@ public class GameScreen extends MyAbstractScreen implements IScreen {
 
     public static int creditsPoint;
 
-    public static TextureRegion button_overlay_pause, button_overlay_left, button_overlay_right, button_green, background_game_over, background_game_pause, button_menu_up, button_menu_down, button_resume_up, button_resume_down, button_quit_up, button_quit_down, img_obj_swipe_down_menu, img_obj_swipe_up_instructions;
+    public static TextureRegion button_overlay_pause, button_overlay_left, button_overlay_right, button_green, button_orange, button_red, background_game_over, background_game_pause, button_menu_up, button_menu_down, button_resume_up, button_resume_down, button_quit_up, button_quit_down, img_obj_swipe_down_menu, img_obj_swipe_up_instructions;
     public static TextureRegion firstFrame, secondFrame, thirdFrame, fourthFrame, fifthFrame, sixthFrame, seventhFrame, eighthFrame, ninethFrame, tenthFrame, eleventhFrame, twelvethFrame, thirteenthFrame, fourteenthFrame, fifteenthFrame;
     public static Animation pummaStill, pummaWalk, pummaJump;
     private ParallaxBackground parallaxBackground, parallaxForeground;
@@ -102,7 +103,6 @@ public class GameScreen extends MyAbstractScreen implements IScreen {
         getStage().setDebugAll(true);
 
         initScreenAssets();
-        gameFont = new BitmapFont(Gdx.files.internal("data/maroonFont.fnt"), Gdx.files.internal("data/maroonFont.png"), false);
         //state = State.GAME_READY;
         state = State.GAME_RUNNING;
 
@@ -135,7 +135,10 @@ public class GameScreen extends MyAbstractScreen implements IScreen {
         button_overlay_right = atlas.findRegion("button_overlay_right");
         button_overlay_pause = atlas.findRegion("button_overlay_pause");
 
+        button_red = atlas_base.findRegion("red");
         button_green = atlas_base.findRegion("green");
+        button_orange = atlas_base.findRegion("orange");
+
         background_game_over = atlas_base.findRegion("game_over_window");
         background_game_pause = atlas_base.findRegion("pause");
         img_obj_swipe_down_menu = atlas.findRegion("img_obj_swipe_down_menu");
@@ -157,6 +160,8 @@ public class GameScreen extends MyAbstractScreen implements IScreen {
         thirteenthFrame = atlas.findRegion("13");
         fourteenthFrame = atlas.findRegion("14");
         fifteenthFrame = atlas.findRegion("15");
+
+        gameFont = new BitmapFont(Gdx.files.internal("data/helsinkiFont.fnt"), Gdx.files.internal("data/helsinkiFont.png"), false);
 
         TextureRegion[] yoyos = {firstFrame, secondFrame, thirdFrame, fourthFrame, fifthFrame, sixthFrame, seventhFrame, eighthFrame, ninethFrame, tenthFrame, eleventhFrame, twelvethFrame, thirteenthFrame, fourteenthFrame, fifteenthFrame};
         TextureRegion[] yoyoStill = {eleventhFrame, twelvethFrame};
@@ -252,7 +257,7 @@ public class GameScreen extends MyAbstractScreen implements IScreen {
 
     @Override
     public void setUpScreens() {
-        gameScreenGameReadyMenu = new GameIScreenGameReadyMenu(this);
+        gameScreenGameReadyMenu = new GameScreenGameReadyMenu(this);
         gameScreenGamePauseMenu = new GameIScreenGamePauseMenu(this);
         gameScreenGameOverMenu = new GameIScreenGameOverMenu(this);
         gameScreenLevelEndMenu = new GameIScreenLevelEndMenu(this);
@@ -449,5 +454,9 @@ public class GameScreen extends MyAbstractScreen implements IScreen {
         GameScreen.state = State.GAME_RUNNING;
         setBackgroundTexture(skyRegion);
         toggleGestureProcessor(true);
+    }
+
+    public BitmapFont getGameFont() {
+        return gameFont;
     }
 }

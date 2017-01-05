@@ -1,23 +1,30 @@
 package com.rowland.ScreenHelpers;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.moribitotech.mtx.scene2d.ui.ButtonGame;
 import com.moribitotech.mtx.scene2d.ui.MenuCreator;
 import com.moribitotech.mtx.settings.AppSettings;
-import com.rowland.Helpers.AssetLoader;
 import com.rowland.Screens.GameScreen;
 import com.rowland.Screens.LoadingScreen;
 
 public class GameIScreenGamePauseMenu implements IScreenAbstractMenu {
 
     private Table pauseMenuTable;
-    private ButtonGame mainMenuButton, resumeButton, quitButton;
+    private TextButton mainMenuButton, resumeButton, quitButton;
     private GameScreen gameScreen;
+
+    final String menuText = "Menu";
+    final String resumeText = "Resume";
+    final String quitText = "Quit";
 
     public GameIScreenGamePauseMenu(final GameScreen gameScreen) {
         this.gameScreen = gameScreen;
@@ -30,9 +37,21 @@ public class GameIScreenGamePauseMenu implements IScreenAbstractMenu {
         pauseMenuTable.setBackground(new TextureRegionDrawable(GameScreen.background_game_pause));
         pauseMenuTable.setPosition(AppSettings.SCREEN_W / 2, AppSettings.SCREEN_H + pauseMenuTable.getHeight() / 2);
 
+        float dipRatioWidth = 174 * AppSettings.getWorldSizeRatio();
+        float dipRatioHeight = 74 * AppSettings.getWorldSizeRatio();
+        float dipPadding = 10.0f * AppSettings.getWorldSizeRatio();
+
+        float fontScale = 1.3f * AppSettings.getWorldSizeRatio();
+
+        TextButton.TextButtonStyle buttonStyle = new TextButton.TextButtonStyle();
+        gameScreen.getGameFont().setScale(fontScale);
+        buttonStyle.font = gameScreen.getGameFont();
+        buttonStyle.up = new TextureRegionDrawable(gameScreen.button_green);
+        buttonStyle.down = new TextureRegionDrawable(gameScreen.button_orange);
+
 
         //MAIN MENU BUTTON ON THE RIGHT SIDE
-        mainMenuButton = MenuCreator.createCustomGameButton(AssetLoader.bigFont, GameScreen.button_green, GameScreen.button_menu_down);
+        mainMenuButton = new TextButton(menuText, buttonStyle);
         mainMenuButton.addListener(new ActorGestureListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y,
@@ -44,7 +63,7 @@ public class GameIScreenGamePauseMenu implements IScreenAbstractMenu {
             }
         });
 
-        resumeButton = MenuCreator.createCustomGameButton(AssetLoader.bigFont, GameScreen.button_green, GameScreen.button_resume_down);
+        resumeButton = new TextButton(resumeText, buttonStyle);
         resumeButton.addListener(new ActorGestureListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y,
@@ -57,7 +76,7 @@ public class GameIScreenGamePauseMenu implements IScreenAbstractMenu {
         });
 
 
-        quitButton = MenuCreator.createCustomGameButton(AssetLoader.bigFont, GameScreen.button_green, GameScreen.button_quit_down);
+        quitButton = new TextButton(quitText, buttonStyle);
         quitButton.addListener(new ActorGestureListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
@@ -65,10 +84,6 @@ public class GameIScreenGamePauseMenu implements IScreenAbstractMenu {
                 Gdx.app.exit();
             }
         });
-
-        float dipRatioWidth = 174 * AppSettings.getWorldSizeRatio();
-        float dipRatioHeight = 74 * AppSettings.getWorldSizeRatio();
-        float dipPadding = 10.0f * AppSettings.getWorldSizeRatio();
 
         // #######################################
         //tableMenu.add(shootingActor).size(dipRatioWidth, dipRatioHeight).pad(dipPadding);
