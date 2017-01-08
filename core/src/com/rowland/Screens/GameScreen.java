@@ -51,6 +51,8 @@ public class GameScreen extends MyAbstractScreen implements IScreen {
     private EmptyActorLight instructions;
     private float buttonSize = 100 * AppSettings.getWorldSizeRatio();
     private MyOrthographicCamera camera;
+    private TextureAtlas atlas_player;
+    private TextureRegion stillFirstFrame, stillSecondFrame, stillThirdFrame, stillFourthFrame, jumpFirstFrame,jumpSecondFrame,jumpThirdFrame,jumpFourthFrame,runFirstFrame,runSecondFrame,runThirdFrame,runFourthFrame,runFifthFrame,runSixthFrame;
 
     public enum State {
         GAME_READY,
@@ -124,6 +126,8 @@ public class GameScreen extends MyAbstractScreen implements IScreen {
         atlas = getMyGame().getManager().get(LoadingScreen.GAME_ATLAS, TextureAtlas.class);
         atlas_base = getMyGame().getManager().get(LoadingScreen.BASE_ATLAS, TextureAtlas.class);
 
+        atlas_player = getMyGame().getManager().get(LoadingScreen.PLAYER_ATLAS, TextureAtlas.class);
+
         button_menu_up = atlas.findRegion("button_menu_up");
         button_menu_down = atlas.findRegion("button_menu_down");
         button_resume_up = atlas.findRegion("button_resume_up");
@@ -144,6 +148,20 @@ public class GameScreen extends MyAbstractScreen implements IScreen {
         img_obj_swipe_down_menu = atlas.findRegion("img_obj_swipe_down_menu");
         img_obj_swipe_up_instructions = atlas.findRegion("img_obj_swipe_up_instructions");
 
+
+        // Player
+        firstFrame = atlas.findRegion("still1");
+        secondFrame = atlas.findRegion("still2");
+        thirdFrame = atlas.findRegion("still3");
+        fourthFrame = atlas.findRegion("still44");
+        fifthFrame = atlas.findRegion("jump1");
+        sixthFrame = atlas.findRegion("jump2");
+        seventhFrame = atlas.findRegion("jump3");
+        eighthFrame = atlas.findRegion("jump4");
+        ninethFrame = atlas.findRegion("run1");
+
+
+
         // Mad Boy Frames
         firstFrame = atlas.findRegion("1");
         secondFrame = atlas.findRegion("2");
@@ -161,19 +179,42 @@ public class GameScreen extends MyAbstractScreen implements IScreen {
         fourteenthFrame = atlas.findRegion("14");
         fifteenthFrame = atlas.findRegion("15");
 
+
+        // Player
+        stillFirstFrame = atlas_player.findRegion("still1");
+        stillSecondFrame = atlas_player.findRegion("still2");
+        stillThirdFrame = atlas_player.findRegion("still3");
+        stillFourthFrame = atlas_player.findRegion("still4");
+
+        jumpFirstFrame = atlas_player.findRegion("jump1");
+        jumpSecondFrame = atlas_player.findRegion("jump2");
+        jumpThirdFrame = atlas_player.findRegion("jump3");
+        jumpFourthFrame = atlas_player.findRegion("jump4");
+
+        runFirstFrame = atlas_player.findRegion("run1");
+        runSecondFrame = atlas_player.findRegion("run2");
+        runThirdFrame = atlas_player.findRegion("run3");
+        runFourthFrame = atlas_player.findRegion("run4");
+        runFifthFrame = atlas_player.findRegion("run5");
+        runSixthFrame = atlas_player.findRegion("run6");
+
         gameFont = new BitmapFont(Gdx.files.internal("data/helsinkiFont.fnt"), Gdx.files.internal("data/helsinkiFont.png"), false);
 
-        TextureRegion[] yoyos = {firstFrame, secondFrame, thirdFrame, fourthFrame, fifthFrame, sixthFrame, seventhFrame, eighthFrame, ninethFrame, tenthFrame, eleventhFrame, twelvethFrame, thirteenthFrame, fourteenthFrame, fifteenthFrame};
+        /*TextureRegion[] yoyos = {firstFrame, secondFrame, thirdFrame, fourthFrame, fifthFrame, sixthFrame, seventhFrame, eighthFrame, ninethFrame, tenthFrame, eleventhFrame, twelvethFrame, thirteenthFrame, fourteenthFrame, fifteenthFrame};
         TextureRegion[] yoyoStill = {eleventhFrame, twelvethFrame};
-        TextureRegion[] yoyoJump = {fifthFrame, sixthFrame, seventhFrame, eighthFrame, ninethFrame, tenthFrame, eleventhFrame,};
+        TextureRegion[] yoyoJump = {fifthFrame, sixthFrame, seventhFrame, eighthFrame, ninethFrame, tenthFrame, eleventhFrame,};*/
 
-        pummaWalk = new Animation(1 / 30f, yoyos);
+        TextureRegion[] yoyos = {runFifthFrame, runSecondFrame, runThirdFrame, runFourthFrame, runFifthFrame, runSixthFrame};
+        TextureRegion[] yoyoStill = {stillFirstFrame, stillSecondFrame, stillThirdFrame, stillFourthFrame};
+        TextureRegion[] yoyoJump = {jumpFirstFrame, jumpSecondFrame, jumpThirdFrame, jumpFourthFrame};
+
+        pummaWalk = new Animation(1 / 10f, yoyos);
         pummaWalk.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
 
-        pummaStill = new Animation(0.3f, yoyoStill);
+        pummaStill = new Animation(0.6f, yoyoStill);
         pummaStill.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
 
-        pummaJump = new Animation(1 / 30f, yoyoJump);
+        pummaJump = new Animation(1 / 10f, yoyoJump);
         pummaJump.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
 
         skyRegion = atlas.findRegion("sky");

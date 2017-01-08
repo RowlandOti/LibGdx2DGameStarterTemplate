@@ -1,0 +1,117 @@
+
+player_atlas.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+d-0
+  rotate: false
+  xy: 302, 125
+  size: 89, 89
+  orig: 89, 89
+  offset: 0, 0
+  index: -1
+d-1
+  rotate: false
+  xy: 391, 149
+  size: 107, 65
+  orig: 107, 65
+  offset: 0, 0
+  index: -1
+jump1
+  rotate: false
+  xy: 81, 99
+  size: 69, 115
+  orig: 69, 115
+  offset: 0, 0
+  index: -1
+jump2
+  rotate: false
+  xy: 0, 105
+  size: 81, 109
+  orig: 81, 109
+  offset: 0, 0
+  index: -1
+jump3
+  rotate: false
+  xy: 81, 0
+  size: 79, 99
+  orig: 79, 99
+  offset: 0, 0
+  index: -1
+jump4
+  rotate: false
+  xy: 225, 112
+  size: 77, 102
+  orig: 77, 102
+  offset: 0, 0
+  index: -1
+run1
+  rotate: false
+  xy: 828, 110
+  size: 64, 104
+  orig: 64, 104
+  offset: 0, 0
+  index: -1
+run2
+  rotate: false
+  xy: 150, 109
+  size: 75, 105
+  orig: 75, 105
+  offset: 0, 0
+  index: -1
+run3
+  rotate: false
+  xy: 0, 1
+  size: 81, 104
+  orig: 81, 104
+  offset: 0, 0
+  index: -1
+run4
+  rotate: false
+  xy: 225, 8
+  size: 73, 104
+  orig: 73, 104
+  offset: 0, 0
+  index: -1
+run5
+  rotate: false
+  xy: 570, 109
+  size: 67, 105
+  orig: 67, 105
+  offset: 0, 0
+  index: -1
+run6
+  rotate: false
+  xy: 498, 111
+  size: 72, 103
+  orig: 72, 103
+  offset: 0, 0
+  index: -1
+still1
+  rotate: false
+  xy: 637, 107
+  size: 65, 107
+  orig: 65, 107
+  offset: 0, 0
+  index: -1
+still2
+  rotate: false
+  xy: 767, 106
+  size: 61, 108
+  orig: 61, 108
+  offset: 0, 0
+  index: -1
+still3
+  rotate: false
+  xy: 160, 1
+  size: 65, 108
+  orig: 65, 108
+  offset: 0, 0
+  index: -1
+still4
+  rotate: false
+  xy: 702, 106
+  size: 65, 108
+  orig: 65, 108
+  offset: 0, 0
+  index: -1

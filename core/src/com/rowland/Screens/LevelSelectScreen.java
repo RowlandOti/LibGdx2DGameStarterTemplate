@@ -1,6 +1,8 @@
 package com.rowland.Screens;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.magnetideas.helpers.MyAbstractScreen;
@@ -17,6 +19,11 @@ public class LevelSelectScreen extends MyAbstractScreen implements IScreen {
     public TextureRegion background_level, star_empty, star_normal, star_golden, button_level_grey, button_level_green, nav_left, nav_right;
     public TextureRegion ctrl_home, ctrl_controller, ctrl_update, ctrl_cart, ctrl_play;
 
+    public BitmapFont getGameFont() {
+        return gameFont;
+    }
+
+    private BitmapFont gameFont;
     private LevelScreenButtons levelScreenButtons;
     private LevelScreenEnvironment levelScreenEnvironment;
 
@@ -54,6 +61,8 @@ public class LevelSelectScreen extends MyAbstractScreen implements IScreen {
         ctrl_update = atlas_base.findRegion("button_update_green");
         ctrl_cart = atlas_base.findRegion("button_cart_green");
         ctrl_play = atlas_base.findRegion("button_play_orange");
+
+        gameFont = new BitmapFont(Gdx.files.internal("data/helsinkiFont.fnt"), Gdx.files.internal("data/helsinkiFont.png"), false);
 
         levelScreenButtons.initScreenAssets();
         levelScreenEnvironment.initScreenAssets();

@@ -25,6 +25,7 @@ public class LoadingScreen extends MyAbstractScreen {
     public static final int TYPE_GAME = 5;
 
     public static final String BASE_ATLAS = "data/base/base_atlas.pack";
+    public static final String PLAYER_ATLAS = "data/player/player_atlas.pack";
     public static final String UI_MENU_ATLAS = "data/ui_menu/menu_atlas.pack";
     public static final String UI_LEVEL_ATLAS = "data/ui_level/level_atlas.pack";
     public static final String UI_HIGHSCORE_ATLAS = "data/ui_highscore/highscore_atlas.pack";
@@ -77,6 +78,7 @@ public class LoadingScreen extends MyAbstractScreen {
             case TYPE_UI_MENU:
                 if (getMyGame().getManager().isLoaded(GAME_ATLAS, TextureAtlas.class))
                     getMyGame().getManager().unloadGroup("ui_game");
+                    getMyGame().getManager().unloadGroup("player");
                 getMyGame().getManager().loadGroup("ui_menu");
                 break;
             case TYPE_UI_LEVEL:
@@ -96,6 +98,7 @@ public class LoadingScreen extends MyAbstractScreen {
                 getMyGame().getManager().unloadGroup("ui_level");
                 getMyGame().getManager().unloadGroup("ui_instruction");
                 getMyGame().getManager().loadGroup("ui_game");
+                getMyGame().getManager().loadGroup("player");
                 break;
         }
     }

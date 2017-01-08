@@ -1,77 +1,68 @@
-
-
 {
-"base" : [
-{
-"type" : "com.badlogic.gdx.graphics.g2d.TextureAtlas",
-"path" : "data/base/base_atlas.pack"
+   "base":[
+      {
+         "type":"com.badlogic.gdx.graphics.g2d.TextureAtlas",
+         "path":"data/base/base_atlas.pack"
+      }
+   ],
+   "player":[
+      {
+         "type":"com.badlogic.gdx.graphics.g2d.TextureAtlas",
+         "path":"data/player/player_atlas.pack"
+      }
+   ],
+   "loading_screen":[
+      {
+         "type":"com.badlogic.gdx.graphics.Texture",
+         "path":"data/loading_screen/logo.png"
+      },
+      {
+         "type":"com.badlogic.gdx.graphics.Texture",
+         "path":"data/loading_screen/background_loading.png"
+      },
+      {
+         "type":"com.badlogic.gdx.graphics.Texture",
+         "path":"data/loading_screen/progress_bar.png"
+      },
+      {
+         "type":"com.badlogic.gdx.graphics.Texture",
+         "path":"data/loading_screen/progress_bar_base.png"
+      }
+   ],
+   "ui_menu":[
+      {
+         "type":"com.badlogic.gdx.graphics.g2d.TextureAtlas",
+         "path":"data/ui_menu/menu_atlas.pack"
+      }
+   ],
+   "ui_level":[
+      {
+         "type":"com.badlogic.gdx.graphics.g2d.TextureAtlas",
+         "path":"data/ui_level/level_atlas.pack"
+      }
+   ],
+   "ui_highscore":[
+      {
+         "type":"com.badlogic.gdx.graphics.g2d.TextureAtlas",
+         "path":"data/ui_highscore/highscore_atlas.pack"
+      }
+   ],
+   "ui_credit":[
+      {
+         "type":"com.badlogic.gdx.graphics.g2d.TextureAtlas",
+         "path":"data/ui_credit/credit_atlas.pack"
+      }
+   ],
+   "ui_instruction":[
+      {
+         "type":"com.badlogic.gdx.graphics.g2d.TextureAtlas",
+         "path":"data/ui_instruction/instruction_atlas.pack"
+      }
+   ],
+   "ui_game":[
+      {
+         "type":"com.badlogic.gdx.graphics.g2d.TextureAtlas",
+         "path":"data/game_screen/game_screen_atlas.pack"
+      }
+   ]
 }
-],
-
-"loading_screen" : [
-{
-"type" : "com.badlogic.gdx.graphics.Texture",
-"path" : "data/loading_screen/logo.png"
-},
-
-{
-"type" : "com.badlogic.gdx.graphics.Texture",
-"path" : "data/loading_screen/background_loading.png"
-},
-
-{
-"type" : "com.badlogic.gdx.graphics.Texture",
-"path" : "data/loading_screen/progress_bar.png"
-},
-
-{
-"type" : "com.badlogic.gdx.graphics.Texture",
-"path" : "data/loading_screen/progress_bar_base.png"
-}
-],
-
-"ui_menu" : [
-{
-"type" : "com.badlogic.gdx.graphics.g2d.TextureAtlas",
-"path" : "data/ui_menu/menu_atlas.pack"
-}
-
-
-],
-
-"ui_level" : [
-{
-"type" : "com.badlogic.gdx.graphics.g2d.TextureAtlas",
-"path" : "data/ui_level/level_atlas.pack"
-}
-],
-
-"ui_highscore" : [
-{
-"type" : "com.badlogic.gdx.graphics.g2d.TextureAtlas",
-"path" : "data/ui_highscore/highscore_atlas.pack"
-}
-],
-
-"ui_credit" : [
-{
-"type" : "com.badlogic.gdx.graphics.g2d.TextureAtlas",
-"path" : "data/ui_credit/credit_atlas.pack"
-}
-],
-
-"ui_instruction" : [
-{
-"type" : "com.badlogic.gdx.graphics.g2d.TextureAtlas",
-"path" : "data/ui_instruction/instruction_atlas.pack"
-}
-],
-
-"ui_game" : [
-{
-"type" : "com.badlogic.gdx.graphics.g2d.TextureAtlas",
-"path" : "data/game_screen/game_screen_atlas.pack"
-}
-]
-}
-

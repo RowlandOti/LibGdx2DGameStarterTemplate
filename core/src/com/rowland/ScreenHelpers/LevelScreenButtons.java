@@ -129,9 +129,9 @@ public class LevelScreenButtons implements IScreenAbstractMenu {
         if (GameData.prefs.getBoolean("level" + level)) {
 
             //1. Create level button
-            final ButtonLevel levelButton = MenuCreator.createCustomLevelButton(AssetLoader.whiteFont, levelSelectScreen.button_level_green, levelSelectScreen.button_level_green);
+            final ButtonLevel levelButton = MenuCreator.createCustomLevelButton(levelSelectScreen.getGameFont(), levelSelectScreen.button_level_green, levelSelectScreen.button_level_green);
             //2. Set level number
-            levelButton.setLevelNumber(level, AssetLoader.whiteFont);
+            levelButton.setLevelNumber(level, levelSelectScreen.getGameFont());
             //3. Set stars or any other achievements (get from database)
             levelButton.setLevelStars(levelSelectScreen.star_empty, levelSelectScreen.star_golden, 3, GameData.getStarsEarned()[level]);
             levelButton.setLevelStarScaleFactor(2.0f);
@@ -155,7 +155,7 @@ public class LevelScreenButtons implements IScreenAbstractMenu {
             return levelButton;
         } else {
             //1. Create level button
-            final ButtonLevel levelButton = MenuCreator.createCustomLevelButton(AssetLoader.whiteFont, levelSelectScreen.button_level_grey, levelSelectScreen.button_level_grey);
+            final ButtonLevel levelButton = MenuCreator.createCustomLevelButton(levelSelectScreen.getGameFont(), levelSelectScreen.button_level_grey, levelSelectScreen.button_level_grey);
             //2. Set level number
             levelButton.setLockActive(true);
             levelButton.setLevelNumber(level, AssetLoader.whiteFont);

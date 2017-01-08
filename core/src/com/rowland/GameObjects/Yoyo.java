@@ -19,8 +19,12 @@ public class Yoyo extends Sprite
 
     public boolean visible;
 
-    public static final float width = 80f * GameWorld.WORLD_UNIT;
-    public static final float height = 80f *323/498 * GameWorld.WORLD_UNIT;
+    /*public static final float width = 80f * GameWorld.WORLD_UNIT;
+    public static final float height = 80f *323/498 * GameWorld.WORLD_UNIT;*/
+
+	public static final float width = 70f * GameWorld.WORLD_UNIT;
+	public static final float height = 70f *210/149 * GameWorld.WORLD_UNIT;
+
     public boolean hasKey;
 
     private int state;
