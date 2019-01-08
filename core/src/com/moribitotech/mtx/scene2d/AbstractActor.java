@@ -34,8 +34,8 @@ public abstract class AbstractActor extends Actor {
 	private boolean isTextureRegionActive = false;
 
 	// Animation for actor (Not mandatory)
-	private Animation animation;
-	private Animation animationMomentary;
+	private Animation<TextureRegion> animation;
+	private Animation<TextureRegion> animationMomentary;
 	private boolean isAnimationActive = false;
 	private boolean isAnimationMomentaryActive = false;
 	private boolean isAnimationMomentaryFinished = true;

@@ -84,7 +84,7 @@ public class GameScreen extends MyAbstractScreen implements IScreen {
 
     public static TextureRegion button_overlay_pause, button_overlay_left, button_overlay_right, button_green, background_game_over, background_game_pause, button_menu_up, button_menu_down, button_resume_up, button_resume_down, button_quit_up, button_quit_down, img_obj_swipe_down_menu, img_obj_swipe_up_instructions;
     public static TextureRegion firstFrame, secondFrame, thirdFrame, fourthFrame, fifthFrame, sixthFrame, seventhFrame, eighthFrame, ninethFrame, tenthFrame, eleventhFrame, twelvethFrame, thirteenthFrame, fourteenthFrame, fifteenthFrame;
-    public static Animation pummaStill, pummaWalk, pummaJump;
+    public static Animation<TextureRegion> pummaStill, pummaWalk, pummaJump;
     private ParallaxBackground parallaxBackground, parallaxForeground;
     public static TextureRegion skyRegion, downtownNairobiRegion, uptownNairobiRegion, ghettoFenceRegion;
 

@@ -61,7 +61,7 @@ public abstract class AbstractButton extends Button {
 			setSize(width * AppSettings.getWorldSizeRatio(), height
 					* AppSettings.getWorldSizeRatio());
 			if (this.bitMapFont != null) {
-				bitMapFont.setScale(AppSettings.getWorldSizeRatio());
+				bitMapFont.getData().setScale(AppSettings.getWorldSizeRatio());
 			}
 		}
 	}
@@ -186,7 +186,7 @@ public abstract class AbstractButton extends Button {
 		this.bitMapFont = bitMapFont;
 
 		if (DIPActive) {
-			bitMapFont.setScale(AppSettings.getWorldSizeRatio());
+			bitMapFont.getData().setScale(AppSettings.getWorldSizeRatio());
 		}
 	}
 
