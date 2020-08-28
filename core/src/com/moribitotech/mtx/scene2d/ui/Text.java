@@ -33,7 +33,7 @@ public class Text extends AbstractActorLight {
 		this.bitMapFont = bitMapFont;
 		//
 		if (DIPActive) {
-			bitMapFont.setScale(AppSettings.getWorldSizeRatio());
+			bitMapFont.getData().setScale(AppSettings.getWorldSizeRatio());
 		}
 	}
 
@@ -41,7 +41,7 @@ public class Text extends AbstractActorLight {
 		this.bitMapFont = bitMapFont;
 		//
 		if (DIPActive) {
-			bitMapFont.setScale(AppSettings.getWorldSizeRatio());
+			bitMapFont.getData().setScale(AppSettings.getWorldSizeRatio());
 		}
 	}
 

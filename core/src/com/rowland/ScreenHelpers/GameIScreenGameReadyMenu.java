@@ -3,7 +3,7 @@ package com.rowland.ScreenHelpers;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
-import com.badlogic.gdx.scenes.scene2d.utils.Align;
+import com.badlogic.gdx.utils.Align;
 import com.moribitotech.mtx.scene2d.ui.ButtonGame;
 import com.moribitotech.mtx.scene2d.ui.MenuCreator;
 import com.moribitotech.mtx.scene2d.ui.TableModel;

@@ -166,6 +166,11 @@ public class InputHandler implements InputProcessor, GestureListener {
 		return false;
 	}
 
+	@Override
+	public void pinchStop() {
+
+	}
+
 	public void update() {
 
 	}
